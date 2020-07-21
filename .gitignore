@@ -6,3 +6,7 @@ env/
 wat.png
 src/images/out.png
 src/images/quantize.png
+
+# Vim swap files
+*.sw*
+
