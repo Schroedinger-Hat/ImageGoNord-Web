@@ -26,6 +26,6 @@ def quantizetopalette(silf, palette, dither=False):
 palettedata = [46, 52, 64, 59, 66, 82, 67, 76, 94, 76, 86, 106]
 palimage = Image.new('P', (16, 16))
 palimage.putpalette(palettedata * 64)
-oldimage = Image.open("./test.png")
+oldimage = Image.open("images/test.png")
 newimage = quantizetopalette(oldimage, palimage, dither=False)
-newimage.save('wat.png')
+newimage.save('images/out.png')
