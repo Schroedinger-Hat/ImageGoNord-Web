@@ -17,10 +17,7 @@ def quantizetopalette(silf, palette, dither=False):
     silf.quantize(palette=palette)
     
     # retrocompatibilità per le 4.0 di pillow
-    try:
-        return silf._new(im)
-    except AttributeError:
-        return silf._makeself(im)
+    return silf._new(im)
 
 # polar light palette
 palettedata = [46, 52, 64, 59, 66, 82, 67, 76, 94, 76, 86, 106]

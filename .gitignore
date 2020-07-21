@@ -4,4 +4,4 @@ env/
 
 # test output image
 wat.png
-images/out.png
+src/images/out.png
