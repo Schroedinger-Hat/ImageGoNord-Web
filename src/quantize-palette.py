@@ -60,10 +60,10 @@ for palette in directories:
 
 # padding with black color | nordtheme palette is only 48
 while len(palettedata) < 768:
-    palettedata.append(0)
+  palettedata.extend(export_tripletes_from_color('2E3440'))
 
 palimage = Image.new('P', (1, 1))
 palimage.putpalette(palettedata)
-oldimage = Image.open("images/mountain.jpg")
+oldimage = Image.open("images/ig.jpg")
 quantizetopalette(oldimage, palimage)
 
