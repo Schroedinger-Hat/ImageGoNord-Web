@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from PIL import Image
+from PIL import Image, ImageFilter
 import os
 
 
-def quantizetopalette(silf, palette, dither=False):
+def quantizetopalette(silf, palette):
     global palettedata
 
     silf.load()
@@ -17,15 +17,16 @@ def quantizetopalette(silf, palette, dither=False):
             "only RGB or L mode images can be quantized to a palette"
         )
 
-    #im = silf.im.convert("P", 1 if dither else 0, palette.im)
-    im2 = silf.convert("P", None, None, palette.im, 4)
+    # color quantize, mode P
+    im = silf.quantize(colors=256, method=0, kmeans=5, palette=palette)
+    # convert again from P mode to RGB
+    im = im.convert('RGB')
+    # reduce rumor noise by applying a blur
+    im = im.filter(ImageFilter.GaussianBlur(1))
+    # save
+    im.save("images/quantize.jpg")
 
-    # Altro metodo
-    im = silf.quantize(colors=int(len(palettedata) / 3),
-                       method=None, kmeans=0, palette=palette)
-    im.save("images/quantize.png")
-    # retrocompatibilità per le 4.0 di pillow
-    return im2
+    return im
 
 
 def export_tripletes_from_color(hex_color):
@@ -57,9 +58,12 @@ palettedata = []
 for palette in directories:
   palettedata.extend(create_palette_data(import_palette_from_file(path+palette)))
 
-palimage = Image.new('P', (16, 16))
-palimage.putpalette(palettedata * 16)
+# padding with black color | nordtheme palette is only 48
+while len(palettedata) < 768:
+    palettedata.append(0)
+
+palimage = Image.new('P', (1, 1))
+palimage.putpalette(palettedata)
 oldimage = Image.open("images/mountain.jpg")
-newimage = quantizetopalette(oldimage, palimage, dither=False)
-newimage.save('images/out.png')
+quantizetopalette(oldimage, palimage)
 

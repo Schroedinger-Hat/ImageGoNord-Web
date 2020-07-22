@@ -5,7 +5,7 @@ env/
 # test output image
 wat.png
 src/images/out.png
-src/images/quantize.png
+src/images/quantize.*
 
 # Vim swap files
 *.sw*
