@@ -3,6 +3,7 @@
 from PIL import Image, ImageFilter
 import os
 
+USE_AVG_COLOR = True
 
 def quantizetopalette(silf, palette):
     global palettedata
@@ -53,6 +54,27 @@ def create_palette_data(palette):
 def color_difference (color1, color2):
     return sum([abs(component1-component2) for component1, component2 in zip(color1, color2)])
 
+def get_avg_color (pixels, w=-2, h=3):
+  average_sum = []
+  for k in range(w, h):
+    for l in range(w, h):
+      try:
+        average_sum.append(pixels[i+k, j+l])
+        n += 1
+      except:
+        pass
+
+  size = len(average_sum)
+  r = 0
+  g = 0
+  b = 0
+  for x in average_sum:
+    r += x[0]
+    g += x[1]
+    b += x[2]
+  
+  return (r/size, g/size, b/size)
+
 path = "palettes/Nord/"
 directories = os.listdir(path)
 
@@ -62,21 +84,18 @@ for palette in directories:
   for hex_color in hex_colors:
     palettedata[hex_color] = export_tripletes_from_color(hex_color)
 
-# padding with black color | nordtheme palette is only 48
-# while len(palettedata) < 768:
-#   palettedata.extend(export_tripletes_from_color('2E3440'))
-
-# palimage = Image.new('P', (1, 1))
-# palimage.putpalette(palettedata)
-oldimage = Image.open("images/crazy.jpeg")
+oldimage = Image.open("images/mountain-sm.jpg")
 pixels = oldimage.load()
 
-for i in range(oldimage.size[0]):    # for every col:
-  for j in range(oldimage.size[1]):    # For every row
-    differences = [[color_difference(pixels[i, j], target_value), target_name] for target_name, target_value in palettedata.items()]
-    differences.sort()  # sorted by the first element of inner lists
-    my_color_name = differences[0][1]
-    pixels[i, j] = tuple(palettedata[my_color_name])
+for i in range(oldimage.size[0]):
+  for j in range(oldimage.size[1]):
+    color_to_check = pixels[i, j]
+    if USE_AVG_COLOR == True:
+      color_to_check = get_avg_color(pixels)
+
+    differences = [[color_difference(color_to_check, target_value), target_name] for target_name, target_value in palettedata.items()]
+    differences.sort()
+    pixels[i, j] = tuple(palettedata[differences[0][1]])
 
 oldimage.save('images/quantize.jpg')
 # quantizetopalette(oldimage, palimage)

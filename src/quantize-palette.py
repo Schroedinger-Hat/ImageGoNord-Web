@@ -63,6 +63,6 @@ while len(palettedata) < 768:
 
 palimage = Image.new('P', (1, 1))
 palimage.putpalette(palettedata)
-oldimage = Image.open("images/crazy.jpeg")
+oldimage = Image.open("images/lui.jpg")
 quantizetopalette(oldimage, palimage)
 
