@@ -4,31 +4,7 @@ from PIL import Image, ImageFilter
 import os
 
 USE_AVG_COLOR = True
-
-def quantizetopalette(silf, palette):
-    global palettedata
-
-    silf.load()
-
-    palette.load()
-    if palette.mode != "P":
-        raise ValueError("bad mode for palette image")
-    if silf.mode != "RGB" and silf.mode != "L":
-        raise ValueError(
-            "only RGB or L mode images can be quantized to a palette"
-        )
-
-    # color quantize, mode P
-    im = silf.quantize(colors=256, method=0, kmeans=5, palette=palette)
-    # convert again from P mode to RGB
-    im = im.convert('RGB')
-    # reduce rumor noise by applying a blur
-    im = im.filter(ImageFilter.GaussianBlur(1))
-    # save
-    im.save("images/quantize.jpg")
-
-    return im
-
+USE_GAUSSIAN_BLUR = False
 
 def export_tripletes_from_color(hex_color):
     hex_triplets = [hex_color[i:i+2] for i in range(0, len(hex_color), 2)]
@@ -97,6 +73,7 @@ for i in range(oldimage.size[0]):
     differences.sort()
     pixels[i, j] = tuple(palettedata[differences[0][1]])
 
-oldimage.save('images/quantize.jpg')
-# quantizetopalette(oldimage, palimage)
+if USE_GAUSSIAN_BLUR == True:
+  oldimage = oldimage.filter(ImageFilter.GaussianBlur(1))
 
+oldimage.save('images/quantize.jpg')
