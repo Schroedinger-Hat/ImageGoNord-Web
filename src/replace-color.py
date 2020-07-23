@@ -50,19 +50,34 @@ def create_palette_data(palette):
         data.extend((export_tripletes_from_color(color)))
     return data
 
+def color_difference (color1, color2):
+    return sum([abs(component1-component2) for component1, component2 in zip(color1, color2)])
+
 path = "palettes/Nord/"
 directories = os.listdir(path)
 
-palettedata = []
+palettedata = {}
 for palette in directories:
-  palettedata.extend(create_palette_data(import_palette_from_file(path+palette)))
+  hex_colors = import_palette_from_file(path+palette)
+  for hex_color in hex_colors:
+    palettedata[hex_color] = export_tripletes_from_color(hex_color)
 
- # padding with black color | nordtheme palette is only 48
-while len(palettedata) < 768:
-  palettedata.extend(export_tripletes_from_color('2E3440'))
+# padding with black color | nordtheme palette is only 48
+# while len(palettedata) < 768:
+#   palettedata.extend(export_tripletes_from_color('2E3440'))
 
-palimage = Image.new('P', (1, 1))
-palimage.putpalette(palettedata)
+# palimage = Image.new('P', (1, 1))
+# palimage.putpalette(palettedata)
 oldimage = Image.open("images/crazy.jpeg")
-quantizetopalette(oldimage, palimage)
+pixels = oldimage.load()
+
+for i in range(oldimage.size[0]):    # for every col:
+  for j in range(oldimage.size[1]):    # For every row
+    differences = [[color_difference(pixels[i, j], target_value), target_name] for target_name, target_value in palettedata.items()]
+    differences.sort()  # sorted by the first element of inner lists
+    my_color_name = differences[0][1]
+    pixels[i, j] = tuple(palettedata[my_color_name])
+
+oldimage.save('images/quantize.jpg')
+# quantizetopalette(oldimage, palimage)
 
