@@ -1,10 +1,25 @@
 # -*- coding: utf-8 -*-
 
 from PIL import Image, ImageFilter
-import os
+# import os
+
+class Palette:
+  AURORA      = "Aurora.txt"
+  FROST       = "Frost.txt"
+  POLAR_NIGHT = "PolarNight.txt"
+  SNOW_STORM  = "SnowStorm.txt"
+
+LOOKUP_PATH = "palettes/Nord/"
+# directories = os.listdir(path)
 
 USE_AVG_COLOR = True
 USE_GAUSSIAN_BLUR = False
+AVAILABLE_PALETTE = [
+    Palette.POLAR_NIGHT,
+    Palette.SNOW_STORM,
+    Palette.FROST,
+    Palette.AURORA
+  ]
 
 def export_tripletes_from_color(hex_color):
   hex_triplets = [hex_color[i:i+2] for i in range(0, len(hex_color), 2)]
@@ -48,15 +63,12 @@ def get_avg_color (pixels, w=-2, h=3):
     r += x[0]
     g += x[1]
     b += x[2]
-  
+
   return (r/size, g/size, b/size)
 
-path = "palettes/Nord/"
-directories = os.listdir(path)
-
 palettedata = {}
-for palette in directories:
-  hex_colors = import_palette_from_file(path+palette)
+for palette in AVAILABLE_PALETTE:
+  hex_colors = import_palette_from_file(LOOKUP_PATH + palette)
   for hex_color in hex_colors:
     palettedata[hex_color] = export_tripletes_from_color(hex_color)
 
