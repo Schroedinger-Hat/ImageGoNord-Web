@@ -1,7 +1,10 @@
 # Ide
 .idea
 
-# env
+#python cache
+__pycache__/
+
+# envs
 env/
 venv/
 

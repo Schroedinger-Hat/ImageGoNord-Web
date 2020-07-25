@@ -2,11 +2,11 @@
 
 This module does stuff.
 """
-import os
+from os import listdir
 
 
 def load_palette_set(path):
-    """<Short Description>
+    """Create a list of every colors set on the path given.
 
       <Description>
 
@@ -22,7 +22,7 @@ def load_palette_set(path):
     <type>
       <description>
     """
-    directories = os.listdir(path)
+    directories = listdir(path)
 
     palette_list = [palette_file.replace(
         ".txt", '') for palette_file in directories]
@@ -30,8 +30,8 @@ def load_palette_set(path):
     return palette_list
 
 
-def find_palette(path):
-    """<Short Description>
+def find_palettes(path):
+    """Create a set with every palettes stored in the directory given.
 
       <Description>
 
@@ -47,5 +47,5 @@ def find_palette(path):
     <type>
       <description>
     """
-    palettes = [palette.lower() for palette in os.listdir(path)]
+    palettes = [palette.lower() for palette in listdir(path)]
     return palettes
