@@ -89,3 +89,4 @@ if USE_GAUSSIAN_BLUR == True:
   oldimage = oldimage.filter(ImageFilter.GaussianBlur(1))
 
 oldimage.save('images/quantize.jpg')
+
