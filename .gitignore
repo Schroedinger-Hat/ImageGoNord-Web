@@ -1,5 +1,8 @@
 
-# env
+#python cache
+__pycache__/
+
+# envs
 env/
 
 # test output image
