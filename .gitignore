@@ -13,7 +13,8 @@ wat.png
 src/images/out.png
 src/images/quantize.*
 
-# Vim swap files
+# Vim 
+.vim/
 *.sw*
 
 # python files
