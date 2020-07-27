@@ -3,6 +3,8 @@
 This module does stuff.
 """
 
+from PIL import ImageFilter
+
 def quantizetopalette(silf, palette):
     """<Short Description>
 
