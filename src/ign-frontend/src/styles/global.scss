@@ -1,0 +1,9 @@
+// Global style
+@import 'variables';
+
+html {
+    font-family: 'Red Hat Display', sans-serif;
+    background: $bg-primary;
+    color: $text-primary;
+    transition: background-color 400ms ease-in-out 0s;
+}
