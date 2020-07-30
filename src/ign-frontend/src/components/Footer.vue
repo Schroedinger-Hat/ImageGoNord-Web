@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <div class="inner-header-container">
+  <footer>
+    <div class="inner-footer-container">
       <div class="logo">
         <router-link to="/">
           <img alt="SH logo" width="36" src="../assets/logo-64.png">
@@ -9,35 +9,17 @@
       </div>
       <nav>
         <div class="navbar">
-          <a>Demo</a>
-          <router-link to="/installation">Installation</router-link>
-          <router-link to="/documentation">Documentation</router-link>
-          <router-link to="/about">About</router-link>
-          <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">GitHub</a>
-          <a @click="toggleDarkMode" href="#">
-            <i class="dark-mode-icon fas fa-moon"></i>
-          </a>
+          <span>&copy;2020 Schrödinger Hat 2020</span>
         </div>
       </nav>
     </div>
-  </header>
+  </footer>
 </template>
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'Footer',
   props: {},
-  methods: {
-    toggleDarkMode: (event) => {
-      event.preventDefault();
-      document.body.parentNode.classList.toggle('dark-theme');
-      let iconElement = event.target;
-      iconElement = (iconElement.tagName === 'A') ? iconElement.children[0] : iconElement;
-
-      iconElement.classList.toggle('fa-moon');
-      iconElement.classList.toggle('fa-sun');
-    },
-  },
 };
 </script>
 
@@ -45,14 +27,14 @@ export default {
 <!-- Il logo potrebbe essere un componente a sè -->
 <style scoped lang="scss">
 
-header {
+footer {
   max-width: 75em;
   margin: auto;
   text-align: left;
   height: 5em;
   display: flex;
 
-  .inner-header-container {
+  .inner-footer-container {
     width: 100%;
     display: flex;
     -webkit-box-align: center;

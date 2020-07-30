@@ -13,6 +13,16 @@ html {
     text-decoration: none;
     transition: all 400ms ease-in-out 0s;
   }
+
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 75em;
+    margin: auto;
+  }
 }
 
 /* dark theme */
