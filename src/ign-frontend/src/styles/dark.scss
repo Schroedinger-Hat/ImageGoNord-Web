@@ -1,1 +1,12 @@
 // Dark mode that is gonna override the whole theme
+html.dark-theme {
+  background: $dark-bg-primary;
+  color: $dark-text-primary;
+  transition: all 400ms ease-in-out 0s;
+
+  * {
+    color: $dark-text-primary;
+    transition: all 400ms ease-in-out 0s;
+  }
+
+}

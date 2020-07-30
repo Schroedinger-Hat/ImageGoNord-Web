@@ -1,9 +1,17 @@
 @import 'nord.scss';
 
+$dark-mode-class: 'dark-theme';
+
 // Colors
 $text-primary: $nord3;
 $bg-primary: $nord6;
 $bg-secondary: $nord4;
+
+// Dark-mode Colors
+$dark-bg-primary: $nord0;
+$dark-bg-secondary: $nord1;
+$dark-bg-secondary: $nord3;
+$dark-text-primary: $nord6;
 
 // Breakpoints variables
 $breakpoint-sm: 576px;

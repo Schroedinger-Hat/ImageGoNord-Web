@@ -14,7 +14,7 @@
           <router-link to="/documentation">Documentation</router-link>
           <router-link to="/about">About</router-link>
           <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">GitHub</a>
-          <a>
+          <a @click="toggleDarkMode" href="#">
             <i class="dark-mode-icon fas fa-moon"></i>
           </a>
         </div>
@@ -26,25 +26,34 @@
 <script>
 export default {
   name: 'Navbar',
-  props: {
-    msg: String,
+  props: {},
+  data: () => ({
+    themeIcon: 'moon',
+  }),
+  methods: {
+    toggleDarkMode: (event) => {
+      event.preventDefault();
+      document.body.parentNode.classList.toggle('dark-theme');
+      let iconElement = event.target;
+      iconElement = (iconElement.tagName === 'A') ? iconElement.children[0] : iconElement;
+
+      console.log(iconElement);
+      iconElement.classList.toggle('fa-moon');
+      iconElement.classList.toggle('fa-sun');
+    },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- La navbar potrebbe essere un componente a sè, per maggior leggibilità -->
+<!-- Il logo potrebbe essere un componente a sè -->
 <style scoped lang="scss">
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
 
 header {
   max-width: 75em;
   margin: auto;
   text-align: left;
-  height: 80px;
+  height: 5em;
   display: flex;
 
   .inner-header-container {
@@ -114,6 +123,22 @@ header {
 
           &:hover {
             background-color: $bg-secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.#{$dark-mode-class} {
+  header {
+    .inner-header-container {
+      nav {
+        .navbar {
+          a {
+            &:hover {
+              background-color: $dark-bg-secondary;
+            }
           }
         }
       }

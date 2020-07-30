@@ -1,9 +1,22 @@
 // Global style
 @import 'variables';
 
+/* Layout */
 html {
-    font-family: 'Red Hat Display', sans-serif;
-    background: $bg-primary;
+  font-family: 'Red Hat Display', sans-serif;
+  background: $bg-primary;
+  color: $text-primary;
+  transition: all 400ms ease-in-out 0s;
+  
+  * {
     color: $text-primary;
-    transition: background-color 400ms ease-in-out 0s;
+    text-decoration: none;
+    transition: all 400ms ease-in-out 0s;
+  }
 }
+
+/* dark theme */
+@import 'dark';
+
+/* media queries */
+@import '_media_queries';
