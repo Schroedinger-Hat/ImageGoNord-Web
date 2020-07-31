@@ -26,10 +26,9 @@
 <script>
 import Vue from 'vue';
 
-export default Vue.extend({
-  name: 'Navbar',
+export default Vue.component('Navbar', {
   props: {},
-  mounted: () => {
+  mounted() {
     if (localStorage.getItem('darkMode') === 'yes') {
       document.querySelector('.dark-mode-icon').parentNode.click();
     }
