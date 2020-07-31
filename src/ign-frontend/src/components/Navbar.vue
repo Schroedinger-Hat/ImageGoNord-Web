@@ -24,9 +24,16 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'Navbar',
   props: {},
+  mounted: () => {
+    if (localStorage.getItem('darkMode') === 'yes') {
+      document.querySelector('.dark-mode-icon').parentNode.click();
+    }
+  },
   methods: {
     toggleDarkMode: (event) => {
       event.preventDefault();
@@ -34,11 +41,16 @@ export default {
       let iconElement = event.target;
       iconElement = (iconElement.tagName === 'A') ? iconElement.children[0] : iconElement;
 
+      let darkModeValue = 'yes';
+      darkModeValue = (localStorage.getItem('darkMode') === 'yes' && iconElement.className.indexOf('fa-sun') !== -1) ? 'no' : 'yes';
+
       iconElement.classList.toggle('fa-moon');
       iconElement.classList.toggle('fa-sun');
+
+      localStorage.setItem('darkMode', darkModeValue);
     },
   },
-};
+});
 </script>
 
 <!-- La navbar potrebbe essere un componente a sè, per maggior leggibilità -->
