@@ -16,6 +16,8 @@ I/O Images:
   -i,  --img=FILE                   specify input image name [TODO]
   -o,  --out=FILE                   specify output image name [TODO]
 
+  -o=FILE,  --out=FILE              specify output image name
+
 Theme options:
        --PALETTE[=LIST_COLOR_SET]   the palette can be found on the src/palettes/
                                     directory (actually there is only nord), by
@@ -46,7 +48,8 @@ from os import path
 from utility.signaler import signal_handler
 from utility.palette_loader import *
 
-BLACK_REPLACE = '2E3440'
+BLACK_REPLACE = "2E3440"
+DEFAULT_EX = ".png"
 
 
 def is_colors_selected(selection, color_name):
@@ -76,6 +79,15 @@ if __name__ == '__main__':
     signal(SIGINT, signal_handler)
     args = sys.argv[1:]
 
+    if len(args) == 0:
+        print(__doc__)
+        sys.exit(1)
+
+    # If help given then print the docstring of the module and exit
+    if "--help" in args:
+        print(__doc__)
+        sys.exit(0)
+
     # Get absolute path of source project
     src_path = path.dirname(path.realpath(__file__))
 
@@ -84,11 +96,8 @@ if __name__ == '__main__':
 
     for arg in args:
 
-        if "--help" in args:
-            print(__doc__)
-            break
-
-        key_value = arg.split("=")
+        key_value = [kv for kv in arg.split("=", 1) if kv != ""]
+        key = key_value[0].lower()
 
         palettedata = []
 
@@ -120,10 +129,30 @@ if __name__ == '__main__':
                         print("No colors set correctly given!")
                         print("Exit!")
 
-        if key_value[0].lower() == "--img" and len(key_value) > 1:
-            input_image = key_value[1]
-            print("Load image {}".format(src_path + "/" + input_image))
+        is_image = key in ("--img" or "-i")
+        IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
+        if is_image:
+            if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
+                input_image = key_value[1]
+                print("Load image {}".format(src_path + "/" + input_image))
+            else:
+                print("You need to pass the image path!")
+                sys.exit(1)
+            continue
+        del is_image
 
+        is_output_file_name = key in ("--out" or "-o")
+        if is_output_file_name:
+            if len(key_value) > 1:
+                output_image_name = key_value[1]
+                # If the image name have already an extension do not set the default one
+                output_image_name += "" if re.search(
+                    IMAGE_PATTERN, output_image_name) else DEFAULT_EX
+                print("Output image {}".format(
+                    src_path + "/" + output_image_name))
+            else:
+                print("No output filename specify within the arguments!")
+            continue
 
     sys.exit(0)
 
