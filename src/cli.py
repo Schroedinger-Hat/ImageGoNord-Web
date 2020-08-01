@@ -7,6 +7,7 @@ Mandatory arguments to long options are mandatory for short options too.
 
 Startup:
   -V,  --version                    display the version of Image Go Nord and exit [TODO]
+
   -h,  --help                       print this help and exit
 
 Logging:
@@ -15,13 +16,12 @@ Logging:
   -l=FILE,  --log=FILE              create a log file [TODO]
 
 I/O Images:
-  -i,  --img=FILE                   specify input image name [TODO]
-  -o,  --out=FILE                   specify output image name [TODO]
+  -i=FILE,  --img=FILE              specify input image name
 
   -o=FILE,  --out=FILE              specify output image name
 
 Theme options:
-       --PALETTE[=LIST_COLOR_SET]   the palette can be found on the src/palettes/
+  --PALETTE[=LIST_COLOR_SET]        the palette can be found on the src/palettes/
                                     directory (actually there is only nord), by
                                     replace the palette with the name is possible
                                     to select the theme and if necessary you can
@@ -29,21 +29,24 @@ Theme options:
                                     Ex: python src/cli.py --nord=aur,p,s is
                                     possible to pass the name of the color or
                                     the first character of the name set.
-       --img=<image_source>         simply put the local path of the image you
-                                    want to convert
-                                    
 
-                                    Tra le altre cose sono da prevedere dei parametri extra per determinare alcune variabili di editing, come:
+Conversion:
 
-utilizzo SI | NO dell'algoritmo di conversione ottimizzato con la media pixel
-area pixel da considerare per il calcolo del colore medio
-utilizzo di blur nel risultato finale SI | NO
+  -n, --no_average_pixels           do not use the average pixels optimization
+                                    algorithm on conversion [TODO]
+
+  -p=INT, --pixel_area=INT          specify pixels of the area for average color
+                                    calculation [TODO]
+
+  -b, --blur                        use blur on the final result [TODO]
+
 
 Email bug reports, questions, discussions to <schrodinger.hat.show@gmail.com>
 and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new.
 """
 
 import sys
+import re
 from signal import signal, SIGINT
 from os import path
 
@@ -130,7 +133,9 @@ if __name__ == '__main__':
 
         for palette in palettes:
             palette_path = src_path + "/palettes/" + palette.capitalize() + "/"
-            if "--{}".format(palette) in key_value[0].lower():
+
+            if "--{}".format(palette) in key:
+
                 if len(key_value) == 1:
                     log("Use all {} color set".format(palette.capitalize()))
                     palette_set = load_palette_set(palette_path)
