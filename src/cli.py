@@ -10,7 +10,9 @@ Startup:
   -h,  --help                       print this help and exit
 
 Logging:
-  -q,  --quiet                      quiet (no output) [TODO]
+  -q,  --quiet                      quiet (no output)
+
+  -l=FILE,  --log=FILE              create a log file [TODO]
 
 I/O Images:
   -i,  --img=FILE                   specify input image name [TODO]
@@ -50,6 +52,7 @@ from utility.palette_loader import *
 
 BLACK_REPLACE = "2E3440"
 DEFAULT_EX = ".png"
+QUIET_MODE = False
 
 
 def is_colors_selected(selection, color_name):
@@ -75,6 +78,28 @@ def is_colors_selected(selection, color_name):
     return True
 
 
+def log(string):
+    """<Short Description>
+
+      <Description>
+
+    Parameters
+    ----------
+    <argument name>: <type>
+      <argument description>
+    <argument>: <type>
+      <argument description>
+
+    Returns
+    -------
+    <type>
+      <description>
+    """
+    if QUIET_MODE:
+        return
+    print(string)
+
+
 if __name__ == '__main__':
     signal(SIGINT, signal_handler)
     args = sys.argv[1:]
@@ -87,6 +112,8 @@ if __name__ == '__main__':
     if "--help" in args:
         print(__doc__)
         sys.exit(0)
+
+    QUIET_MODE = "-q" in args or "--quiet" in args
 
     # Get absolute path of source project
     src_path = path.dirname(path.realpath(__file__))
@@ -105,7 +132,7 @@ if __name__ == '__main__':
             palette_path = src_path + "/palettes/" + palette.capitalize() + "/"
             if "--{}".format(palette) in key_value[0].lower():
                 if len(key_value) == 1:
-                    print("Use all {} color set".format(palette.capitalize()))
+                    log("Use all {} color set".format(palette.capitalize()))
                     palette_set = load_palette_set(palette_path)
                     for colors_name in palette_set:
                         colors_palette = import_palette_from_file(
@@ -113,30 +140,30 @@ if __name__ == '__main__':
                         colors_set = create_data_colors(colors_palette)
                         palettedata.extend(colors_set)
                 else:
-                    print("Use {} palette".format(palette.capitalize()))
+                    log("Use {} palette".format(palette.capitalize()))
                     selected_colors = key_value[1].split(",")
                     palette_set = load_palette_set(palette_path)
                     for selected_color_set in selected_colors:
                         for colors_name in palette_set:
                             if is_colors_selected(selected_color_set, colors_name):
-                                print("Selected {} as {}".format(
+                                log("Selected {} as {}".format(
                                     selected_color_set, colors_name))
                                 colors_palette = import_palette_from_file(
                                     palette_path + colors_name + ".txt")
                                 colors_set = create_data_colors(colors_palette)
                                 palettedata.extend(colors_set)
                     if len(palettedata) == 0:
-                        print("No colors set correctly given!")
-                        print("Exit!")
+                        log("No colors set correctly given!")
+                        log("Exit!")
 
         is_image = key in ("--img" or "-i")
         IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
         if is_image:
             if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
                 input_image = key_value[1]
-                print("Load image {}".format(src_path + "/" + input_image))
+                log("Load image {}".format(src_path + "/" + input_image))
             else:
-                print("You need to pass the image path!")
+                log("You need to pass the image path!")
                 sys.exit(1)
             continue
         del is_image
@@ -148,10 +175,10 @@ if __name__ == '__main__':
                 # If the image name have already an extension do not set the default one
                 output_image_name += "" if re.search(
                     IMAGE_PATTERN, output_image_name) else DEFAULT_EX
-                print("Output image {}".format(
+                log("Output image {}".format(
                     src_path + "/" + output_image_name))
             else:
-                print("No output filename specify within the arguments!")
+                log("No output filename specify within the arguments!")
             continue
 
     sys.exit(0)
