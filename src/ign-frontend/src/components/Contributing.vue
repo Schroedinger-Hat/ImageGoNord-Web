@@ -41,7 +41,7 @@ export default {
 
   .background-svg {
     width: 100%;
-    max-height: 230px;
+    max-height: 45px;
     .single-line {
       fill: $bg-secondary;
     }
@@ -49,7 +49,7 @@ export default {
 
   .bg-secondary {
     background-color: $bg-secondary;
-    padding: 2em 0 12em 0;
+    padding: 2em 0 0 0;
   }
 }
 
@@ -58,9 +58,24 @@ export default {
   text-align: center;
   margin: 0px auto;
 
-  h4 {
-    font-size: 2em;
-    margin: 0 0;
+  .inner-text {
+    padding: 0 .5em;
+    h4 {
+      font-size: 2em;
+      margin: 0 0;
+    }
+  }
+}
+
+@media (min-width: 56.25em) {
+  .contributing-container {
+    .background-svg {
+      max-height: 230px;
+    }
+
+    .bg-secondary {
+      padding: 2em 0 12em 0;
+    }
   }
 }
 

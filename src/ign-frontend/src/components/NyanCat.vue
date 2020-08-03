@@ -81,6 +81,7 @@ body {
 }
 
 .wrapper {
+  display: none;
   overflow: hidden;
   /*position: absolute;
   top: 50%;

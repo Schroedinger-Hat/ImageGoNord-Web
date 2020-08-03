@@ -9,31 +9,44 @@
       </div>
       <nav>
         <div class="navbar">
-          <a>Demo</a>
+          <a href="#try">Try it</a>
           <router-link to="/installation">Installation</router-link>
           <router-link to="/documentation">Documentation</router-link>
           <router-link to="/about">About</router-link>
           <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">GitHub</a>
+          <a @click="toggleMobileMenu" href="#">
+            <i class="mobile-menu-icon fas fa-hamburger"></i>
+          </a>
           <a @click="toggleDarkMode" href="#">
             <i class="dark-mode-icon fas fa-moon"></i>
           </a>
         </div>
       </nav>
     </div>
+    <MobileMenu />
   </header>
 </template>
 
 <script>
 import Vue from 'vue';
+import MobileMenu from '@/components/MobileMenu.vue';
 
 export default Vue.component('Navbar', {
   props: {},
+  components: {
+    MobileMenu,
+  },
   mounted() {
     if (localStorage.getItem('darkMode') === 'yes') {
       document.querySelector('.dark-mode-icon').parentNode.click();
     }
   },
   methods: {
+    toggleMobileMenu: (event) => {
+      event.preventDefault();
+      document.querySelector('.mobile-menu-container').classList.toggle('loaded');
+      document.body.classList.toggle('overflow-hidden');
+    },
     toggleDarkMode: (event) => {
       event.preventDefault();
       document.body.parentNode.classList.toggle('dark-theme');
@@ -71,6 +84,7 @@ header {
     -webkit-box-pack: justify;
     justify-content: space-between;
     margin: 0px auto;
+    padding: 0 .5em;
 
     .logo {
       display: flex;
@@ -78,7 +92,7 @@ header {
       align-items: center;
 
       span {
-        font-size: 2em;
+        font-size: 1.8em;
         font-weight: 600;
         margin-left: 0.3em;
         vertical-align: super;
@@ -128,8 +142,39 @@ header {
           cursor: pointer;
           font-size: 1.2em;
 
+          &:nth-child(-n+5) {
+            display: none;
+          }
+
           &:hover {
             background-color: $bg-secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 56.25em) {
+  header {
+    .inner-header-container {
+      padding: 0 0;
+
+      .logo {
+        span {
+          font-size: 2em;
+        }
+      }
+
+      nav {
+        .navbar {
+          a {
+            &:nth-child(-n+5) {
+              display: inline;
+            }
+            &:nth-child(6) {
+              display: none;
+            }
           }
         }
       }

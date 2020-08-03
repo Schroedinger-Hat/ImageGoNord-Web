@@ -44,7 +44,7 @@ footer {
   position: relative;
   .canvas-container {
     position: absolute;
-    bottom: 5em;
+    bottom: 11em;
     left: 0;
     width: 100%;
 
@@ -79,6 +79,7 @@ footer {
     -webkit-box-pack: justify;
     justify-content: space-between;
     margin: 0px auto;
+    padding: 0 .5em;
 
     .logo {
       display: flex;
@@ -86,7 +87,8 @@ footer {
       align-items: center;
 
       span {
-        font-size: 2em;
+        display: none;
+        font-size: 1.5em;
         font-weight: 600;
         margin-left: 0.3em;
         vertical-align: super;
@@ -141,6 +143,25 @@ footer {
           }
         }
       }
+    }
+  }
+}
+
+@media (min-width: 56.25em) {
+  .footer-container {
+    .inner-footer-container {
+      .logo {
+        span {
+          display: inline;
+          font-size: 2em;
+        }
+      }
+    }
+  }
+
+  footer {
+    .canvas-container {
+      bottom: 5em;
     }
   }
 }
