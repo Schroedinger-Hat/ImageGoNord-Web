@@ -18,15 +18,21 @@
 export default {
   name: 'NyanCat',
   mounted: () => {
-    setTimeout(() => {
-      document.querySelector('.nyancat-wrapper').classList.add('loaded');
-    }, 2000);
+    let scrollInterval = null;
+    scrollInterval = setInterval(() => {
+      const parentScrollHeight = document.querySelector('.nyancat-wrapper').parentNode.scrollHeight;
+      if (window.pageYOffset >= parentScrollHeight) {
+        document.querySelector('.nyancat-wrapper').classList.add('loaded');
 
-    setTimeout(() => {
-      const nyancatWrapper = document.querySelector('.nyancat-wrapper');
-      nyancatWrapper.classList.remove('loaded');
-      nyancatWrapper.style.display = 'none';
-    }, 12000);
+        setTimeout(() => {
+          const nyancatWrapper = document.querySelector('.nyancat-wrapper');
+          nyancatWrapper.classList.remove('loaded');
+          nyancatWrapper.style.display = 'none';
+        }, 8000);
+
+        clearInterval(scrollInterval);
+      }
+    }, 200);
   },
 };
 </script>
@@ -93,8 +99,8 @@ body {
 
 .nyan-cat {
   position: absolute;
-  left: -10%;
-  top: 50%;
+  left: -5%;
+  top: 30%;
   width: 165px;
   height: 100px;
   margin: {
@@ -102,7 +108,7 @@ body {
     left: -82px;
   }
   animation: (nyan 400ms step-start infinite);
-  transition: all 5s ease-in-out 5s;
+  transition: all 5s ease-in-out 1s;
 }
 
 .body {
@@ -125,12 +131,12 @@ body {
 .rainbow {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 30%;
   margin-top: -35px;
   width: 0%;
   height: 65px;
   overflow: hidden;
-  transition: all 5s ease-in-out 0s;
+  transition: all 5s ease-in-out 1s;
 
   span {
     @extend .sprite;
@@ -779,12 +785,12 @@ body {
 .loaded {
   .nyan-cat {
     left: 95%;
-    transition: all 2s ease 5s;
+    transition: all 2s ease 1s;
   }
 
   .rainbow {
     width: 95%;
-    transition: all 2.1s ease 5s;
+    transition: all 2.1s ease 1s;
   }
 }
 

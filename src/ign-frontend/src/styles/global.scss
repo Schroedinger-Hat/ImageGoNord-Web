@@ -19,8 +19,19 @@ html {
   }
 
   .container {
-    max-width: 75em;
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5em;
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+  }
+
+  .external-link-color {
+    color: $nord7;
+
+    &:hover {
+      color: $nord11;
+    }
   }
 }
 

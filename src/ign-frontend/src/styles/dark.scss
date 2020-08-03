@@ -9,4 +9,12 @@ html.dark-theme {
     transition: all 400ms ease-in-out 0s;
   }
 
+  .external-link-color {
+    color: $nord8;
+
+    &:hover {
+      color: $nord11;
+    }
+  }
+
 }

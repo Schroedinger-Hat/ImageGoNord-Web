@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="container">
     <div class="inner-header-container">
       <div class="logo">
         <router-link to="/">
@@ -57,11 +57,11 @@ export default Vue.component('Navbar', {
 <style scoped lang="scss">
 
 header {
-  max-width: 75em;
   margin: auto;
   text-align: left;
   height: 5em;
   display: flex;
+  padding: 0 !important;
 
   .inner-header-container {
     width: 100%;
