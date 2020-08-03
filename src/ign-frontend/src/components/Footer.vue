@@ -21,7 +21,7 @@
         </div>
         <nav>
           <div class="navbar">
-            <span>&copy;2020 Schrödinger Hat 2020</span>
+            <span>&copy;2020 Schrödinger Hat</span>
           </div>
         </nav>
       </div>
@@ -36,8 +36,6 @@ export default {
 };
 </script>
 
-<!-- La navbar potrebbe essere un componente a sè, per maggior leggibilità -->
-<!-- Il logo potrebbe essere un componente a sè -->
 <style scoped lang="scss">
 
 footer {

@@ -23,14 +23,16 @@ export default Vue.component('MobileMenu', {
 <style scoped lang="scss">
 
 .mobile-menu-container {
-  display: none;
+  //display: none;
   position: fixed;
   width: 100%;
-  bottom: 0;
+  bottom: calc(100vh);
+  opacity: 0;
   background: $bg-primary;
   z-index: 1;
   left: 0;
   height: calc(100vh - 5em);
+  transition: all .4s ease-in 0s;
 
   nav {
     .navbar {
@@ -51,7 +53,9 @@ export default Vue.component('MobileMenu', {
 
 .loaded {
   &.mobile-menu-container {
-    display: block;
+    bottom: 0;
+    opacity: 1;
+    transition: bottom .25s ease-out 0s, opacity .3s ease-in-out 0s;
   }
 }
 
