@@ -37,6 +37,39 @@ html {
       color: $nord11;
     }
   }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 .5em;
+    font-size: 1.1em;
+    vertical-align: middle;
+    text-decoration: none;
+    border-radius: 0.25em;
+    padding: .675em 1.5em;
+    transition: all 200ms ease-in 0s;
+    cursor: pointer;
+
+    &.btn-primary {
+      border: 1px solid $bg-secondary;
+      background: $dark-bg-secondary;
+      color: $text-secondary;
+      &:hover {
+        background: $nord7;
+        color: $text-primary;
+      }
+    }
+
+    &.btn-info {
+      border: 1px solid $bg-secondary;
+      background: transparent;
+      &:hover {
+        border: 1px solid $nord5;
+        color: $nord8;
+        background: $nord5;
+      }
+    }
+  }
 }
 
 /* dark theme */

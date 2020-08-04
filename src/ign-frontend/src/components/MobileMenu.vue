@@ -2,7 +2,7 @@
   <div class="mobile-menu-container">
     <nav>
       <div class="navbar">
-        <a href="/#try">Try it</a>
+        <router-link to="/getting-started">Getting Started</router-link>
         <router-link to="/installation">Installation</router-link>
         <router-link to="/documentation">Documentation</router-link>
         <router-link to="/about">About</router-link>

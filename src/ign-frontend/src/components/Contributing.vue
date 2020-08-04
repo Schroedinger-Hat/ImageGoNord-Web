@@ -41,7 +41,8 @@ export default {
 
   .background-svg {
     width: 100%;
-    max-height: 45px;
+    margin-bottom: -15px;
+
     .single-line {
       fill: $bg-secondary;
     }
@@ -61,7 +62,7 @@ export default {
   .inner-text {
     padding: 0 .5em;
     h4 {
-      font-size: 2em;
+      font-size: 2.2em;
       margin: 0 0;
     }
   }
@@ -70,7 +71,7 @@ export default {
 @media (min-width: 56.25em) {
   .contributing-container {
     .background-svg {
-      max-height: 230px;
+      margin-bottom: -5px;
     }
 
     .bg-secondary {
@@ -82,6 +83,7 @@ export default {
 .#{$dark-mode-class} {
   .contributing-container {
     .background-svg {
+      margin-bottom: -5px;
       .single-line {
         fill: $dark-bg-secondary;
       }
