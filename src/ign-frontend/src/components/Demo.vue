@@ -11,16 +11,31 @@ import Vue from 'vue';
 
 export default Vue.component('Demo', {
   props: {},
+  data() {
+    return {
+      img: null,
+      imgData: null,
+    };
+  },
   methods: {
-    loadFile: (event) => {
-      console.log(event);
+    loadFile(event) {
+      const [imgData] = event.target.files;
       const canvas = document.getElementById('img-preview');
       const ctx = document.getElementById('img-preview').getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       const img = new Image();
 
       img.onload = () => {
-        ctx.drawImage(img, 0, 0, img.width, img.height,
-          0, 0, canvas.width, canvas.height);
+        const ratio = img.width / img.height;
+        let newWidth = canvas.width;
+        let newHeight = newWidth / ratio;
+        if (newHeight > canvas.height) {
+          newHeight = canvas.height;
+          newWidth = newHeight * ratio;
+        }
+        this.img = img;
+        this.imgData = imgData;
+        ctx.drawImage(img, 0, 0, newWidth, newHeight);
       };
 
       img.src = URL.createObjectURL(event.target.files[0]);
