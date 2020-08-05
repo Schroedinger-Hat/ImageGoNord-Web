@@ -17,4 +17,9 @@ html.dark-theme {
     }
   }
 
+  .btn {
+    &.btn-primary {
+      border: none;
+    }
+  }
 }
