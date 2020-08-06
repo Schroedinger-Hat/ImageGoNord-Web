@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
+    <Navbar />
     <router-view />
-    <Footer></Footer>
+    <Contributing />
+    <Footer />
   </div>
 </template>
 
@@ -12,12 +13,14 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue';
+import Contributing from '@/components/Contributing.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Navbar,
+    Contributing,
     Footer,
   },
 };

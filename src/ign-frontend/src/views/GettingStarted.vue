@@ -1,8 +1,5 @@
 <template>
-  <div class="home">
-    <div class="container">
-      <Main msg="" />
-    </div>
+  <div class="getting-started">
     <div class="canvas-container">
       <svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">
         <path transform="translate(0, -20)" d="M0,10 c80,-22 240,0 350,18 c90,17 260,7.5
@@ -15,15 +12,12 @@
     </section>
   </div>
 </template>
-
 <script>
-import Main from '@/components/Main.vue';
 import Demo from '@/components/Demo.vue';
 
 export default {
-  name: 'Home',
+  name: 'GettingStarted',
   components: {
-    Main,
     Demo,
   },
 };
