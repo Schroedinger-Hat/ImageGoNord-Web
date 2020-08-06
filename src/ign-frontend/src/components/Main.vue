@@ -22,7 +22,6 @@ export default {
 <style scoped lang="scss">
 .middle-section {
   text-align: center;
-  padding: 5em;
   h1 {
     font-weight: bold;
     font-size: 3em;
@@ -31,6 +30,12 @@ export default {
   h2 {
     font-weight: 100;
     margin-top: .3em;
+  }
+}
+
+@media (min-width: 56.25em) {
+  .middle-section {
+    padding: 5em;
   }
 }
 </style>

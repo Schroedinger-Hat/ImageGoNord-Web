@@ -100,6 +100,7 @@ body {
 
 .nyan-cat {
   position: absolute;
+  opacity: 0;
   z-index: 1;
   left: -5%;
   top: 30%;
@@ -787,12 +788,13 @@ body {
 
 .loaded {
   .nyan-cat {
-    left: 95%;
-    transition: all 2s ease 1s;
+    left: 93%;
+    opacity: 1;
+    transition: left 2s ease 1s, opacity 200ms easy 0.8s;
   }
 
   .rainbow {
-    width: 95%;
+    width: 93%;
     transition: all 2.1s ease 1s;
   }
 }

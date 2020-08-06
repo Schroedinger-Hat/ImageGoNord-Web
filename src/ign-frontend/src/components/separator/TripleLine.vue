@@ -49,7 +49,7 @@ export default {
 @media (min-width: 56.25em) {
   .separator-triple-line {
     .canvas-container {
-      bottom: 5em;
+      bottom: 8em;
     }
   }
 }

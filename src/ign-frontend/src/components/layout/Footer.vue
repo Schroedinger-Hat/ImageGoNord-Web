@@ -59,7 +59,7 @@ footer {
 
 .footer-container {
   margin: auto;
-  padding: 8em 0 0 0 !important;
+  padding: 7em 0 0 0 !important;
   text-align: left;
   height: 5em;
   display: flex;
@@ -154,7 +154,7 @@ footer {
 
   footer {
     .canvas-container {
-      bottom: 5em;
+      bottom: 8em;
     }
   }
 }

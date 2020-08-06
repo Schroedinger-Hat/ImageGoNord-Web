@@ -48,6 +48,10 @@ export default Vue.component('Demo', {
 
 .demo {
   padding: 8em 0;
+
+  #img-preview {
+    max-width: 100%;
+  }
 }
 
 </style>
