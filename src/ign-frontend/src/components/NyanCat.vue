@@ -100,6 +100,7 @@ body {
 
 .nyan-cat {
   position: absolute;
+  z-index: 1;
   left: -5%;
   top: 30%;
   width: 165px;
@@ -131,6 +132,7 @@ body {
 
 .rainbow {
   position: absolute;
+  z-index: 1;
   left: 0;
   top: 30%;
   margin-top: -35px;

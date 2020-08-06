@@ -3,7 +3,7 @@
     <div class="inner-header-container">
       <div class="logo">
         <router-link to="/">
-          <img alt="SH logo" width="36" src="../assets/logo-64.png">
+          <img alt="SH logo" width="36" src="../../assets/logo-64.png">
           <span>S<i class="title-part-1">chrödinger</i> H<i class="title-part-2">at</i></span>
         </router-link>
       </div>
@@ -29,7 +29,7 @@
 
 <script>
 import Vue from 'vue';
-import MobileMenu from '@/components/MobileMenu.vue';
+import MobileMenu from '@/components/layout/MobileMenu.vue';
 
 export default Vue.component('Navbar', {
   props: {},

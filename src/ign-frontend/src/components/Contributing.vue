@@ -1,13 +1,7 @@
 <template>
   <section class="contributing-container">
     <NyanCat />
-    <div class="background-svg">
-      <svg viewBox="0 0 2000 242" xmlns="http://www.w3.org/2000/svg">
-        <path class="single-line" d="M 2001.456 168.668 C 1770.825 242.097 1418.009 208.72 1245.935
-        205.417 C 952.501 199.785 810.181 145.365 345.281 86.887 C 181.207 66.249 125.825 82.728 0
-        129.035 L 0 242 L 2000 242 L 2001.456 168.668 Z"/>
-      </svg>
-    </div>
+    <SeparatorSingleLine />
     <div class="bg-secondary">
       <div class="container contributing-container-text">
         <div class="inner-text">
@@ -23,12 +17,14 @@
 
 <script>
 import NyanCat from '@/components/NyanCat.vue';
+import SeparatorSingleLine from '@/components/separator/SingleLine.vue';
 
 export default {
   name: 'Contributing',
   props: {},
   components: {
     NyanCat,
+    SeparatorSingleLine,
   },
 };
 </script>
