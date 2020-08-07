@@ -1,5 +1,7 @@
 <template>
   <div class="installation">
-    <h1>This is an installation page</h1>
+    <div class="container">
+      <h1>This is an installation page</h1>
+    </div>
   </div>
 </template>

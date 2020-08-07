@@ -1,5 +1,7 @@
 <template>
   <div class="documentation">
-    <h1>This is a documentation page</h1>
+    <div class="container">
+      <h1>This is a documentation page</h1>
+    </div>
   </div>
 </template>
