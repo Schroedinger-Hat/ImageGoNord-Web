@@ -790,7 +790,7 @@ body {
   .nyan-cat {
     left: 93%;
     opacity: 1;
-    transition: left 2s ease 1s, opacity 200ms easy 0.8s;
+    transition: left 2s ease 1s, opacity 200ms ease 0.8s;
   }
 
   .rainbow {

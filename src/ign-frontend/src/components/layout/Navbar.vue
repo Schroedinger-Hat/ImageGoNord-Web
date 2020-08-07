@@ -13,7 +13,9 @@
           <router-link to="/installation">Installation</router-link>
           <router-link to="/documentation">Documentation</router-link>
           <router-link to="/about">About</router-link>
-          <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">GitHub</a>
+          <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">
+            <i class="mobile-menu-icon fab fa-github"></i>
+          </a>
           <a @click="toggleMobileMenu" href="#">
             <i class="mobile-menu-icon fas fa-hamburger"></i>
           </a>

@@ -9,6 +9,23 @@
           <p><b>ImageGoNord</b> is open source and <a class="external-link-color" href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">hosted on GitHub</a>.</p>
           <a class="github-button" href="https://github.com/Schrodinger-Hat/ImageGoNord" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star Schrodinger-Hat/ImageGoNord on GitHub">Star</a>
           <p>If you find a bug or have an idea for a new feature, please <a class="external-link-color" target="_blank" href="https://github.com/Schrodinger-Hat/ImageGoNord/issues">open an issue on GitHub</a>.</p>
+          <p class="social">
+            <a href="https://www.facebook.com/schrodingerhat" target="_blank">
+              <i class="fab fa-facebook external-link-color"></i>
+            </a>
+            <a href="https://twitter.com/schrodinger_hat" target="_blank">
+              <i class="fab fa-twitter external-link-color"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/schrodinger-hat/" target="_blank">
+              <i class="fab fa-linkedin external-link-color"></i>
+            </a>
+            <a href="https://www.instagram.com/schrodinger_hat/" target="_blank">
+              <i class="fab fa-instagram external-link-color"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UC1QLLgrGrPmlaFhS0orykCA" target="_blank">
+              <i class="fab fa-youtube external-link-color"></i>
+            </a>
+          </p>
         </div>
       </div>
     </div>
@@ -47,6 +64,13 @@ export default {
   .bg-secondary {
     background-color: $bg-secondary;
     padding: 2em 0 0 0;
+  }
+
+  .social {
+    a {
+      padding: 0 .5em;
+      font-size: 1.2em;
+    }
   }
 }
 
