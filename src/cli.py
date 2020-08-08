@@ -6,9 +6,9 @@ Usage: gonord [OPTION]...
 Mandatory arguments to long options are mandatory for short options too.
 
 Startup:
-  -v,  --version                    display the version of Image Go Nord and exit
-
   -h,  --help                       print this help and exit
+  
+  -v,  --version                    display the version of Image Go Nord and exit
 
 Logging:
   -q,  --quiet                      quiet (no output)
@@ -142,7 +142,7 @@ if __name__ == '__main__':
         print(VERSION)
         sys.exit(0)
 
-    IMAGE_ARGUMENT_PATTERN = r'-[-img|i]=*'
+    IMAGE_ARGUMENT_PATTERN = r'-(-img|i)=*'
     IS_IMAGE_PASSED = False
     for arg in args:
         searched_arg = re.search(IMAGE_ARGUMENT_PATTERN, arg)
