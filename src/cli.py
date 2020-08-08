@@ -31,12 +31,12 @@ Theme options:
 Conversion:
 
   -n, --no_average                  do not use the average pixels optimization
-                                    algorithm on conversion 
+                                    algorithm on conversion
 
   -p=INT, --pixel_area=INT          specify pixels of the area for average color
                                     calculation
 
-  -b, --blur                        use blur on the final result [TODO]
+  -b, --blur                        use blur on the final result
 
 
 Email bug reports, questions, discussions to <schrodinger.hat.show@gmail.com>
@@ -46,7 +46,6 @@ and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new.
 import sys
 import re
 from os import path
-from datetime import date
 
 from utility.palette_loader import *
 
@@ -55,7 +54,10 @@ VERSION = open(path.dirname(path.realpath(__file__)) +
 BLACK_REPLACE = "2E3440"
 DEAFAULT_EXTENSION = ".png"
 QUIET_MODE = False
-OPT_ = False
+IS_NO_AVERAGE = False
+PIXELS_AREA = 10
+OUTPUT_IMAGE_NAME = ""
+BLUR = False
 
 
 def is_colors_selected(selection, color_name):
@@ -159,6 +161,8 @@ if __name__ == '__main__':
     # Get all palettes created
     palettes = find_palettes(src_path + "/palettes")
 
+    INPUT_IMAGE_NAME = ""
+
     for arg in args:
 
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
@@ -168,9 +172,9 @@ if __name__ == '__main__':
         IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
         if condition_argument:
             if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
-                input_image = key_value[1]
+                INPUT_IMAGE_NAME = key_value[1]
                 to_console("Load image {}".format(
-                    src_path + "/" + input_image))
+                    src_path + "/" + INPUT_IMAGE_NAME))
             else:
                 to_console("You need to pass the image path!")
                 sys.exit(1)
@@ -179,38 +183,49 @@ if __name__ == '__main__':
         condition_argument = key in ("--out" or "-o")
         if condition_argument:
             if len(key_value) > 1:
-                output_image_name = key_value[1]
+                OUTPUT_IMAGE_NAME = key_value[1]
                 # If the image name have already an extension do not set the default one
-                output_image_name += "" if re.search(
-                    IMAGE_PATTERN, output_image_name) else DEAFAULT_EXTENSION
+                OUTPUT_IMAGE_NAME += "" if re.search(
+                    IMAGE_PATTERN, OUTPUT_IMAGE_NAME) else DEAFAULT_EXTENSION
                 to_console("Output image {}".format(
-                    src_path + "/" + output_image_name))
+                    src_path + "/" + OUTPUT_IMAGE_NAME))
             else:
                 to_console("No output filename specify within the arguments!")
+                sys.exit(1)
             continue
 
         condition_argument = key in ("--no_average" or "-n")
         if condition_argument:
             if not len(key_value) > 1:
-                no_average = True
+                IS_NO_AVERAGE = True
                 to_console("No average pixels selected!")
             else:
                 to_console("No average pixels do not want any values!")
+                sys.exit(1)
             continue
 
         condition_argument = key in ("--pixels_area" or "-p")
         if condition_argument:
             if len(key_value) > 1:
                 try:
-                    pixels = int(key_value[1])
-                    to_console("The area in pixels is {}".format(pixels))
+                    PIXELS_AREA = int(key_value[1])
+                    to_console("The area in pixels is {}".format(PIXELS_AREA))
                 except ValueError as value_error:
                     to_console("The area pixels must be a number value!")
                     sys.exit(1)
             else:
                 to_console("To set the area pixels you must pass a number!")
             continue
-
+        
+        condition_argument = key in ("--blur" or "-b")
+        if condition_argument:
+            if not len(key_value) > 1:
+                BLUR = True
+                to_console("Blur elabled!")
+            else:
+                to_console("The blur argument do not want any value!")
+                sys.exit(1)
+            continue
         del condition_argument
 
         palettedata = []
