@@ -6,14 +6,12 @@ Usage: gonord [OPTION]...
 Mandatory arguments to long options are mandatory for short options too.
 
 Startup:
-  -V,  --version                    display the version of Image Go Nord and exit [TODO]
+  -v,  --version                    display the version of Image Go Nord and exit
 
   -h,  --help                       print this help and exit
 
 Logging:
   -q,  --quiet                      quiet (no output)
-
-  -l=FILE,  --log=FILE              create a log file [TODO]
 
 I/O Images:
   -i=FILE,  --img=FILE              specify input image name
@@ -32,7 +30,7 @@ Theme options:
 
 Conversion:
 
-  -n, --no_average_pixels           do not use the average pixels optimization
+  -n, --no-average-pixels           do not use the average pixels optimization
                                     algorithm on conversion [TODO]
 
   -p=INT, --pixel_area=INT          specify pixels of the area for average color
@@ -47,15 +45,15 @@ and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new.
 
 import sys
 import re
-from signal import signal, SIGINT
 from os import path
+from datetime import date
 
-from utility.signaler import signal_handler
 from utility.palette_loader import *
 
 BLACK_REPLACE = "2E3440"
 DEFAULT_EX = ".png"
 QUIET_MODE = False
+OPT_ = False
 
 
 def is_colors_selected(selection, color_name):
@@ -103,8 +101,28 @@ def log(string):
     print(string)
 
 
+def get_version():
+    """<Short Description>
+
+      <Description>
+
+    Parameters
+    ----------
+    <argument name>: <type>
+      <argument description>
+    <argument>: <type>
+      <argument description>
+
+    Returns
+    -------
+    <type>
+      <description>
+    """
+    file_version = open(path.dirname(path.realpath(__file__)) + "/VERSION")
+    return file_version.readline()
+
+
 if __name__ == '__main__':
-    signal(SIGINT, signal_handler)
     args = sys.argv[1:]
 
     if len(args) == 0:
@@ -112,8 +130,13 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # If help given then print the docstring of the module and exit
-    if "--help" in args:
+    if "--help" in args or "-h" in args:
         print(__doc__)
+        sys.exit(0)
+
+    # If version given print the version of the cli
+    if "--version" in args or "-v" in args:
+        print(get_version())
         sys.exit(0)
 
     QUIET_MODE = "-q" in args or "--quiet" in args
@@ -137,7 +160,8 @@ if __name__ == '__main__':
             if "--{}".format(palette) in key:
 
                 if len(key_value) == 1:
-                    log("Use all {} color set".format(palette.capitalize()))
+                    to_console("Use all {} color set".format(
+                        palette.capitalize()))
                     palette_set = load_palette_set(palette_path)
                     for colors_name in palette_set:
                         colors_palette = import_palette_from_file(
@@ -162,11 +186,12 @@ if __name__ == '__main__':
                         log("Exit!")
 
         is_image = key in ("--img" or "-i")
-        IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
+        FILE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
         if is_image:
-            if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
+            if len(key_value) > 1 and (re.search(FILE_PATTERN, key_value[1]) is not None):
                 input_image = key_value[1]
-                log("Load image {}".format(src_path + "/" + input_image))
+                to_console("Load image {}".format(
+                    src_path + "/" + input_image))
             else:
                 log("You need to pass the image path!")
                 sys.exit(1)
@@ -179,9 +204,9 @@ if __name__ == '__main__':
                 output_image_name = key_value[1]
                 # If the image name have already an extension do not set the default one
                 output_image_name += "" if re.search(
-                    IMAGE_PATTERN, output_image_name) else DEFAULT_EX
-                log("Output image {}".format(
-                    src_path + "/" + output_image_name))
+                    FILE_PATTERN, output_image_name) else DEFAULT_EX
+                path_image_output = src_path + "/" + output_image_name
+                to_console("Output image {}".format(path_image_output))
             else:
                 log("No output filename specify within the arguments!")
             continue
