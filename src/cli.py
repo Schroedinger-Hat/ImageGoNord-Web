@@ -30,11 +30,11 @@ Theme options:
 
 Conversion:
 
-  -n, --no-average-pixels           do not use the average pixels optimization
-                                    algorithm on conversion [TODO]
+  -n, --no_average                  do not use the average pixels optimization
+                                    algorithm on conversion 
 
   -p=INT, --pixel_area=INT          specify pixels of the area for average color
-                                    calculation [TODO]
+                                    calculation
 
   -b, --blur                        use blur on the final result [TODO]
 
@@ -50,8 +50,10 @@ from datetime import date
 
 from utility.palette_loader import *
 
+VERSION = open(path.dirname(path.realpath(__file__)) +
+               "/VERSION", 'r').readline()
 BLACK_REPLACE = "2E3440"
-DEFAULT_EX = ".png"
+DEAFAULT_EXTENSION = ".png"
 QUIET_MODE = False
 OPT_ = False
 
@@ -134,9 +136,8 @@ if __name__ == '__main__':
         print(__doc__)
         sys.exit(0)
 
-    # If version given print the version of the cli
     if "--version" in args or "-v" in args:
-        print(get_version())
+        print(VERSION)
         sys.exit(0)
 
     QUIET_MODE = "-q" in args or "--quiet" in args
@@ -152,6 +153,54 @@ if __name__ == '__main__':
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
         key = key_value[0].lower()
 
+        condition_argument = key in ("--img" or "-i")
+        IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
+        if condition_argument:
+            if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
+                input_image = key_value[1]
+                log("Load image {}".format(src_path + "/" + input_image))
+            else:
+                log("You need to pass the image path!")
+                sys.exit(1)
+            continue
+
+        condition_argument = key in ("--out" or "-o")
+        if condition_argument:
+            if len(key_value) > 1:
+                output_image_name = key_value[1]
+                # If the image name have already an extension do not set the default one
+                output_image_name += "" if re.search(
+                    IMAGE_PATTERN, output_image_name) else DEAFAULT_EXTENSION
+                log("Output image {}".format(
+                    src_path + "/" + output_image_name))
+            else:
+                log("No output filename specify within the arguments!")
+            continue
+
+        condition_argument = key in ("--no_average" or "-n")
+        if condition_argument:
+            if not len(key_value) > 1:
+                no_average = True
+                log("No average pixels selected!")
+            else:
+                log("No average pixels do not want any values!")
+            continue
+
+        condition_argument = key in ("--pixels_area" or "-p")
+        if condition_argument:
+            if len(key_value) > 1:
+                try:
+                    pixels = int(key_value[1])
+                    log("The area in pixels is {}".format(pixels))
+                except ValueError as value_error:
+                    log("The area pixels must be a number value!")
+                    sys.exit(1)
+            else:
+                log("To set the area pixels you must pass a number!")
+            continue
+
+        del condition_argument
+    
         palettedata = []
 
         for palette in palettes:
@@ -185,31 +234,7 @@ if __name__ == '__main__':
                         log("No colors set correctly given!")
                         log("Exit!")
 
-        is_image = key in ("--img" or "-i")
-        FILE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
-        if is_image:
-            if len(key_value) > 1 and (re.search(FILE_PATTERN, key_value[1]) is not None):
-                input_image = key_value[1]
-                to_console("Load image {}".format(
-                    src_path + "/" + input_image))
-            else:
-                log("You need to pass the image path!")
-                sys.exit(1)
-            continue
-        del is_image
-
-        is_output_file_name = key in ("--out" or "-o")
-        if is_output_file_name:
-            if len(key_value) > 1:
-                output_image_name = key_value[1]
-                # If the image name have already an extension do not set the default one
-                output_image_name += "" if re.search(
-                    FILE_PATTERN, output_image_name) else DEFAULT_EX
-                path_image_output = src_path + "/" + output_image_name
-                to_console("Output image {}".format(path_image_output))
-            else:
-                log("No output filename specify within the arguments!")
-            continue
+        
 
     sys.exit(0)
 
