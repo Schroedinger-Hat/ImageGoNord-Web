@@ -215,6 +215,7 @@ if __name__ == '__main__':
                     sys.exit(1)
             else:
                 to_console("To set the area pixels you must pass a number!")
+                sys.exit(1)
             continue
         
         condition_argument = key in ("--blur" or "-b")
