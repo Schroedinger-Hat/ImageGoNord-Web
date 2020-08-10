@@ -22,4 +22,25 @@ html.dark-theme {
       border: none;
     }
   }
+
+  .range-input {
+    background-color: $nord0;
+  }
+
+  .slider {
+    background-color: $nord0;
+
+    &:before {
+      background-color: $nord1;
+    }
+  }
+  
+  
+  input:checked + .slider {
+    background-color: $nord3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px $nord1;
+  }
 }
