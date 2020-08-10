@@ -229,11 +229,12 @@ export default Vue.component('Demo', {
             margin: 0 .3em;
 
             &:first-child {
-              margin: 0 0;
+              margin-left: 0;
             }
           }
         }
 
+        // TODO: map-values
         .nord0 {
           background: $nord0;
         }

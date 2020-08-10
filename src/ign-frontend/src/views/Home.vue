@@ -4,6 +4,9 @@
       <Main />
     </div>
     <SeparatorDoubleLine />
+    <section>
+      <ImgCompare after="@/assets/car-after.png" before="@/assets/car-before.png" />
+    </section>
     <section class="demo-section">
       <Demo />
     </section>
@@ -14,6 +17,7 @@
 import Main from '@/components/Main.vue';
 import Demo from '@/components/Demo.vue';
 import SeparatorDoubleLine from '@/components/separator/DoubleLine.vue';
+import ImgCompare from '@/components/ImgCompare.vue';
 
 export default {
   name: 'Home',
@@ -21,6 +25,7 @@ export default {
     Main,
     Demo,
     SeparatorDoubleLine,
+    ImgCompare,
   },
 };
 </script>
