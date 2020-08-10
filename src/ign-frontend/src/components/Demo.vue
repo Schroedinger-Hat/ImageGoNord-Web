@@ -9,13 +9,38 @@
         </div>
       </div>
       <div class="params">
-        <h3>Params</h3>
+        <h3>Palette</h3>
         <div class="palette">
-          <div class="polar"></div>
-          <div class="snow"></div>
-          <div class="frost"></div>
-          <div class="aurora"></div>
+          <span>Polar Night</span>
+          <div class="polar">
+            <span class="nord0"></span>
+            <span class="nord1"></span>
+            <span class="nord2"></span>
+            <span class="nord3"></span>
+          </div>
+          <span>Snow Storm</span>
+          <div class="snow">
+            <span class="nord4"></span>
+            <span class="nord5"></span>
+            <span class="nord6"></span>
+          </div>
+          <span>Frost</span>
+          <div class="frost">
+            <span class="nord7"></span>
+            <span class="nord8"></span>
+            <span class="nord9"></span>
+            <span class="nord10"></span>
+          </div>
+          <span>Aurora</span>
+          <div class="aurora">
+            <span class="nord11"></span>
+            <span class="nord12"></span>
+            <span class="nord13"></span>
+            <span class="nord14"></span>
+            <span class="nord15"></span>
+          </div>
         </div>
+        <h3>Params</h3>
         <div class="options">
           <div class="just-filter space-between">
             <span>
@@ -110,7 +135,6 @@ export default Vue.component('Demo', {
     },
   },
   mounted() {
-    console.log(this);
     const dropArea = document.querySelector('.preview-wrapper');
 
     dropArea.addEventListener('dragenter', this.preventDefaults);
@@ -186,8 +210,93 @@ export default Vue.component('Demo', {
       padding: 0 1em;
 
       h3 {
-        margin-top: .3em;
+        margin-top: 0;
+        margin-bottom: .3em;
         font-size: 1.6em;
+
+        &:nth-of-type(2) {
+          margin-top: .5em;
+        }
+      }
+
+      .palette {
+        .polar, .snow, .frost, .aurora {
+          span {
+            width: 1.5em;
+            height: 1.5em;
+            display: inline-block;
+            border: 1px solid #f2f2f2;
+            margin: 0 .3em;
+
+            &:first-child {
+              margin: 0 0;
+            }
+          }
+        }
+
+        .nord0 {
+          background: $nord0;
+        }
+
+        .nord1 {
+          background: $nord1;
+        }
+
+        .nord2 {
+          background: $nord2;
+        }
+
+        .nord3 {
+          background: $nord3;
+        }
+
+        .nord4 {
+          background: $nord4;
+        }
+
+        .nord5 {
+          background: $nord5;
+        }
+
+        .nord6 {
+          background: $nord6;
+        }
+
+        .nord7 {
+          background: $nord7;
+        }
+
+        .nord8 {
+          background: $nord8;
+        }
+
+        .nord9 {
+          background: $nord9;
+        }
+
+        .nord10 {
+          background: $nord10;
+        }
+
+        .nord11 {
+          background: $nord11;
+        }
+
+        .nord12 {
+          background: $nord12;
+        }
+
+        .nord13 {
+          background: $nord13;
+        }
+
+        .nord14 {
+          background: $nord14;
+        }
+
+        .nord15 {
+          background: $nord15;
+        }
       }
 
       .space-between {
