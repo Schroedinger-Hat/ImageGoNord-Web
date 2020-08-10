@@ -17,24 +17,37 @@
           <div class="aurora"></div>
         </div>
         <div class="options">
-          <div class="just-filter">
-            <span>active just filter</span>
+          <div class="just-filter space-between">
+            <span>
+              Filtering<br/>
+              <small>Change just the image palette</small>
+            </span>
             <label class="switch">
               <input type="checkbox">
               <span class="slider round"></span>
             </label>
           </div>
-          <div class="blur">
-            <span>blur</span>
+          <div class="blur space-between">
+            <span>
+              Blur<br/>
+              <small>Apply a blur on output</small>
+            </span>
             <label class="switch">
               <input type="checkbox">
               <span class="slider round"></span>
             </label>
           </div>
           <div class="avg">
-            <span>pixel avg</span>
-            <input class="range-input" type="range" min="1" max="100" value="50">
+            <p>
+              AVG pixel area<br/>
+              <small>Enable avg algorithm</small>
+            </p>
+            <input class="range-input" type="range" step="1" min="-10" max="10" value="0">
           </div>
+          <small>More info on
+            <router-link class="external-link-color" to="/documentation"> documentation
+            </router-link>
+          </small>
         </div>
       </div>
     </div>
@@ -126,7 +139,7 @@ export default Vue.component('Demo', {
     margin-bottom: 5em;
 
     .preview {
-      width: 100%;
+      // width: 100%;
       padding: .8em;
       background: $bg-secondary;
       border-radius: .8em;
@@ -150,6 +163,7 @@ export default Vue.component('Demo', {
           content: 'Drop image here';
           font-size: 2em;
           color: #999;
+          opacity: .7;
           position: absolute;
           left: 50%;
           margin-left: -4em;
@@ -168,11 +182,22 @@ export default Vue.component('Demo', {
     }
 
     .params {
-      width: 100%;
+      // width: 100%;
       padding: 0 1em;
 
       h3 {
         margin-top: .3em;
+        font-size: 1.6em;
+      }
+
+      .space-between {
+        display: flex;
+        padding: .6em 0;
+        justify-content: space-between;
+      }
+
+      .avg {
+        padding: .6em 0;
       }
     }
   }
@@ -201,6 +226,10 @@ export default Vue.component('Demo', {
         background: $dark-bg-secondary;
         .preview-wrapper {
           background: $nord2;
+
+          &:before {
+            color: $dark-text-primary;
+          }
         }
       }
     }
