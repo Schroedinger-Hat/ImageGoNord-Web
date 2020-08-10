@@ -122,12 +122,11 @@ export default Vue.component('Demo', {
   padding: 8em 0;
 
   .demo-wrapper {
-    display: flex;
     justify-items: center;
     margin-bottom: 5em;
 
     .preview {
-      width: 80%;
+      width: 100%;
       padding: .8em;
       background: $bg-secondary;
       border-radius: .8em;
@@ -169,11 +168,27 @@ export default Vue.component('Demo', {
     }
 
     .params {
-      width: 20%;
+      width: 100%;
       padding: 0 1em;
 
       h3 {
         margin-top: .3em;
+      }
+    }
+  }
+}
+
+@media (min-width: 56.25em) {
+  .demo {
+    .demo-wrapper {
+      display: flex;
+      .preview {
+        width: 80%;
+        padding: .8em;
+      }
+
+      .params {
+        width: 20%;
       }
     }
   }
