@@ -4,6 +4,7 @@
       <Main
         h1="Documentation"
       />
+      <center>Work in progress</center>
     </div>
   </div>
 </template>

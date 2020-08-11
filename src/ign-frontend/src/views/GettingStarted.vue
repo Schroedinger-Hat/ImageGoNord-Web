@@ -16,6 +16,10 @@
       </svg>
     </div>
     <section class="demo-section">
+      <center>
+        <h3>Try it yourself</h3>
+        <p>Upload a picture and test it out</p>
+      </center>
       <Demo />
     </section>
   </div>
@@ -51,6 +55,16 @@ export default {
   margin-bottom: -13em;
   margin-top: -1.5em;
   padding: 5em 0;
+
+  h3 {
+    font-size: 2em;
+    margin: .3em 0;
+  }
+
+  p {
+    margin: .3em 0;
+  }
+
 }
 
 .#{$dark-mode-class} {
