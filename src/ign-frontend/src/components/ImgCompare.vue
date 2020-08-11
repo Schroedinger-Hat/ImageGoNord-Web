@@ -119,6 +119,7 @@ export default Vue.component('ImgCompare', {
 
 .img-compare {
   padding: .8em;
+  background: $bg-secondary;
   display: inline-block;
 
   .img-compare-wrapper {
@@ -162,6 +163,7 @@ export default Vue.component('ImgCompare', {
 
 .#{$dark-mode-class} {
   .img-compare {
+    background: $dark-bg-secondary;
     .img-compare-wrapper {
       .preview {
         background: $dark-bg-secondary;
