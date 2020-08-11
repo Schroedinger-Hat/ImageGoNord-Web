@@ -1,10 +1,12 @@
 <template>
   <div class="main">
     <div class="middle-section">
-      <h1>A tool to bring any image to the nord palette</h1>
-      <h2>Transform each wallpaper, icon, image into the smoothest palette on the internet</h2>
-      <router-link class="btn btn-primary" to="/getting-started">Getting Started</router-link>
-      <router-link class="btn btn-info" to="/documentation">Documentation</router-link>
+      <h1 v-if="h1">{{ h1 }}</h1>
+      <h2 v-if="h2">{{ h2 }}</h2>
+      <router-link v-if="btn1" class="btn btn-primary" :to="link1">{{ btn1 }}</router-link>
+      <router-link v-if="btn2" class="btn btn-info" :to="link2">{{ btn2 }}</router-link>
+      <router-link v-if="btn3" class="btn btn-primary" :to="link3">{{ btn3 }}</router-link>
+      <router-link v-if="btn4" class="btn btn-primary" :to="link4">{{ btn4 }}</router-link>
     </div>
   </div>
 </template>
@@ -13,7 +15,16 @@
 export default {
   name: 'Main',
   props: {
-    msg: String,
+    h1: String,
+    h2: String,
+    link1: String,
+    link2: String,
+    btn1: String,
+    btn2: String,
+    link3: String,
+    link4: String,
+    btn3: String,
+    btn4: String,
   },
 };
 </script>

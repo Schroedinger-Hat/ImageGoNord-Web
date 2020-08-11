@@ -191,7 +191,7 @@ export default Vue.component('Demo', {
           position: absolute;
           left: 50%;
           margin-left: -4em;
-          margin-top: 9em;
+          margin-top: 9rem;
         }
 
         &.uploaded:before {
@@ -320,6 +320,12 @@ export default Vue.component('Demo', {
       .preview {
         width: 80%;
         padding: .8em;
+
+        .preview-wrapper {
+          &:before {
+            margin-top: 8em;
+          }
+        }
       }
 
       .params {
