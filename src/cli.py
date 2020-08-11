@@ -30,10 +30,10 @@ Theme options:
 
 Conversion:
 
-  -n, --no_average                  do not use the average pixels optimization
+  -n, --no-average                  do not use the average pixels optimization
                                     algorithm on conversion
 
-  -p=INT, --pixel_area=INT          specify pixels of the area for average color
+  -p=INT, --pixel-area=INT          specify pixels of the area for average color
                                     calculation
 
   -b, --blur                        use blur on the final result
@@ -47,6 +47,7 @@ import sys
 import re
 from os import path
 
+import configs.arguments as confarg
 from utility.palette_loader import *
 
 VERSION = open(path.dirname(path.realpath(__file__)) +
@@ -173,10 +174,11 @@ if __name__ == '__main__':
         if condition_argument:
             if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
                 INPUT_IMAGE_NAME = key_value[1]
-                to_console("Load image {}".format(
+                to_console(confarg.logs["img"][0].format(
                     src_path + "/" + INPUT_IMAGE_NAME))
             else:
-                to_console("You need to pass the image path!")
+                to_console(confarg.logs["img"][1].format(arg))
+                to_console(confarg.logs["img"][-1])
                 sys.exit(1)
             continue
 
@@ -187,44 +189,47 @@ if __name__ == '__main__':
                 # If the image name have already an extension do not set the default one
                 OUTPUT_IMAGE_NAME += "" if re.search(
                     IMAGE_PATTERN, OUTPUT_IMAGE_NAME) else DEAFAULT_EXTENSION
-                to_console("Output image {}".format(
+                to_console(confarg.logs["out"][0].format(
                     src_path + "/" + OUTPUT_IMAGE_NAME))
             else:
-                to_console("No output filename specify within the arguments!")
+                to_console(confarg.logs["out"][1].format(arg))
+                to_console(confarg.logs["out"][-1])
                 sys.exit(1)
             continue
 
-        condition_argument = key in ("--no_average" or "-n")
+        condition_argument = key in ("--no-average" or "-n")
         if condition_argument:
             if not len(key_value) > 1:
                 IS_NO_AVERAGE = True
-                to_console("No average pixels selected!")
+                to_console(confarg.logs["navg"][0])
             else:
-                to_console("No average pixels do not want any values!")
+                to_console(confarg.logs["navg"][1].format(arg))
+                to_console(confarg.logs["navg"][-1])
                 sys.exit(1)
             continue
 
-        condition_argument = key in ("--pixels_area" or "-p")
+        condition_argument = key in ("--pixels-area" or "-p")
         if condition_argument:
             if len(key_value) > 1:
                 try:
                     PIXELS_AREA = int(key_value[1])
-                    to_console("The area in pixels is {}".format(PIXELS_AREA))
+                    to_console(confarg.logs["pxls"][0].format(PIXELS_AREA))
+                    continue
                 except ValueError as value_error:
-                    to_console("The area pixels must be a number value!")
-                    sys.exit(1)
+                    to_console(confarg.logs["pxls"][1].format(arg))
             else:
-                to_console("To set the area pixels you must pass a number!")
-                sys.exit(1)
-            continue
-        
+                to_console(confarg.logs["pxls"][2].format(arg))
+            to_console(confarg.logs["pxls"][-1])
+            sys.exit(1)
+
         condition_argument = key in ("--blur" or "-b")
         if condition_argument:
             if not len(key_value) > 1:
                 BLUR = True
-                to_console("Blur elabled!")
+                to_console(confarg.logs["blur"][0])
             else:
-                to_console("The blur argument do not want any value!")
+                to_console(confarg.logs["blur"][1].format(arg))
+                to_console(confarg.logs["blur"][-1])
                 sys.exit(1)
             continue
         del condition_argument
@@ -237,7 +242,7 @@ if __name__ == '__main__':
             if "--{}".format(palette) in key:
 
                 if len(key_value) == 1:
-                    to_console("Use all {} color set".format(
+                    to_console(confarg.logs["pals"][0].format(
                         palette.capitalize()))
                     palette_set = load_palette_set(palette_path)
                     for colors_name in palette_set:
@@ -246,21 +251,33 @@ if __name__ == '__main__':
                         colors_set = create_data_colors(colors_palette)
                         palettedata.extend(colors_set)
                 else:
-                    to_console("Use {} palette".format(palette.capitalize()))
+                    to_console(confarg.logs["pals"]
+                               [1].format(palette.capitalize()))
                     selected_colors = key_value[1].split(",")
                     palette_set = load_palette_set(palette_path)
                     for selected_color_set in selected_colors:
+                        FOUND = False
                         for colors_name in palette_set:
                             if is_colors_selected(selected_color_set, colors_name):
-                                to_console("Selected {} as {}".format(
-                                    selected_color_set, colors_name))
+                                to_console(
+                                    confarg.logs["pals"][2].format(colors_name))
                                 colors_palette = import_palette_from_file(
                                     palette_path + colors_name + ".txt")
                                 colors_set = create_data_colors(colors_palette)
                                 palettedata.extend(colors_set)
+                                palette_set.remove(colors_name)
+                                FOUND = True
+                        if not FOUND:
+                            to_console(confarg.logs["pals"][4].format(
+                                selected_color_set))
+                        del FOUND
+                    for unselected_color_set in palette_set:
+                        to_console(confarg.logs["pals"][3].format(
+                            unselected_color_set))
                     if len(palettedata) == 0:
-                        to_console("No colors set correctly given!")
-                        to_console("Exit!")
+                        to_console(confarg.logs["pals"][-2].format(arg))
+                        to_console(confarg.logs["pals"][-1])
+                        sys.exit(1)
 
     sys.exit(0)
 
