@@ -5,7 +5,18 @@
     </div>
     <SeparatorDoubleLine />
     <section>
-      <ImgCompare after="@/assets/car-after.png" before="@/assets/car-before.png" />
+      <ImgCompare
+        className="wabri"
+        :after="imgCompareWabri.after"
+        :before="imgCompareWabri.before"
+      />
+    </section>
+    <section>
+      <ImgCompare
+        className="car"
+        :after="imgCompareCar.after"
+        :before="imgCompareCar.before"
+      />
     </section>
     <section class="demo-section">
       <Demo />
@@ -21,6 +32,18 @@ import ImgCompare from '@/components/ImgCompare.vue';
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      imgCompareCar: {
+        after: 'demo/car-after.png',
+        before: 'demo/car-before.png',
+      },
+      imgCompareWabri: {
+        after: 'demo/wabri-after.jpg',
+        before: 'demo/wabri-before.jpg',
+      },
+    };
+  },
   components: {
     Main,
     Demo,

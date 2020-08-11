@@ -1,12 +1,12 @@
 <template>
-  <div class="img-compare container">
+  <div :class="`img-compare container ${className}`">
     <div class="img-compare-wrapper">
       <div class="img-comp-img">
-        <img src="@/assets/demo/car-after.png" width="500" height="350">
+        <img :src="require(`../assets/${after}`)" width="500" height="350">
       </div>
       <div class="img-comp-slider"></div>
       <div class="img-comp-img img-comp-overlay">
-        <img src="@/assets/demo/car-before.png"  width="500" height="350">
+        <img :src="require(`../assets/${before}`)"  width="500" height="350">
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@ export default Vue.component('ImgCompare', {
   props: {
     before: String,
     after: String,
+    className: String,
   },
   data() {
     return {
@@ -67,9 +68,8 @@ export default Vue.component('ImgCompare', {
   mounted() {
     // eslint-disable-next-line
     this.$nextTick(function () {
-      this.slider = document.querySelector('.img-comp-slider');
-      this.img = document.querySelector('.img-comp-overlay');
-      console.log(this.img);
+      this.slider = document.querySelector(`.${this.className} .img-comp-slider`);
+      this.img = document.querySelector(`.${this.className} .img-comp-overlay`);
       this.w = this.img.offsetWidth;
       this.h = this.img.offsetHeight;
       this.img.style.width = `${(this.w / 2)}px`;
