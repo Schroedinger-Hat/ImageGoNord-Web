@@ -47,8 +47,11 @@ import sys
 import re
 from os import path
 
+from PIL import Image
+
 import configs.arguments as confarg
-from utility.palette_loader import *
+from utility.quantize import quantize_to_palette
+import utility.palette_loader as pl
 
 VERSION = open(path.dirname(path.realpath(__file__)) +
                "/VERSION", 'r').readline()
@@ -160,7 +163,7 @@ if __name__ == '__main__':
     src_path = path.dirname(path.realpath(__file__))
 
     # Get all palettes created
-    palettes = find_palettes(src_path + "/palettes")
+    palettes = pl.find_palettes(src_path + "/palettes")
 
     INPUT_IMAGE_NAME = ""
 
@@ -244,26 +247,26 @@ if __name__ == '__main__':
                 if len(key_value) == 1:
                     to_console(confarg.logs["pals"][0].format(
                         palette.capitalize()))
-                    palette_set = load_palette_set(palette_path)
+                    palette_set = pl.load_palette_set(palette_path)
                     for colors_name in palette_set:
-                        colors_palette = import_palette_from_file(
+                        colors_palette = pl.import_palette_from_file(
                             palette_path + colors_name + ".txt")
-                        colors_set = create_data_colors(colors_palette)
+                        colors_set = pl.create_data_colors(colors_palette)
                         palettedata.extend(colors_set)
                 else:
                     to_console(confarg.logs["pals"]
                                [1].format(palette.capitalize()))
                     selected_colors = key_value[1].split(",")
-                    palette_set = load_palette_set(palette_path)
+                    palette_set = pl.load_palette_set(palette_path)
                     for selected_color_set in selected_colors:
                         FOUND = False
                         for colors_name in palette_set:
                             if is_colors_selected(selected_color_set, colors_name):
                                 to_console(
                                     confarg.logs["pals"][2].format(colors_name))
-                                colors_palette = import_palette_from_file(
+                                colors_palette = pl.import_palette_from_file(
                                     palette_path + colors_name + ".txt")
-                                colors_set = create_data_colors(colors_palette)
+                                colors_set = pl.create_data_colors(colors_palette)
                                 palettedata.extend(colors_set)
                                 palette_set.remove(colors_name)
                                 FOUND = True
@@ -279,13 +282,9 @@ if __name__ == '__main__':
                         to_console(confarg.logs["pals"][-1])
                         sys.exit(1)
 
-    sys.exit(0)
-
     # padding with black color | nordtheme palette is only 48
-    # while len(palettedata) < 768:
-    #    palettedata.extend(export_tripletes_from_color(BLACK_REPLACE))
+    while len(palettedata) < 768:
+        palettedata.extend(pl.export_tripletes_from_color(BLACK_REPLACE))
 
-    #palimage = Image.new('P', (1, 1))
-    # palimage.putpalette(palettedata)
-    #oldimage = Image.open("images/lui.jpg")
-    #quantizetopalette(oldimage, palimage)
+    quantize_to_palette(Image.open(INPUT_IMAGE_NAME),
+                        Image.new('P', (1, 1)).putpalette(palettedata))
