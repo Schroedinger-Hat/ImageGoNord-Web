@@ -42,10 +42,10 @@ export default Vue.component('ImgCompare', {
   },
   methods: {
     getWidth() {
-      return (window.screen.width < 768) ? (this.width / 2) : this.width;
+      return (window.screen.width < 768) ? (this.width * 0.6) : this.width;
     },
     getHeight() {
-      return (window.screen.width < 768) ? (this.height / 2) : this.height;
+      return (window.screen.width < 768) ? (this.height * 0.6) : this.height;
     },
     slideFinish() {
       this.clicked = 0;

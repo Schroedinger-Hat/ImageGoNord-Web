@@ -31,7 +31,7 @@ export default Vue.component('MobileMenu', {
   background: $bg-primary;
   z-index: 1;
   left: 0;
-  height: calc(100vh - 5em);
+  height: calc(100vh - 20vh);
   transition: all .4s ease-in 0s;
 
   nav {
