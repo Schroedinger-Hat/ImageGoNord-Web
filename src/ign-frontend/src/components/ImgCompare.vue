@@ -1,12 +1,20 @@
 <template>
-  <div :class="`img-compare container ${className}`">
+  <div :class="`img-compare ${className}`">
     <div class="img-compare-wrapper">
       <div class="img-comp-img">
-        <img :src="require(`../assets/${after}`)" width="500" height="350">
+        <img
+          :src="require(`../assets/${after}`)"
+          :width="getWidth(width)"
+          :height="getHeight(height)"
+        />
       </div>
       <div class="img-comp-slider"></div>
       <div class="img-comp-img img-comp-overlay">
-        <img :src="require(`../assets/${before}`)"  width="500" height="350">
+        <img
+          :src="require(`../assets/${before}`)"
+          :width="getWidth(width)"
+          :height="getHeight(height)"
+        />
       </div>
     </div>
   </div>
@@ -20,6 +28,8 @@ export default Vue.component('ImgCompare', {
     before: String,
     after: String,
     className: String,
+    width: Number,
+    height: Number,
   },
   data() {
     return {
@@ -31,14 +41,18 @@ export default Vue.component('ImgCompare', {
     };
   },
   methods: {
+    getWidth() {
+      return (window.screen.width < 768) ? (this.width / 2) : this.width;
+    },
+    getHeight() {
+      return (window.screen.width < 768) ? (this.height / 2) : this.height;
+    },
     slideFinish() {
       this.clicked = 0;
-      console.log('finish');
     },
     slideReady(e) {
       e.preventDefault();
       this.clicked = 1;
-      console.log('ready');
     },
     slideMove(e) {
       let pos;
@@ -46,7 +60,6 @@ export default Vue.component('ImgCompare', {
       pos = this.getCursorPos(e);
       if (pos < 0) pos = 0;
       if (pos > this.w) pos = this.w;
-      console.log(pos);
       this.slide(pos);
       return true;
     },
@@ -55,8 +68,17 @@ export default Vue.component('ImgCompare', {
       let x = 0;
       let e = event;
       e = e || window.event;
+      let pageX = 0;
+      if (e.pageX !== undefined) {
+        pageX = e.pageX;
+      }
+
+      if (e.touches !== undefined) {
+        pageX = e.touches[0].pageX;
+      }
+
       a = this.img.getBoundingClientRect();
-      x = e.pageX - a.left;
+      x = pageX - a.left;
       x -= window.pageXOffset;
       return x;
     },
@@ -68,8 +90,13 @@ export default Vue.component('ImgCompare', {
   mounted() {
     // eslint-disable-next-line
     this.$nextTick(function () {
+      const wrapper = document.querySelector(`.${this.className} .img-compare-wrapper`);
       this.slider = document.querySelector(`.${this.className} .img-comp-slider`);
       this.img = document.querySelector(`.${this.className} .img-comp-overlay`);
+
+      wrapper.style.width = `${this.getWidth(this.width)}px`;
+      wrapper.style.height = `${this.getHeight(this.height)}px`;
+
       this.w = this.img.offsetWidth;
       this.h = this.img.offsetHeight;
       this.img.style.width = `${(this.w / 2)}px`;
@@ -91,15 +118,18 @@ export default Vue.component('ImgCompare', {
 <style scoped lang="scss">
 
 .img-compare {
-  padding: 8em 0;
+  padding: .8em;
+  display: inline-block;
 
   .img-compare-wrapper {
     position: relative;
+    width: 500px;
+    max-width: 100%;
     height: 350px;
 
     .img-comp-img {
       position: absolute;
-      width: auto;
+      width: 100%;
       height: auto;
       overflow: hidden;
       transition: all 0ms;
@@ -126,17 +156,7 @@ export default Vue.component('ImgCompare', {
 
 @media (min-width: 56.25em) {
   .img-compare {
-    .img-compare-wrapper {
-      display: flex;
-      .preview {
-        width: 80%;
-        padding: .8em;
-      }
-
-      .params {
-        width: 20%;
-      }
-    }
+    // nope
   }
 }
 
