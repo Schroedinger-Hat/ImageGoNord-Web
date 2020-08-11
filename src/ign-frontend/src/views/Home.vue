@@ -1,13 +1,22 @@
 <template>
   <div class="home">
     <div class="container">
-      <Main />
+      <Main
+        h1="A tool to bring any image to the nord palette"
+        h2="Transform each wallpaper, icon, image into the smoothest palette on the internet"
+        link1="/getting-started"
+        link2="/documentation"
+        btn1="Getting Started"
+        btn2="Documentation"
+      />
     </div>
     <SeparatorDoubleLine />
     <section>
       <ImgCompare
         className="wabri"
         :after="imgCompareWabri.after"
+        :width="300"
+        :height="250"
         :before="imgCompareWabri.before"
       />
     </section>
@@ -16,6 +25,8 @@
         className="car"
         :after="imgCompareCar.after"
         :before="imgCompareCar.before"
+        :width="500"
+        :height="350"
       />
     </section>
     <section class="demo-section">
