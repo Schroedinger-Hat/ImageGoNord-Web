@@ -3,6 +3,8 @@
 import sys
 import re
 from os import path
+import base64
+from io import BytesIO
 
 from PIL import Image, ImageFilter
 
@@ -18,7 +20,7 @@ class NordPaletteFile:
   SNOW_STORM  = "SnowStorm.txt"
 
 class GoNord(object):
-  PALETTE_LOOKUP_PATH   = "palettes/Nord/"
+  PALETTE_LOOKUP_PATH   = "ImageGoNord/palettes/Nord/"
   USE_GAUSSIAN_BLUR     = False
   USE_AVG_COLOR         = False
   AVG_BOX_DATA          = {"w": -2, "h": 3}
@@ -71,6 +73,26 @@ class GoNord(object):
   def open_image(self, path):
     return Image.open(path)
 
+  def resize_image(self, image, w=0, h=0):
+    w_resize = w
+    h_resize = h
+    if (h_resize == 0 or h_resize == 0):
+      w_resize = round(image.size[0]*0.5)
+      h_resize = round(image.size[1]*0.5)
+
+    return image.resize((w_resize, h_resize))
+
+  def image_to_base64(self, image):
+    im_file = BytestIO()
+    image.save(im_file)
+    im_bytes = im_file.getvalue()
+    return base64.b64encode(im_bytes)
+
+  def base64_to_image(self, img_b64):
+    im_bytes = base64.b64decode(img_b64)
+    im_file = BytesIO(im_bytes)
+    return self.open_image(im_file)
+
   def load_pixel_image(self, opened_image):
     return opened_image.load()
 
@@ -84,7 +106,8 @@ class GoNord(object):
     self.AVG_BOX_DATA['w'] = w
     self.AVG_BOX_DATA['h'] = h
 
-  def quantize_image(self, image, palettedata, save='', save_path=False):
+  def quantize_image(self, image, save_path=''):
+    palettedata = pl.create_data_colors(self.get_palette_data())
     while len(palettedata) < 768:
       palettedata.extend(pl.export_tripletes_from_color('2E3440'))
 
@@ -92,20 +115,20 @@ class GoNord(object):
     palimage.putpalette(palettedata)
     quantize_img = quantize_to_palette(image, palimage)
 
-    if (save == True and save_path != ''):
-      quantize_img.save(save_path)
+    if (save_path != ''):
+      self.save_image_to_file(quantize_img, save_path)
 
     return quantize_img
 
-  def convert_image(self, image, palettedata, save_path='', save=True):
+  def convert_image(self, image, palettedata, save_path=''):
     pixels = self.load_pixel_image(image)
     for i in range(image.size[0]):
       for j in range(image.size[1]):
         color_to_check = pixels[i, j]
         if self.USE_AVG_COLOR == True:
-            color_to_check = ConvertUtility.get_avg_color(pixels=pixels, w=self.AVG_BOX_DATA['w'], h=self.AVG_BOX_DATA['h'])
+            color_to_check = ConvertUtility.get_avg_color(pixels=pixels, row=i, col=j, w=self.AVG_BOX_DATA['w'], h=self.AVG_BOX_DATA['h'])
 
-        differences = [[ConvertUtility.color_difference(color1=color_to_check, color2=target_value), target_name]
+        differences = [[ConvertUtility.color_difference(color_to_check, target_value), target_name]
                        for target_name, target_value in palettedata.items()]
         differences.sort()
         pixels[i, j] = tuple(palettedata[differences[0][1]])
@@ -113,6 +136,10 @@ class GoNord(object):
     if (self.USE_GAUSSIAN_BLUR == True):
       image = image.filter(ImageFilter.GaussianBlur(1))
 
-    if (save == True and save_path != ''):
-      image.save(save_path)
+    if (save_path != ''):
+      self.save_image_to_file(image, save_path)
+
     return image
+
+  def save_image_to_file(self, image, path):
+    image.save(path)

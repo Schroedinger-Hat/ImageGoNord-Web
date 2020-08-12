@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 
 class ConvertUtility:
-  def color_difference (self, color1, color2):
+  def color_difference(color1, color2):
     return sum([abs(component1-component2) for component1, component2 in zip(color1, color2)])
 
-  def get_avg_color (self, pixels, w=-2, h=3):
+  def get_avg_color(pixels, row, col, w=-2, h=3):
     average_sum = []
     for k in range(w, h):
       for l in range(w, h):
         try:
-          average_sum.append(pixels[i+k, j+l])
-          n += 1
+          average_sum.append(pixels[row+k, col+l])
         except:
           pass
 
