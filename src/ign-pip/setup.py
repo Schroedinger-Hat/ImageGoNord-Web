@@ -1,12 +1,12 @@
 import pathlib
-from setuptools import setup
+from setuptools import setup, find_packages
 
 ROOT = pathlib.Path('../..')
 README = (ROOT / "README.md").read_text()
 
 setup(
     name="image-go-nord",
-    version="0.0.1",
+    version="0.0.3",
     description="A tool for converting RGB image to Nordtheme palette",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -24,7 +24,8 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=["ImageGoNord"],
+    packages=find_packages(),
+    package_data={'ImageGoNord': ['palettes/*.txt']},
     include_package_data=True,
-    install_requires=["Pillow", "html2text"],
+    install_requires=["Pillow"],
 )
