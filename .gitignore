@@ -1,6 +1,9 @@
 
 #python cache
 __pycache__/
+src/ign-pip/image_go_nord.egg-info
+src/ign-pip/dist
+src/ign-pip/build
 
 # envs
 env/

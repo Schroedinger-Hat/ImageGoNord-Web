@@ -8,7 +8,6 @@ from io import BytesIO
 
 from PIL import Image, ImageFilter
 
-from ImageGoNord.configs import arguments as confarg
 from ImageGoNord.utility.quantize import quantize_to_palette
 import ImageGoNord.utility.palette_loader as pl
 from ImageGoNord.utility.ConvertUtility import ConvertUtility

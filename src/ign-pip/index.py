@@ -1,7 +1,6 @@
 from ImageGoNord import NordPaletteFile, GoNord
 
 go_nord = GoNord()
-
 palettedata = go_nord.get_palette_data()
 image = go_nord.open_image("../images/lui.jpg")
 go_nord.convert_image(image, palettedata, save_path='../images/lui.processed.jpg')
