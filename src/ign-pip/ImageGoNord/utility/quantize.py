@@ -5,7 +5,7 @@ This module does stuff.
 
 from PIL import ImageFilter
 
-def quantizetopalette(silf, palette):
+def quantize_to_palette(silf, palette):
     """<Short Description>
 
       <Description>
