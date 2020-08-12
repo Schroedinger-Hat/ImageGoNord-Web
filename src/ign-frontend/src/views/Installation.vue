@@ -36,12 +36,15 @@
       <section class="installation-guides">
         <div class="guide linux">
           <h3>Install on Linux</h3>
+          <p>Work in progress</p>
         </div>
         <div class="guide windows">
           <h3>Install on Windows</h3>
+          <p>Work in progress</p>
         </div>
         <div class="guide macos">
           <h3>Install on macOS</h3>
+          <p>Work in progress</p>
         </div>
       </section>
     </div>
@@ -87,7 +90,7 @@ export default {
   }
   .installation-guides {
     padding: .8em;
-    margin-top: 3em;
+    margin: 3em .5em 0 .5em;
     background: $bg-secondary;
     &:before {
       content: 'Select an OS, instructions will show up here';

@@ -113,10 +113,7 @@ export default {
   }
 
   .slider-item {
-    &:last-child {
-      margin-top: 4em;
-    }
-
+    text-align: center;
     .slider-text {
       padding: 0 .5em;
     }
@@ -157,9 +154,14 @@ export default {
 @media (min-width: 56.25em) {
   .slider-section {
     .slider-item {
+      text-align: left;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &:last-child {
+        margin-top: 4em;
+      }
     }
   }
 }

@@ -38,6 +38,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .canvas-container {
+  margin-top: 2em;
   svg {
     margin-bottom: -5px;
     path:nth-of-type(1) {

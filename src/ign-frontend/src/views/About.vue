@@ -11,8 +11,8 @@
           profile picture created in the nord palette.
           These resources are not existing or they are unsearchable.
           <br/><br/>
-          In order to solve this problem we wanted to realized a tool,
-          for not graphic people, to convert images into the nord palette.
+          In order to solve this problem we wanted to create a tool,
+          not graphic, to convert images in the north palette.
           <br/><br/>
           We are hoping that this project can bring tons
           of nord resources on the web in a free-to-use license.
@@ -38,6 +38,7 @@ export default {
   .description {
     margin: auto;
     max-width: 640px;
+    padding: 0 .5em;
     p {
       font-size: 1.4em;
     }

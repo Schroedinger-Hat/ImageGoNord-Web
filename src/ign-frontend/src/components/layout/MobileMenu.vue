@@ -1,6 +1,7 @@
 <template>
   <div class="mobile-menu-container">
     <nav>
+      <div class="close-icon"><i @click="closeMobileMenu" class="fa fa-times"></i></div>
       <div class="navbar">
         <router-link to="/getting-started">Getting Started</router-link>
         <router-link to="/installation">Installation</router-link>
@@ -17,6 +18,18 @@ import Vue from 'vue';
 
 export default Vue.component('MobileMenu', {
   props: {},
+  methods: {
+    closeMobileMenu() {
+      document.querySelector('.mobile-menu-icon.fa-hamburger').parentNode.click();
+    },
+  },
+  watch: {
+    $route() {
+      if (document.querySelector('.mobile-menu-container.loaded') !== null) {
+        document.querySelector('.mobile-menu-icon.fa-hamburger').parentNode.click();
+      }
+    },
+  },
 });
 </script>
 
@@ -26,15 +39,23 @@ export default Vue.component('MobileMenu', {
   //display: none;
   position: fixed;
   width: 100%;
-  bottom: calc(100vh);
+  bottom: 100%;
   opacity: 0;
   background: $bg-primary;
   z-index: 1;
   left: 0;
-  height: calc(100vh - 20vh);
+  height: 100%;
   transition: all .4s ease-in 0s;
 
   nav {
+    .close-icon {
+      text-align: right;
+      i {
+        padding: .8em;
+        font-size: 1.4em;
+      }
+    }
+
     .navbar {
       text-align: center;
       a {
