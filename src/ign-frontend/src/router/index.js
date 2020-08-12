@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import GettingStarted from '../views/GettingStarted.vue';
 import Documentation from '../views/Documentation.vue';
 import Installation from '../views/Installation.vue';
+import Error404 from '../views/Error404.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/documentation',
     name: 'Documentation',
     component: Documentation,
+  },
+  {
+    path: '/*',
+    name: '404',
+    component: Error404,
   },
   {
     path: '/about',
