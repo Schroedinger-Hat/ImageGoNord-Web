@@ -47,10 +47,8 @@ import sys
 import re
 from os import path
 
-from PIL import Image
-
 import configs.arguments as confarg
-from utility.quantize import quantize_to_palette
+from utility.quantize import quantize_to_palette, replace_color
 import utility.palette_loader as pl
 
 VERSION = open(path.dirname(path.realpath(__file__)) +
@@ -60,8 +58,9 @@ DEAFAULT_EXTENSION = ".png"
 QUIET_MODE = False
 IS_NO_AVERAGE = False
 PIXELS_AREA = 10
-OUTPUT_IMAGE_NAME = ""
+OUTPUT_IMAGE_NAME = "nord" + DEAFAULT_EXTENSION
 BLUR = False
+PALETTE_DATA = []
 
 
 def is_colors_selected(selection, color_name):
@@ -128,6 +127,17 @@ def get_version():
     """
     file_version = open(path.dirname(path.realpath(__file__)) + "/VERSION")
     return file_version.readline()
+
+
+def load_all_palette(palette_path):
+    palette_set = pl.load_palette_set(palette_path)
+    palette_data = []
+    for colors_name in palette_set:
+        colors_palette = pl.import_palette_from_file(
+            palette_path + colors_name + ".txt")
+        colors_set = pl.create_data_colors(colors_palette)
+        palette_data.extend(colors_set)
+    return palette_data
 
 
 if __name__ == '__main__':
@@ -237,22 +247,19 @@ if __name__ == '__main__':
             continue
         del condition_argument
 
-        palettedata = []
-
         for palette in palettes:
             palette_path = src_path + "/palettes/" + palette.capitalize() + "/"
 
             if "--{}".format(palette) in key:
 
                 if len(key_value) == 1:
+                    palette_set = pl.load_palette_set(palette_path)
                     to_console(confarg.logs["pals"][0].format(
                         palette.capitalize()))
-                    palette_set = pl.load_palette_set(palette_path)
-                    for colors_name in palette_set:
-                        colors_palette = pl.import_palette_from_file(
-                            palette_path + colors_name + ".txt")
-                        colors_set = pl.create_data_colors(colors_palette)
-                        palettedata.extend(colors_set)
+                    PALETTE_DATA = load_all_palette(palette_path)
+                    for selected_color in palette_set:
+                        to_console(confarg.logs["pals"]
+                                   [2].format(selected_color))
                 else:
                     to_console(confarg.logs["pals"]
                                [1].format(palette.capitalize()))
@@ -266,25 +273,37 @@ if __name__ == '__main__':
                                     confarg.logs["pals"][2].format(colors_name))
                                 colors_palette = pl.import_palette_from_file(
                                     palette_path + colors_name + ".txt")
-                                colors_set = pl.create_data_colors(colors_palette)
-                                palettedata.extend(colors_set)
+                                colors_set = pl.create_data_colors(
+                                    colors_palette)
+                                PALETTE_DATA.extend(colors_set)
                                 palette_set.remove(colors_name)
                                 FOUND = True
                         if not FOUND:
-                            to_console(confarg.logs["pals"][4].format(
+                            to_console(confarg.logs["pals"][-3].format(
                                 selected_color_set))
                         del FOUND
                     for unselected_color_set in palette_set:
                         to_console(confarg.logs["pals"][3].format(
                             unselected_color_set))
-                    if len(palettedata) == 0:
+                    if len(PALETTE_DATA) == 0:
                         to_console(confarg.logs["pals"][-2].format(arg))
                         to_console(confarg.logs["pals"][-1])
                         sys.exit(1)
 
-    # padding with black color | nordtheme palette is only 48
-    while len(palettedata) < 768:
-        palettedata.extend(pl.export_tripletes_from_color(BLACK_REPLACE))
+    if len(PALETTE_DATA) == 0:
+        palette_path = src_path + "/palettes/Nord/"
+        palette_set = pl.load_palette_set(palette_path)
+        PALETTE_DATA = load_all_palette(palette_path)
+        to_console(confarg.logs["pals"][4])
+        for selected_color in palette_set:
+            to_console(confarg.logs["pals"][2].format(selected_color))
 
-    quantize_to_palette(Image.open(INPUT_IMAGE_NAME),
-                        Image.new('P', (1, 1)).putpalette(palettedata))
+    # padding with black color | nordtheme palette is only 48
+    while len(PALETTE_DATA) < 768:
+        PALETTE_DATA.extend(pl.export_tripletes_from_color(BLACK_REPLACE))
+
+    quantize_to_palette(
+        INPUT_IMAGE_NAME, OUTPUT_IMAGE_NAME, PALETTE_DATA, BLUR)
+
+    # NON FUNZIONA
+    # replace_color(INPUT_IMAGE_NAME, OUTPUT_IMAGE_NAME, PALETTE_DATA, BLUR)

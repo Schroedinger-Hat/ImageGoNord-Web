@@ -36,6 +36,7 @@ logs = {
         "[INFO] Use palette set: {}",
         "\t {} \u2713",
         "\t {} \u2718",
+        "[WARNING] No theme specified, Nord theme selected with color set:",
         "[WARNING] No set found for: {}",
         "[ERROR] On '{}': no colors correctly given!",
         "\te.g. --nord=aurora,polarnight"
