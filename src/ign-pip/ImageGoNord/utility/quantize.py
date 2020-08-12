@@ -23,8 +23,8 @@ def quantize_to_palette(silf, palette):
       <description>
     """
     silf.load()
-
     palette.load()
+
     if palette.mode != "P":
         raise ValueError("bad mode for palette image")
     if silf.mode != "RGB" and silf.mode != "L":
@@ -38,9 +38,5 @@ def quantize_to_palette(silf, palette):
     im = im.convert('RGB')
     # reduce rumor noise by applying a blur
     im = im.filter(ImageFilter.GaussianBlur(1))
-    # save
-    im.save("images/quantize.jpg")
 
     return im
-
-
