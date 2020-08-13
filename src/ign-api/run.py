@@ -25,6 +25,17 @@ def quantize():
 @app.route(API_VERSION + "/convert", methods=["POST"])
 @cross_origin()
 def convert():
+  # abort(400, "You need to provide at least")
+  try:
+    f = request.files['file']
+    # request.files['file'].stream
+    print(f)
+    print(f.filename)
+  except Exception as e:
+    print(e)
+    print(request.data)
+    pass
+  # f.save(secure_filename(f.filename))
   return jsonify({'ok': True})  
 
 if __name__ == '__main__':
