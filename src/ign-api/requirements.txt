@@ -1,5 +1,5 @@
 Pillow==7.2.0
 flask==1.1.2
 flask_cors==3.0.8
-ImageGoNord==*
+image-go-nord==0.0.4
 gunicorn==20.0.4
