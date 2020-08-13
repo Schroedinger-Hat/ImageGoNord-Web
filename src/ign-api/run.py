@@ -73,7 +73,8 @@ def convert():
   
   if (request.form.get('b64_output') != None):
     b64_image = go_nord.image_to_base64(image, 'jpeg')
-    response['b64_img'] = b64_image
+    base64_img_string = base64_image.decode('UTF-8')
+    response['b64_img'] = base64_img_string
   
   return jsonify(response)
 
