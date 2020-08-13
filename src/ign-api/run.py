@@ -43,6 +43,7 @@ def quantize():
   
   if (request.form.get('b64_output') != None):
     b64_image = go_nord.image_to_base64(image, 'jpeg')
+    base64_img_string = b64_image.decode('UTF-8')
     response['b64_img'] = b64_image
   
   return jsonify(response)
@@ -73,7 +74,7 @@ def convert():
   
   if (request.form.get('b64_output') != None):
     b64_image = go_nord.image_to_base64(image, 'jpeg')
-    base64_img_string = base64_image.decode('UTF-8')
+    base64_img_string = b64_image.decode('UTF-8')
     response['b64_img'] = base64_img_string
   
   return jsonify(response)
