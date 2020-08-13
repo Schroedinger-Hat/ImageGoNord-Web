@@ -146,6 +146,13 @@ html {
       opacity: 1;
     }
 
+    &:disabled {
+      &:hover {
+        opacity: 0.7;
+      }
+      background: $dark-bg-primary;
+    }
+
     &::-webkit-slider-thumb {
       appearance: none;
       height: 1.4em;

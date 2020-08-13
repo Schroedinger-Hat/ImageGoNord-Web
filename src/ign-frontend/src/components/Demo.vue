@@ -13,31 +13,31 @@
         <div class="palette">
           <span>Polar Night</span>
           <div class="polar">
-            <span class="nord0"></span>
-            <span class="nord1"></span>
-            <span class="nord2"></span>
-            <span class="nord3"></span>
+            <span data-hex="#2e3440" class="highlighted color-element nord0"></span>
+            <span data-hex="#3b4252" class="highlighted color-element nord1"></span>
+            <span data-hex="#434c5e" class="highlighted color-element nord2"></span>
+            <span data-hex="#4c566a" class="highlighted color-element nord3"></span>
           </div>
           <span>Snow Storm</span>
           <div class="snow">
-            <span class="nord4"></span>
-            <span class="nord5"></span>
-            <span class="nord6"></span>
+            <span data-hex="#d8dee9" class="highlighted color-element nord4"></span>
+            <span data-hex="#e5e9f0" class="highlighted color-element nord5"></span>
+            <span data-hex="#eceff4" class="highlighted color-element nord6"></span>
           </div>
           <span>Frost</span>
           <div class="frost">
-            <span class="nord7"></span>
-            <span class="nord8"></span>
-            <span class="nord9"></span>
-            <span class="nord10"></span>
+            <span data-hex="#8fbcbb" class="highlighted color-element nord7"></span>
+            <span data-hex="#88c0d0" class="highlighted color-element nord8"></span>
+            <span data-hex="#81a1c1" class="highlighted color-element nord9"></span>
+            <span data-hex="#5e81ac" class="highlighted color-element nord10"></span>
           </div>
           <span>Aurora</span>
           <div class="aurora">
-            <span class="nord11"></span>
-            <span class="nord12"></span>
-            <span class="nord13"></span>
-            <span class="nord14"></span>
-            <span class="nord15"></span>
+            <span data-hex="#bf616a" class="highlighted color-element nord11"></span>
+            <span data-hex="#d08770" class="highlighted color-element nord12"></span>
+            <span data-hex="#ebcb8b" class="highlighted color-element nord13"></span>
+            <span data-hex="#a3be8c" class="highlighted color-element nord14"></span>
+            <span data-hex="#b48ead" class="highlighted color-element nord15"></span>
           </div>
         </div>
         <h3>Params</h3>
@@ -48,7 +48,7 @@
               <small>Change just the image palette</small>
             </span>
             <label class="switch">
-              <input type="checkbox">
+              <input type="checkbox" v-model="is_filter" :checked="is_filter === true">
               <span class="slider round"></span>
             </label>
           </div>
@@ -58,7 +58,7 @@
               <small>Apply a blur on output</small>
             </span>
             <label class="switch">
-              <input type="checkbox">
+              <input type="checkbox" v-model="blur" :checked="blur === true">
               <span class="slider round"></span>
             </label>
           </div>
@@ -67,7 +67,12 @@
               AVG pixel area<br/>
               <small>Enable avg algorithm</small>
             </p>
-            <input class="range-input" type="range" step="1" min="-10" max="10" value="0">
+            <input class="range-input" v-model="avg_index" :disabled="is_filter === true"
+              type="range" step="1" min="-5" max="5" value="0"
+            >
+          </div>
+          <div class="process-image">
+            <span @click="processImage" class="btn btn-primary">Process</span>
           </div>
           <small>More info on
             <router-link class="external-link-color" to="/documentation"> documentation
@@ -86,8 +91,13 @@ export default Vue.component('Demo', {
   props: {},
   data() {
     return {
+      apiUrl: 'https://ign-api.herokuapp.com/v1',
       img: null,
       imgData: null,
+      selectedColor: [],
+      blur: false,
+      is_filter: false,
+      avg_index: 0,
     };
   },
   methods: {
@@ -117,6 +127,56 @@ export default Vue.component('Demo', {
 
       img.src = URL.createObjectURL(event.target.files[0]);
     },
+    processImage(e) {
+      e.preventDefault();
+
+      if (this.imgData === null) {
+        return false;
+      }
+
+      const endpoint = (this.is_filter === true) ? 'quantize' : 'convert';
+
+      const formData = new FormData();
+      formData.append('file', this.imgData);
+      // formData.append('width', this.img.width);
+      // formData.append('height', this.img.height);
+      formData.append('b64_output', true);
+      formData.append('colors', this.selectedColor.filter((c) => c).join(','));
+      formData.append('is_avg', true);
+
+      if (this.avg_index !== 0) {
+        const avgW = -2;
+        const avgH = 3;
+
+        formData.append('avg_box_width', avgW + this.avg_index);
+        formData.append('avg_box_height', avgH + this.avg_index);
+      }
+
+      if (this.blur === true) {
+        formData.append('blur', this.blur);
+      }
+
+      fetch(`${this.apiUrl}/${endpoint}`, {
+        method: 'POST',
+        body: formData,
+      }).then((response) => {
+        response.json()
+          .then((r) => {
+            const im = new Image();
+            im.onload = () => {
+              const canvas = document.getElementById('img-preview');
+              const ctx = document.getElementById('img-preview').getContext('2d');
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.drawImage(im, 0, 0);
+            };
+            im.src = `data:image/png;base64, ${r.b64_img}`;
+          });
+      }).catch((err) => {
+        console.log(err);
+      });
+
+      return true;
+    },
     preventDefaults(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -133,22 +193,36 @@ export default Vue.component('Demo', {
       const dt = { target: e.dataTransfer };
       this.loadFile(dt);
     },
+    toggleSelectedColors(e) {
+      e.preventDefault();
+      e.target.classList.toggle('highlighted');
+      delete this.selectedColor[this.selectedColor.indexOf(e.target.getAttribute('data-hex'))];
+    },
   },
   mounted() {
-    const dropArea = document.querySelector('.preview-wrapper');
+    // eslint-disable-next-line
+    this.$nextTick(function () {
+      const dropArea = document.querySelector('.preview-wrapper');
 
-    dropArea.addEventListener('dragenter', this.preventDefaults);
-    dropArea.addEventListener('dragover', this.preventDefaults);
-    dropArea.addEventListener('dragleave', this.preventDefaults);
-    dropArea.addEventListener('drop', this.preventDefaults);
+      dropArea.addEventListener('dragenter', this.preventDefaults);
+      dropArea.addEventListener('dragover', this.preventDefaults);
+      dropArea.addEventListener('dragleave', this.preventDefaults);
+      dropArea.addEventListener('drop', this.preventDefaults);
 
-    dropArea.addEventListener('dragenter', this.highlightDroparea);
-    dropArea.addEventListener('dragover', this.highlightDroparea);
+      dropArea.addEventListener('dragenter', this.highlightDroparea);
+      dropArea.addEventListener('dragover', this.highlightDroparea);
 
-    dropArea.addEventListener('dragleave', this.unhighlightDroparea);
-    dropArea.addEventListener('drop', this.unhighlightDroparea);
+      dropArea.addEventListener('dragleave', this.unhighlightDroparea);
+      dropArea.addEventListener('drop', this.unhighlightDroparea);
 
-    dropArea.addEventListener('drop', this.handleDroparea);
+      dropArea.addEventListener('drop', this.handleDroparea);
+
+      const colorElements = document.querySelectorAll('.color-element');
+      for (let i = 0; i < colorElements.length; i += 1) {
+        this.selectedColor.push(colorElements[i].getAttribute('data-hex'));
+        colorElements[i].addEventListener('click', this.toggleSelectedColors);
+      }
+    });
   },
 });
 </script>
@@ -219,17 +293,40 @@ export default Vue.component('Demo', {
         }
       }
 
+      .process-image {
+        margin-top: .5em;
+
+        .btn {
+          text-align: center;
+          margin: auto;
+          display: block;
+        }
+      }
+
       .palette {
         .polar, .snow, .frost, .aurora {
           span {
             width: 1.5em;
             height: 1.5em;
             display: inline-block;
-            border: 1px solid #f2f2f2;
+            border: 2px solid #f2f2f2;
+            cursor: pointer;
             margin: 0 .3em;
 
             &:first-child {
               margin-left: 0;
+            }
+
+            &:hover {
+              border: 2px solid $nord13;
+            }
+
+            &.highlighted {
+              border: 2px solid $nord13;
+
+              &:hover {
+                border-color: #f2f2f2;
+              }
             }
           }
         }

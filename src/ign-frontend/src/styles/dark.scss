@@ -25,6 +25,13 @@ html.dark-theme {
 
   .range-input {
     background-color: $nord0;
+    
+    &:disabled {
+      &:hover {
+        opacity: 0.7;
+      }
+      background: $bg-primary;
+    }
   }
 
   .slider {
