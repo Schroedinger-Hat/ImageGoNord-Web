@@ -1,0 +1,53 @@
+// Dark mode that is gonna override the whole theme
+html.dark-theme {
+  background: $dark-bg-primary;
+  color: $dark-text-primary;
+  transition: all 400ms ease-in-out 0s;
+
+  * {
+    color: $dark-text-primary;
+    transition: all 400ms ease-in-out 0s;
+  }
+
+  .external-link-color {
+    color: $nord8;
+
+    &:hover {
+      color: $nord11;
+    }
+  }
+
+  .btn {
+    &.btn-primary {
+      border: none;
+    }
+  }
+
+  .range-input {
+    background-color: $nord0;
+    
+    &:disabled {
+      &:hover {
+        opacity: 0.7;
+      }
+      background: $bg-primary;
+    }
+  }
+
+  .slider {
+    background-color: $nord0;
+
+    &:before {
+      background-color: $nord1;
+    }
+  }
+  
+  
+  input:checked + .slider {
+    background-color: $nord3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px $nord1;
+  }
+}
