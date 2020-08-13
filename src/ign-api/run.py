@@ -13,12 +13,12 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route(API_VERSION + "/status", methods=["GET"])
-@cross_origin()
+@cross_origin(origin='*')
 def get_api_status():
   return jsonify({'ok': True})
 
 @app.route(API_VERSION + "/quantize", methods=["POST"])
-@cross_origin()
+@cross_origin(origin='*')
 def quantize():
   go_nord = setup_instance(request)
   output_path = ''
@@ -49,7 +49,7 @@ def quantize():
   return jsonify(response)
 
 @app.route(API_VERSION + "/convert", methods=["POST"])
-@cross_origin()
+@cross_origin(origin='*')
 def convert():
   go_nord = setup_instance(request)
   output_path = ''
