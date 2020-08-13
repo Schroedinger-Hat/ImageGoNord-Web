@@ -130,16 +130,20 @@ export default Vue.component('Demo', {
     processImage(e) {
       e.preventDefault();
 
+      document.querySelector('.preview').classList.toggle('processing');
+
       if (this.imgData === null) {
         return false;
       }
 
+      // eslint-disable-next-line prefer-destructuring
+      const img = this.img;
       const endpoint = (this.is_filter === true) ? 'quantize' : 'convert';
 
       const formData = new FormData();
       formData.append('file', this.imgData);
-      // formData.append('width', this.img.width);
-      // formData.append('height', this.img.height);
+      formData.append('width', this.img.width);
+      formData.append('height', this.img.height);
       formData.append('b64_output', true);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
       formData.append('is_avg', true);
@@ -148,8 +152,8 @@ export default Vue.component('Demo', {
         const avgW = -2;
         const avgH = 3;
 
-        formData.append('avg_box_width', avgW + this.avg_index);
-        formData.append('avg_box_height', avgH + this.avg_index);
+        formData.append('avg_box_width', avgW + parseInt(this.avg_index, 10));
+        formData.append('avg_box_height', avgH + parseInt(this.avg_index, 10));
       }
 
       if (this.blur === true) {
@@ -160,18 +164,27 @@ export default Vue.component('Demo', {
         method: 'POST',
         body: formData,
       }).then((response) => {
+        document.querySelector('.preview').classList.toggle('processing');
         response.json()
           .then((r) => {
             const im = new Image();
             im.onload = () => {
               const canvas = document.getElementById('img-preview');
               const ctx = document.getElementById('img-preview').getContext('2d');
+              const ratio = img.width / img.height;
+              let newWidth = canvas.width;
+              let newHeight = newWidth / ratio;
+              if (newHeight > canvas.height) {
+                newHeight = canvas.height;
+                newWidth = newHeight * ratio;
+              }
               ctx.clearRect(0, 0, canvas.width, canvas.height);
-              ctx.drawImage(im, 0, 0);
+              ctx.drawImage(im, 0, 0, newWidth, newHeight);
             };
             im.src = `data:image/png;base64, ${r.b64_img}`;
           });
       }).catch((err) => {
+        document.querySelector('.preview').classList.toggle('processing');
         console.log(err);
       });
 
@@ -238,12 +251,27 @@ export default Vue.component('Demo', {
 
     .preview {
       // width: 100%;
+      position: relative;
       padding: .8em;
       background: $bg-secondary;
       border-radius: .8em;
 
       &.highlight {
         background: $nord7;
+      }
+
+      &.processing {
+        &:before {
+          content: " ";
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: #e5e9f087;
+          z-index: 1;
+        }
       }
 
       .preview-wrapper {
