@@ -42,7 +42,7 @@ def quantize():
   image = go_nord.quantize_image(image, save_path=output_path)
   
   if (request.form.get('b64_output') != None):
-    b64_image = go_nord.image_to_base64(image, 'jpeg')
+    b64_image = go_nord.image_to_base64(image, 'png')
     base64_img_string = b64_image.decode('UTF-8')
     response['b64_img'] = base64_img_string
   
@@ -73,7 +73,7 @@ def convert():
   image = go_nord.convert_image(image, save_path=output_path)
   
   if (request.form.get('b64_output') != None):
-    b64_image = go_nord.image_to_base64(image, 'jpeg')
+    b64_image = go_nord.image_to_base64(image, 'png')
     base64_img_string = b64_image.decode('UTF-8')
     response['b64_img'] = base64_img_string
   
