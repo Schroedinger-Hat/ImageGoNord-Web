@@ -31,6 +31,16 @@ const routes = [
     component: Documentation,
   },
   {
+    path: '/documentation/python',
+    name: 'Documentation Python',
+    component: Documentation,
+  },
+  {
+    path: '/documentation/api',
+    name: 'Documentation API',
+    component: Documentation,
+  },
+  {
     path: '/about',
     name: 'About',
     component: About,
