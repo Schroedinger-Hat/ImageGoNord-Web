@@ -442,6 +442,7 @@ export default Vue.component('Demo', {
   .demo {
     .demo-wrapper {
       display: flex;
+      align-items: center;
       .preview {
         width: 80%;
         padding: .8em;
