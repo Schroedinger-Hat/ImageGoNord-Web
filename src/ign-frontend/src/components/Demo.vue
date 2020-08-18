@@ -139,6 +139,8 @@ export default Vue.component('Demo', {
       // eslint-disable-next-line prefer-destructuring
       const img = this.img;
       const endpoint = (this.is_filter === true) ? 'quantize' : 'convert';
+      const avgW = -1;
+      const avgH = 1;
 
       const formData = new FormData();
       formData.append('file', this.imgData);
@@ -146,14 +148,12 @@ export default Vue.component('Demo', {
       formData.append('height', this.img.height);
       formData.append('b64_output', true);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
-      formData.append('is_avg', true);
 
       if (this.avg_index !== 0) {
-        const avgW = -2;
-        const avgH = 3;
+        formData.append('is_avg', true);
 
-        formData.append('avg_box_width', avgW + parseInt(this.avg_index, 10));
-        formData.append('avg_box_height', avgH + parseInt(this.avg_index, 10));
+        formData.append('avg_box_width', avgW - parseInt(Math.abs(this.avg_index), 10));
+        formData.append('avg_box_height', avgH + parseInt(Math.abs(this.avg_index), 10));
       }
 
       if (this.blur === true) {
