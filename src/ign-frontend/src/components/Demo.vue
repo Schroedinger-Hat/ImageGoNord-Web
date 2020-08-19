@@ -104,7 +104,7 @@ export default Vue.component('Demo', {
     loadFile(event) {
       const dropArea = document.querySelector('.preview-wrapper');
       dropArea.classList.add('uploaded');
-      console.log(event.target.files);
+
       const [imgData] = event.target.files;
       const canvas = document.getElementById('img-preview');
       const ctx = document.getElementById('img-preview').getContext('2d');
@@ -144,8 +144,8 @@ export default Vue.component('Demo', {
 
       const formData = new FormData();
       formData.append('file', this.imgData);
-      formData.append('width', this.img.width);
-      formData.append('height', this.img.height);
+      // formData.append('width', this.img.width);
+      // formData.append('height', this.img.height);
       formData.append('b64_output', true);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
 
@@ -182,6 +182,9 @@ export default Vue.component('Demo', {
               ctx.drawImage(im, 0, 0, newWidth, newHeight);
             };
             im.src = `data:image/png;base64, ${r.b64_img}`;
+            const responseImageBlob = this.b64ToBlob(r.b64_img);
+            const responseImageUrl = URL.createObjectURL(responseImageBlob);
+            window.open(responseImageUrl, '_blank');
           });
       }).catch((err) => {
         document.querySelector('.preview').classList.toggle('processing');
@@ -210,6 +213,25 @@ export default Vue.component('Demo', {
       e.preventDefault();
       e.target.classList.toggle('highlighted');
       delete this.selectedColor[this.selectedColor.indexOf(e.target.getAttribute('data-hex'))];
+    },
+    b64ToBlob(b64Data, contentType = 'image/png', sliceSize = 512) {
+      const byteCharacters = atob(b64Data);
+      const byteArrays = [];
+
+      for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        const byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i += 1) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        const byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+      }
+
+      const blob = new Blob(byteArrays, { type: contentType });
+      return blob;
     },
   },
   mounted() {
