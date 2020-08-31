@@ -74,6 +74,9 @@
           <div class="process-image">
             <span @click="processImage" class="btn btn-primary">Process</span>
           </div>
+          <div class="download-image">
+            <span class="btn btn-primary">Download</span>
+          </div>
           <small>More info on
             <router-link class="external-link-color" to="/documentation"> documentation
             </router-link>
@@ -184,7 +187,9 @@ export default Vue.component('Demo', {
             im.src = `data:image/png;base64, ${r.b64_img}`;
             const responseImageBlob = this.b64ToBlob(r.b64_img);
             const responseImageUrl = URL.createObjectURL(responseImageBlob);
-            window.open(responseImageUrl, '_blank');
+            const downloadBtn = document.querySelector('.download-image .btn');
+            downloadBtn.parentNode.style.display = 'block';
+            downloadBtn.setAttribute('onclick', `window.open('${responseImageUrl}', '_blank')`);
           });
       }).catch((err) => {
         document.querySelector('.preview').classList.toggle('processing');
@@ -343,7 +348,11 @@ export default Vue.component('Demo', {
         }
       }
 
-      .process-image {
+      .download-image {
+        display: none;
+      }
+
+      .process-image, .download-image {
         margin-top: .5em;
 
         .btn {
