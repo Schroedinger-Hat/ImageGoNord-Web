@@ -3,7 +3,7 @@ A tool that can convert your rgb images to nordtheme palette.
 
 This repository is:
 - CLI utility, written in python, that can convert any sort of image into a [nordtheme](https://github.com/arcticicestudio/nord) palette image;
-- an API hosted on Heroku that is using the [IageGoNord Python package](https://github.com/Schrodinger-Hat/ImageGoNord-pip) written in Flask;
+- an API hosted on Heroku that is using the [ImageGoNord Python package](https://github.com/Schrodinger-Hat/ImageGoNord-pip) written in Flask;
 - a demo website hosted on Netlify made using the Nordtheme and VueJS;
 
 **Are you looking for the python package?**
