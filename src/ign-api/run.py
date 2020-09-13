@@ -10,17 +10,13 @@ API_VERSION = '/v1'
 app = Flask(__name__)
 cors = CORS(app)
 
-app.config['CORS_HEADERS'] = 'Content-Type'
-
 
 @app.route(API_VERSION + "/status", methods=["GET"])
-@cross_origin(origin='*')
 def get_api_status():
     return jsonify({'ok': True})
 
 
 @app.route(API_VERSION + "/quantize", methods=["POST"])
-@cross_origin(origin='*')
 def quantize():
     go_nord = setup_instance(request)
     output_path = ''
@@ -52,17 +48,16 @@ def quantize():
 
 
 @app.route(API_VERSION + "/convert", methods=["POST"])
-@cross_origin(origin='*')
 def convert():
     go_nord = setup_instance(request)
     output_path = ''
     response = {'success': True}
 
-    if request.files.get('file') != None:
+    if request.files.get('file'):
         image = go_nord.open_image(request.files.get('file').stream)
-    elif request.form.get('file_path') != None:
+    elif request.form.get('file_path'):
         image = go_nord.open_image(request.form.get('file_path'))
-    elif request.form.get('b64_input') != None:
+    elif request.form.get('b64_input'):
         image = go_nord.base64_to_image(request.form.get('b64_input'))
     else:
         abort(400, 'You need to provide at least a valid image or image path')
@@ -70,12 +65,12 @@ def convert():
     if request.form.get('width') and request.form.get('height'):
         image = go_nord.resize_image(image)
 
-    if request.form.get('output_path') != None:
+    if request.form.get('output_path'):
         output_path = request.form.get('output_path')
 
     image = go_nord.convert_image(image, save_path=output_path)
 
-    if request.form.get('b64_output') != None:
+    if request.form.get('b64_output'):
         b64_image = go_nord.image_to_base64(image, 'jpeg')
         base64_img_string = b64_image.decode('UTF-8')
         response['b64_img'] = base64_img_string

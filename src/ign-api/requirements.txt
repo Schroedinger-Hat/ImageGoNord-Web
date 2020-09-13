@@ -4,3 +4,4 @@ flask_cors==3.0.8
 image-go-nord==0.0.8
 gunicorn==20.0.4
 pytest==6.0.2
+flask-restx==0.2.0
