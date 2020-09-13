@@ -1,6 +1,9 @@
+# Ide
+.idea
 
 # env
 env/
+venv/
 
 # test output image
 wat.png
