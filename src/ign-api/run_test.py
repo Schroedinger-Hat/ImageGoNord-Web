@@ -49,3 +49,22 @@ def test_convert_api_no_data_provided(client: FlaskClient):
     data = {'b64_output': True}
     response = client.post(URL, data=data, content_type='multipart/form-data')
     assert response.status_code == 400
+
+
+def test_quantize_api(client: FlaskClient, base64_pixel):
+    URL = API_VERSION + '/quantize'
+    data = {'b64_input': base64_pixel, 'b64_output': True}
+    response = client.post(URL, data=data, content_type='multipart/form-data')
+    assert response.status_code == 200
+
+    json = response.json
+    assert 'success' in json.keys()
+    assert json['success']
+    assert 'b64_img' in json.keys()
+
+
+def test_quantize_api_no_data_provided(client: FlaskClient):
+    URL = API_VERSION + '/quantize'
+    data = {'b64_output': True}
+    response = client.post(URL, data=data, content_type='multipart/form-data')
+    assert response.status_code == 400
