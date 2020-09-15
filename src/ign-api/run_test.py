@@ -1,7 +1,12 @@
+import base64
+import io
+
 import pytest
+from PIL import Image
 
 from run import app, API_VERSION
 from flask.testing import FlaskClient
+from img_test import img
 
 
 @pytest.fixture
@@ -15,14 +20,13 @@ def client():
 
 @pytest.fixture
 def base64_pixel():
-    """ Base64 JPG pixel 1x1 Blue"""
-    return '/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wC' \
-           'EAAQEBAQEBAQEBAQGBgUGBggHBwcHCAwJCQkJCQwTDA4MDA4MExEUEA8QFBEeFxUVFx4iHRsdIiol' \
-           'JSo0MjRERFwBBAQEBAQEBAQEBAYGBQYGCAcHBwcIDAkJCQkJDBMMDgwMDgwTERQQDxAUER4XFRUXHiId' \
-           'Gx0iKiUlKjQyNEREXP/CABEIAAEAAQMBIgACEQEDEQH/xAAUAAEAAAAAAAAAAAAAAAAAAAAI/9oACAEBAAA' \
-           'AABz/AP/EABQBAQAAAAAAAAAAAAAAAAAAAAj/2gAIAQIQAAAAf3//xAAUAQEAAAAAAAAAAAAAAAAAAAAG' \
-           '/9oACAEDEAAAACv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AH//xAAUEQEAAAAAAAAAAAAAAAAA' \
-           'AAAA/9oACAECAQE/AH//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AH//2Q=='
+    return img
+
+
+def get_img_size(base64_str: str):
+    imgdata = base64.b64decode(base64_str)
+    im = Image.open(io.BytesIO(imgdata))
+    return im.size  # width, height
 
 
 def test_status_api(client: FlaskClient):
@@ -68,3 +72,19 @@ def test_quantize_api_no_data_provided(client: FlaskClient):
     data = {'b64_output': True}
     response = client.post(URL, data=data, content_type='multipart/form-data')
     assert response.status_code == 400
+
+
+def test_image_resize_convert(client: FlaskClient, base64_pixel):
+    URL = API_VERSION + '/convert'
+    data = {'width': 100, 'height': 100, 'b64_input': base64_pixel, 'b64_output': True}
+    response = client.post(URL, data=data, content_type='multipart/form-data')
+    assert response.status_code == 200
+    assert get_img_size(response.json.get('b64_img')) == (100, 100)
+
+
+def test_image_resize_quantize(client: FlaskClient, base64_pixel):
+    URL = API_VERSION + '/quantize'
+    data = {'width': 100, 'height': 100, 'b64_input': base64_pixel, 'b64_output': True}
+    response = client.post(URL, data=data, content_type='multipart/form-data')
+    assert response.status_code == 200
+    assert get_img_size(response.json.get('b64_img')) == (100, 100)
