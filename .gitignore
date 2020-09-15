@@ -1,6 +1,9 @@
+# Ide
+.idea
 
 # env
 env/
+venv/
 
 # test output image
 wat.png
@@ -10,3 +13,6 @@ src/images/quantize.*
 # Vim swap files
 *.sw*
 
+# python files
+.pyc
+__pycache__/
