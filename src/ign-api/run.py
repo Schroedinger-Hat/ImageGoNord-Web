@@ -70,7 +70,9 @@ class ConvertEndpoint(Resource):
             abort(400, 'You need to provide at least a valid image or image path')
 
         if request.form.get('width') and request.form.get('height'):
-            image = go_nord.resize_image(image)
+            width = int(request.form.get('width', 0))
+            height = int(request.form.get('height', 0))
+            image = go_nord.resize_image(image, w=width, h=height)
 
         if request.form.get('output_path'):
             output_path = request.form.get('output_path')
@@ -107,7 +109,9 @@ class ConvertEndpoint(Resource):
             abort(400, 'You need to provide at least a valid image or image path')
 
         if request.form.get('width') and request.form.get('height'):
-            image = go_nord.resize_image(image)
+            width = int(request.form.get('width', 0))
+            height = int(request.form.get('height', 0))
+            image = go_nord.resize_image(image, w=width, h=height)
 
         if request.form.get('output_path'):
             output_path = request.form.get('output_path')
