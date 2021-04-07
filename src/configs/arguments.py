@@ -19,8 +19,8 @@ logs = {
     ],
 
     "pxls": [
-        "[INFO] Set up pixels area: {}",
-        "[ERROR] On '{}': the area pixels must be a number value or a couple!",
+        "[INFO] Set up pixels width area: {}",
+        "[INFO] Set up pixels height area: {}",
         "[ERROR] On '{}': no value specify within the area pixels!",
         "\te.g. --pixels-area=2 or -pa=-4,-3"
     ],

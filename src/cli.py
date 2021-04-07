@@ -183,7 +183,6 @@ if __name__ == '__main__':
 
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
         key = key_value[0].lower()
-        to_console(key_value)
 
         condition_argument = key in ["--img", "-i"]
         IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
@@ -217,43 +216,44 @@ if __name__ == '__main__':
 
         condition_argument = key in ["--no-avg", "-na"]
         if condition_argument:
-            if not len(key_value) > 1:
-                go_nord.disable_avg_algorithm()
-                to_console(confarg.logs["navg"][0])
-            else:
+            if len(key_value) > 1:
                 to_console(confarg.logs["navg"][1].format(arg))
                 to_console(confarg.logs["navg"][-1])
                 to_console(confarg.logs["err"][0])
                 sys.exit(1)
+            else:
+                go_nord.disable_avg_algorithm()
+                to_console(confarg.logs["navg"][0])
             continue
 
         condition_argument = key in ["-pa", "--pixels-area"]
         if condition_argument:
-            if len(key_value) > 1:
-                value_area = key_value[1].split(",")
+            try:
+                area_value = key_value[1].split(",")
                 try:
-                    PIXELS_AREA = int(key_value[1])
-                    to_console(confarg.logs["pxls"][0].format(PIXELS_AREA))
-                    continue
-                except ValueError as value_error:
-                    to_console(confarg.logs["pxls"][1].format(arg))
-            else:
-                to_console(confarg.logs["pxls"][2].format(arg))
-            to_console(confarg.logs["pxls"][-1])
-            to_console(confarg.logs["err"][0])
-            sys.exit(1)
+                    go_nord.set_avg_box_data(w=area_value[0], h=area_value[1])
+                    to_console(confarg.logs["pxls"][0].format(area_value[0]))
+                    to_console(confarg.logs["pxls"][1].format(area_value[1]))
+                except IndexError:
+                    go_nord.set_avg_box_data(w=area_value[0], h=area_value[0])
+                    to_console(confarg.logs["pxls"][0].format(area_value[0]))
+                    to_console(confarg.logs["pxls"][1].format(area_value[0]))
+            except IndexError:
+                to_console(confarg.logs["pxls"][-2].format(arg))
+                to_console(confarg.logs["pxls"][-1])
+                to_console(confarg.logs["err"][0])
+                sys.exit(1)
 
         condition_argument = key in ["--blur", "-b"]
-
         if condition_argument:
             if not len(key_value) > 1:
-                go_nord.enable_gaussian_blur()
-                to_console(confarg.logs["blur"][0])
-            else:
-                to_console(confarg.logs["blur"][1].format(arg))
+                to_console(confarg.logs["blur"][-2].format(arg))
                 to_console(confarg.logs["blur"][-1])
                 to_console(confarg.logs["err"][0])
                 sys.exit(1)
+            else:
+                go_nord.enable_gaussian_blur()
+                to_console(confarg.logs["blur"][0])
             continue
         del condition_argument
 
@@ -323,8 +323,6 @@ if __name__ == '__main__':
     #for selected_palette in palette_set:
     #    go_nord.add_file_to_palette(selected_palette + ".txt")
 
-    #go_nord.enable_gaussian_blur()
-    #go_nord.set_avg_box_data(w=-1, h=1)
     #quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_NAME)
     #go_nord.image_to_base64(quantize_image, 'jpeg')
 
