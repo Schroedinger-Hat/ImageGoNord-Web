@@ -20,9 +20,9 @@ logs = {
 
     "pxls": [
         "[INFO] Set up pixels area: {}",
-        "[ERROR] On '{}': the area pixels must be a number value!",
+        "[ERROR] On '{}': the area pixels must be a number value or a couple!",
         "[ERROR] On '{}': no value specify within the area pixels!",
-        "\te.g. --pixels-area=12"
+        "\te.g. --pixels-area=2 or -pa=-4,-3"
     ],
 
     "blur": [
@@ -37,9 +37,13 @@ logs = {
         "\t {} \u2713",
         "\t {} \u2718",
         "[WARNING] No theme specified, Nord theme selected with color set:",
-        "[WARNING] No set found for: {}",
+        "[WARNING] No set found for: {} \u2753",
         "[ERROR] On '{}': no colors correctly given!",
         "\te.g. --nord=aurora,polarnight"
     ],
+
+    "err": [
+        "[INFO] No image created, solve all ERROR and retry."
+    ]
 
 }

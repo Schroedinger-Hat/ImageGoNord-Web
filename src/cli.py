@@ -7,7 +7,7 @@ Mandatory arguments to long options are mandatory for short options too.
 
 Startup:
   -h,  --help                       print this help and exit
-  
+
   -v,  --version                    display the version of Image Go Nord and exit
 
 Logging:
@@ -30,10 +30,10 @@ Theme options:
 
 Conversion:
 
-  -n, --no-average                  do not use the average pixels optimization
+  -na, --no-avg                     do not use the average pixels optimization
                                     algorithm on conversion
 
-  -p=INT, --pixel-area=INT          specify pixels of the area for average color
+  -pa=INT,INT, --pixel-area=INT,INT specify pixels of the area for average color
                                     calculation
 
   -b, --blur                        use blur on the final result
@@ -46,9 +46,9 @@ and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new.
 import sys
 import re
 from os import path
+from ImageGoNord import GoNord
 
 import configs.arguments as confarg
-from utility.quantize import quantize_to_palette, replace_color
 import utility.palette_loader as pl
 
 VERSION = open(path.dirname(path.realpath(__file__)) +
@@ -56,10 +56,8 @@ VERSION = open(path.dirname(path.realpath(__file__)) +
 BLACK_REPLACE = "2E3440"
 DEAFAULT_EXTENSION = ".png"
 QUIET_MODE = False
-IS_NO_AVERAGE = False
 PIXELS_AREA = 10
 OUTPUT_IMAGE_NAME = "nord" + DEAFAULT_EXTENSION
-BLUR = False
 PALETTE_DATA = []
 
 
@@ -156,6 +154,8 @@ if __name__ == '__main__':
         print(VERSION)
         sys.exit(0)
 
+    go_nord = GoNord()
+
     IMAGE_ARGUMENT_PATTERN = r'-(-img|i)=*'
     IS_IMAGE_PASSED = False
     for arg in args:
@@ -164,7 +164,9 @@ if __name__ == '__main__':
             IS_IMAGE_PASSED = True
             break
     if not IS_IMAGE_PASSED:
-        print("The image path must be given!")
+        to_console(confarg.logs["img"][1].format(arg))
+        to_console(confarg.logs["img"][-1])
+        to_console(confarg.logs["err"][0])
         sys.exit(1)
 
     QUIET_MODE = "-q" in args or "--quiet" in args
@@ -181,8 +183,9 @@ if __name__ == '__main__':
 
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
         key = key_value[0].lower()
+        to_console(key_value)
 
-        condition_argument = key in ("--img" or "-i")
+        condition_argument = key in ["--img", "-i"]
         IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
         if condition_argument:
             if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
@@ -192,10 +195,11 @@ if __name__ == '__main__':
             else:
                 to_console(confarg.logs["img"][1].format(arg))
                 to_console(confarg.logs["img"][-1])
+                to_console(confarg.logs["err"][0])
                 sys.exit(1)
             continue
 
-        condition_argument = key in ("--out" or "-o")
+        condition_argument = key in ["--out", "-o"]
         if condition_argument:
             if len(key_value) > 1:
                 OUTPUT_IMAGE_NAME = key_value[1]
@@ -207,23 +211,26 @@ if __name__ == '__main__':
             else:
                 to_console(confarg.logs["out"][1].format(arg))
                 to_console(confarg.logs["out"][-1])
+                to_console(confarg.logs["err"][0])
                 sys.exit(1)
             continue
 
-        condition_argument = key in ("--no-average" or "-n")
+        condition_argument = key in ["--no-avg", "-na"]
         if condition_argument:
             if not len(key_value) > 1:
-                IS_NO_AVERAGE = True
+                go_nord.disable_avg_algorithm()
                 to_console(confarg.logs["navg"][0])
             else:
                 to_console(confarg.logs["navg"][1].format(arg))
                 to_console(confarg.logs["navg"][-1])
+                to_console(confarg.logs["err"][0])
                 sys.exit(1)
             continue
 
-        condition_argument = key in ("--pixels-area" or "-p")
+        condition_argument = key in ["-pa", "--pixels-area"]
         if condition_argument:
             if len(key_value) > 1:
+                value_area = key_value[1].split(",")
                 try:
                     PIXELS_AREA = int(key_value[1])
                     to_console(confarg.logs["pxls"][0].format(PIXELS_AREA))
@@ -233,16 +240,19 @@ if __name__ == '__main__':
             else:
                 to_console(confarg.logs["pxls"][2].format(arg))
             to_console(confarg.logs["pxls"][-1])
+            to_console(confarg.logs["err"][0])
             sys.exit(1)
 
-        condition_argument = key in ("--blur" or "-b")
+        condition_argument = key in ["--blur", "-b"]
+
         if condition_argument:
             if not len(key_value) > 1:
-                BLUR = True
+                go_nord.enable_gaussian_blur()
                 to_console(confarg.logs["blur"][0])
             else:
                 to_console(confarg.logs["blur"][1].format(arg))
                 to_console(confarg.logs["blur"][-1])
+                to_console(confarg.logs["err"][0])
                 sys.exit(1)
             continue
         del condition_argument
@@ -252,6 +262,7 @@ if __name__ == '__main__':
 
             if "--{}".format(palette) in key:
 
+                # if length of palette argument is 1 this means that all of the colors are taken
                 if len(key_value) == 1:
                     palette_set = pl.load_palette_set(palette_path)
                     to_console(confarg.logs["pals"][0].format(
@@ -260,6 +271,8 @@ if __name__ == '__main__':
                     for selected_color in palette_set:
                         to_console(confarg.logs["pals"]
                                    [2].format(selected_color))
+                # if length of palette argument is more than 1 this means that 
+                # user choose one or more of colors
                 else:
                     to_console(confarg.logs["pals"]
                                [1].format(palette.capitalize()))
@@ -275,6 +288,7 @@ if __name__ == '__main__':
                                     palette_path + colors_name + ".txt")
                                 colors_set = pl.create_data_colors(
                                     colors_palette)
+                                to_console(colors_set)
                                 PALETTE_DATA.extend(colors_set)
                                 palette_set.remove(colors_name)
                                 FOUND = True
@@ -288,6 +302,7 @@ if __name__ == '__main__':
                     if len(PALETTE_DATA) == 0:
                         to_console(confarg.logs["pals"][-2].format(arg))
                         to_console(confarg.logs["pals"][-1])
+                        to_console(confarg.logs["err"][0])
                         sys.exit(1)
 
     if len(PALETTE_DATA) == 0:
@@ -302,8 +317,14 @@ if __name__ == '__main__':
     while len(PALETTE_DATA) < 768:
         PALETTE_DATA.extend(pl.export_tripletes_from_color(BLACK_REPLACE))
 
-    quantize_to_palette(
-        INPUT_IMAGE_NAME, OUTPUT_IMAGE_NAME, PALETTE_DATA, BLUR)
+    #image = go_nord.open_image(INPUT_IMAGE_NAME)
+    #go_nord.set_palette_lookup_path(palette_path)
 
-    # NON FUNZIONA
-    # replace_color(INPUT_IMAGE_NAME, OUTPUT_IMAGE_NAME, PALETTE_DATA, BLUR)
+    #for selected_palette in palette_set:
+    #    go_nord.add_file_to_palette(selected_palette + ".txt")
+
+    #go_nord.enable_gaussian_blur()
+    #go_nord.set_avg_box_data(w=-1, h=1)
+    #quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_NAME)
+    #go_nord.image_to_base64(quantize_image, 'jpeg')
+

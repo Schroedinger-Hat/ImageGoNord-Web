@@ -1,0 +1,2 @@
+Pillow==7.2.0
+image-go-nord==0.1.0
