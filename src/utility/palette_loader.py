@@ -25,7 +25,7 @@ def load_palette_set(path):
     directories = listdir(path)
 
     palette_list = [palette_file.replace(
-        ".txt", '') for palette_file in directories]
+        ".txt", '') for palette_file in listdir(path)]
 
     return palette_list
 
@@ -71,7 +71,11 @@ def import_palette_from_file(filename):
     opened_file = open(filename, "r")
     palette = [line.replace('#', '').replace('\n', '')
                for line in opened_file.readlines()]
-    palette.remove('')
+
+    for element in palette:
+        if element == '':
+            palette.remove(element)
+
     return palette
 
 

@@ -8,7 +8,8 @@ Mandatory arguments to long options are mandatory for short options too.
 Startup:
   -h,  --help                       print this help and exit
 
-  -v,  --version                    display the version of Image Go Nord and exit
+  -v,  --version                    display the version of Image Go Nord and
+                                    exit
 
 Logging:
   -q,  --quiet                      quiet (no output)
@@ -19,11 +20,12 @@ I/O Images:
   -o=FILE,  --out=FILE              specify output image name
 
 Theme options:
-  --PALETTE[=LIST_COLOR_SET]        the palette can be found on the src/palettes/
-                                    directory (actually there is only nord), by
-                                    replace the palette with the name is possible
-                                    to select the theme and if necessary you can
-                                    specify the set of colors you want to use.
+  --PALETTE[=LIST_COLOR_SET]        the palette can be found on the
+                                    src/palettes/ directory (actually there is
+                                    only nord), by replace the palette with the
+                                    name is possible to select the theme and if
+                                    necessary you can specify the set of colors
+                                    you want to use.
                                     Ex: python src/cli.py --nord=aur,p,s is
                                     possible to pass the name of the color or
                                     the first character of the name set.
@@ -33,19 +35,19 @@ Conversion:
   -na, --no-avg                     do not use the average pixels optimization
                                     algorithm on conversion
 
-  -pa=INT,INT, --pixel-area=INT,INT specify pixels of the area for average color
-                                    calculation
+  -pa=INT,INT, --pixel-area=INT,INT specify pixels of the area for average
+                                    color calculation
 
   -b, --blur                        use blur on the final result
 
 
 Email bug reports, questions, discussions to <schrodinger.hat.show@gmail.com>
-and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new.
+and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new
 """
 
 import sys
 import re
-from os import path
+from os import path, listdir
 from ImageGoNord import GoNord
 
 import configs.arguments as confarg
@@ -56,7 +58,6 @@ VERSION = open(path.dirname(path.realpath(__file__)) +
 BLACK_REPLACE = "2E3440"
 DEAFAULT_EXTENSION = ".png"
 QUIET_MODE = False
-PIXELS_AREA = 10
 OUTPUT_IMAGE_NAME = "nord" + DEAFAULT_EXTENSION
 PALETTE_DATA = []
 
@@ -79,7 +80,7 @@ def is_colors_selected(selection, color_name):
       <description>
     """
     for index in range(len(selection)):
-        if selection[index] != color_name[index].lower():
+        if selection[index].lower() != color_name[index].lower():
             return False
     return True
 
@@ -177,8 +178,6 @@ if __name__ == '__main__':
     # Get all palettes created
     palettes = pl.find_palettes(src_path + "/palettes")
 
-    INPUT_IMAGE_NAME = ""
-
     for arg in args:
 
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
@@ -187,10 +186,11 @@ if __name__ == '__main__':
         condition_argument = key in ["--img", "-i"]
         IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
         if condition_argument:
-            if len(key_value) > 1 and (re.search(IMAGE_PATTERN, key_value[1]) is not None):
-                INPUT_IMAGE_NAME = key_value[1]
+            if (len(key_value) > 1 and
+                    re.search(IMAGE_PATTERN, key_value[1]) is not None):
+                image = go_nord.open_image(key_value[1])
                 to_console(confarg.logs["img"][0].format(
-                    src_path + "/" + INPUT_IMAGE_NAME))
+                    src_path + "/" + key_value[1]))
             else:
                 to_console(confarg.logs["img"][1].format(arg))
                 to_console(confarg.logs["img"][-1])
@@ -246,7 +246,7 @@ if __name__ == '__main__':
 
         condition_argument = key in ["--blur", "-b"]
         if condition_argument:
-            if not len(key_value) > 1:
+            if len(key_value) > 1:
                 to_console(confarg.logs["blur"][-2].format(arg))
                 to_console(confarg.logs["blur"][-1])
                 to_console(confarg.logs["err"][0])
@@ -259,16 +259,21 @@ if __name__ == '__main__':
 
         for palette in palettes:
             palette_path = src_path + "/palettes/" + palette.capitalize() + "/"
+            go_nord.set_palette_lookup_path(palette_path)
 
+            print(key)
             if "--{}".format(palette) in key:
 
+                go_nord.reset_palette()
                 # if length of palette argument is 1 this means that all of the colors are taken
                 if len(key_value) == 1:
-                    palette_set = pl.load_palette_set(palette_path)
+                    palette_set = [palette_file.replace(
+                        ".txt", '') for palette_file in listdir(palette_path)]
                     to_console(confarg.logs["pals"][0].format(
                         palette.capitalize()))
-                    PALETTE_DATA = load_all_palette(palette_path)
                     for selected_color in palette_set:
+                        go_nord.add_file_to_palette(selected_color + ".txt")
+                        PALETTE_DATA.extend(pl.create_data_colors(colors_palette))
                         to_console(confarg.logs["pals"]
                                    [2].format(selected_color))
                 # if length of palette argument is more than 1 this means that 
@@ -277,18 +282,18 @@ if __name__ == '__main__':
                     to_console(confarg.logs["pals"]
                                [1].format(palette.capitalize()))
                     selected_colors = key_value[1].split(",")
-                    palette_set = pl.load_palette_set(palette_path)
+                    palette_set = [palette_file.replace(
+                        ".txt", '') for palette_file in listdir(palette_path)]
                     for selected_color_set in selected_colors:
                         FOUND = False
                         for colors_name in palette_set:
                             if is_colors_selected(selected_color_set, colors_name):
                                 to_console(
                                     confarg.logs["pals"][2].format(colors_name))
+                                go_nord.add_file_to_palette(colors_name + ".txt")
                                 colors_palette = pl.import_palette_from_file(
                                     palette_path + colors_name + ".txt")
-                                colors_set = pl.create_data_colors(
-                                    colors_palette)
-                                to_console(colors_set)
+                                colors_set = pl.create_data_colors(colors_palette)
                                 PALETTE_DATA.extend(colors_set)
                                 palette_set.remove(colors_name)
                                 FOUND = True
@@ -305,8 +310,11 @@ if __name__ == '__main__':
                         to_console(confarg.logs["err"][0])
                         sys.exit(1)
 
+    print(PALETTE_DATA)
     if len(PALETTE_DATA) == 0:
         palette_path = src_path + "/palettes/Nord/"
+        go_nord.reset_palette()
+        go_nord.set_palette_lookup_path(palette_path)
         palette_set = pl.load_palette_set(palette_path)
         PALETTE_DATA = load_all_palette(palette_path)
         to_console(confarg.logs["pals"][4])
@@ -317,12 +325,9 @@ if __name__ == '__main__':
     while len(PALETTE_DATA) < 768:
         PALETTE_DATA.extend(pl.export_tripletes_from_color(BLACK_REPLACE))
 
-    #image = go_nord.open_image(INPUT_IMAGE_NAME)
-    #go_nord.set_palette_lookup_path(palette_path)
-
     #for selected_palette in palette_set:
     #    go_nord.add_file_to_palette(selected_palette + ".txt")
 
-    #quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_NAME)
-    #go_nord.image_to_base64(quantize_image, 'jpeg')
-
+    quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_NAME)
+    go_nord.image_to_base64(quantize_image, 'jpeg')
+    sys.exit(0)
