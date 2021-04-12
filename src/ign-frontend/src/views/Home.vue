@@ -51,8 +51,17 @@
         </div>
       </div>
     </section>
+    <section class="gallery-section">
+      <SeparatorDoubleLine />
+      <center>
+        <h3>Gallery</h3>
+        <p>Here are some images converted with IGN from our community</p>
+      </center>
+      <Gallery />
+      <br/>
+      <SeparatorDoubleLine />
+    </section>
     <section class="demo-section">
-      <!-- <SeparatorDoubleLine /> -->
       <center>
         <h3>Try it yourself</h3>
         <p>Upload a picture and test it out</p>
@@ -67,6 +76,7 @@ import Main from '@/components/Main.vue';
 import Demo from '@/components/Demo.vue';
 import SeparatorDoubleLine from '@/components/separator/DoubleLine.vue';
 import ImgCompare from '@/components/ImgCompare.vue';
+import Gallery from '@/components/Gallery.vue';
 
 export default {
   name: 'Home',
@@ -87,6 +97,7 @@ export default {
     Demo,
     SeparatorDoubleLine,
     ImgCompare,
+    Gallery,
   },
 };
 </script>
@@ -130,6 +141,15 @@ export default {
   }
 }
 
+.gallery-section {
+  background: $nord5;
+
+  h3 {
+    font-size: 2em;
+    margin: .3em 0;
+  }
+}
+
 .demo-section {
   min-height: 500px;
   background: $nord5;
@@ -167,7 +187,7 @@ export default {
 }
 
 .#{$dark-mode-class} {
-  .demo-section, .slider-section {
+  .demo-section, .slider-section, .gallery-section {
     background: $nord2;
   }
 
