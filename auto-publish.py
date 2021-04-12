@@ -10,7 +10,7 @@ REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME')
 REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD')
 REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID')
 REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET')
-SUBREDDIT = os.environ.get('subreddit')
+SUBREDDIT = os.environ.get('SUBREDDIT')
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper'
