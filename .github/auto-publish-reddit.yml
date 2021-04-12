@@ -1,0 +1,19 @@
+name: 'Upload latest release on PyPi'
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '*/30 5,17,23 * * *'
+jobs:
+  upload_episode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Upload latest release on PyPi
+        uses: ./
+        env:
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_APP_ID: ${{ secrets.REDDIT_APP_ID }}
+          REDDIT_APP_SECRET: ${{ secrets.REDDIT_APP_SECRET }}
+          SUBREDDIT: ImageGoNord

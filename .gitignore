@@ -5,6 +5,9 @@
 env/
 venv/
 
+# autopublish
+images/*.jpg
+
 # test output image
 wat.png
 src/images/out.png
