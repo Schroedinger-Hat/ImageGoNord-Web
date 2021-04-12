@@ -7,6 +7,8 @@ venv/
 
 # autopublish
 images/*.jpg
+images/*.jpeg
+images/*.png
 
 # test output image
 wat.png
