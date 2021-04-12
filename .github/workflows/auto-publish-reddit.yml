@@ -1,4 +1,4 @@
-name: 'Upload latest release on PyPi'
+name: 'Upload and convert /r/wallapaper to /r/imagegonord'
 
 on:
   workflow_dispatch:
@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Upload latest release on PyPi
+      - name: Upload and convert image to IGN
         uses: ./
         env:
           REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
           REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
           REDDIT_APP_ID: ${{ secrets.REDDIT_APP_ID }}
           REDDIT_APP_SECRET: ${{ secrets.REDDIT_APP_SECRET }}
-          SUBREDDIT: ImageGoNord
+          SUBREDDIT: ${{ secrets.SUBREDDIT }}
