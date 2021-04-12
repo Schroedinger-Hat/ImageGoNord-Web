@@ -1,0 +1,1 @@
+python auto-publish.py
