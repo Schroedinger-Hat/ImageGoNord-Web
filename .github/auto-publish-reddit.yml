@@ -2,19 +2,18 @@ name: 'Upload latest release on PyPi'
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
-
+  schedule:
+    - cron:  '*/30 5,17,23 * * *'
 jobs:
   upload_episode:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Upload Episode from YouTube To Anchor.Fm
+      - name: Upload latest release on PyPi
         uses: ./
         env:
-          username: ${{ secrets.REDDIT_USERNAME }}
-          password: ${{ secrets.REDDIT_PASSWORD }}
-          app-id: ${{ secrets.REDDIT_APP_ID }}
-          app-secret: ${{ secrets.REDDIT_APP_SECRET }}
-          subreddit: ImageGoNord
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_APP_ID: ${{ secrets.REDDIT_APP_ID }}
+          REDDIT_APP_SECRET: ${{ secrets.REDDIT_APP_SECRET }}
+          SUBREDDIT: ImageGoNord
