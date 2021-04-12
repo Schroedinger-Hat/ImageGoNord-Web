@@ -55,7 +55,10 @@
       <SeparatorDoubleLine />
       <center>
         <h3>Gallery</h3>
-        <p>Here are some images converted with IGN from our community</p>
+        <p>
+          Here are some images converted with IGN from our community.<br/>
+          You can find more on <a class="external-link-color" href="https://reddit.com/r/imagegonord/" target="_blank">/r/ImageGoNord</a>
+        </p>
       </center>
       <Gallery />
       <br/>
