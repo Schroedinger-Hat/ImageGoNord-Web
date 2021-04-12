@@ -61,4 +61,5 @@ if len(wallpapers_to_process) > 0:
 
     img_path = 'images/' + sub['uniqid'] + '.' + sub['url'][-3:]
     go_nord.convert_image(im, save_path=img_path)
+    print('Uploading ' + sub['title'])
     imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path)
