@@ -28,7 +28,8 @@ def convert_queue():
 
   #if (request.form.get('width') and request.form.get('height')):
   width, height = image.size
-  image = go_nord.resize_image(image, width=width*(60/100), height=height*(60/100))
+  if width > 1000 or height > 800:
+    image = go_nord.resize_image(image, width=width*(40/100), height=height*(40/100))
 
   if (request.form.get('output_path') != None):
     output_path = request.form.get('output_path')
