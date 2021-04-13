@@ -93,7 +93,8 @@ def get_job_result():
   print(request.args.get('job_id'))
   print(q.job_ids)
   job = Job.fetch(request.args.get('job_id'), connection=conn)
-  print(conn)
+  print(job.__dict__["exc_info"])
+  print(job.to_dict())
   result = job.result
   if result == None:
     result = False
