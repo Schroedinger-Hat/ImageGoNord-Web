@@ -38,15 +38,12 @@ def convert_queue():
   return job.id
 
 def convert_image(go_nord, image, save_path, b64_output, response):
-  print("converto")
   image = go_nord.convert_image(image, save_path=save_path)
   if (b64_output != None):
-    print("imageto64")
     b64_image = go_nord.image_to_base64(image, 'png')
     base64_img_string = b64_image.decode('UTF-8')
     response['b64_img'] = base64_img_string
 
-  print(response)
   return response
 
 def setup_instance(req):

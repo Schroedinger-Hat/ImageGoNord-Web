@@ -90,10 +90,7 @@ def convert():
 @app.route(API_VERSION + "/get-job", methods=["GET"])
 @cross_origin(origin='*')
 def get_job_result():
-  print(request.args.get('job_id'))
-  print(q.job_ids)
   job = Job.fetch(request.args.get('job_id'), connection=conn)
-  print(job.__dict__["exc_info"])
   result = job.result
   if result == None:
     result = False
