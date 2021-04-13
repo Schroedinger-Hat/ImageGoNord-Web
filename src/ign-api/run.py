@@ -107,7 +107,7 @@ def convert_queue():
   if (request.form.get('output_path') != None):
     output_path = request.form.get('output_path')
 
-  job = q.enqueue(convert_image, args=(go_nord, image, output_path, request, response))
+  job = q.enqueue(convert_image, job_timeout='60s', args=(go_nord, image, output_path, request, response))
   return job.id
 
 @app.route(API_VERSION + "/get-job", methods=["GET"])
