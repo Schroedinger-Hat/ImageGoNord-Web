@@ -114,19 +114,23 @@ def convert_queue():
 @cross_origin(origin='*')
 def get_job_result():
   job = Job.fetch(request.args.get('job_id'), connection=conn)
+  print(conn)
   result = job.result
   if result == None:
     result = False
 
-  return jsonify({'ok': job.get_status(), 'result': result})
+  return jsonify({'status': job.get_status(), 'result': result})
 
 def convert_image(go_nord, image, save_path, request, response):
+  print("converto")
   image = go_nord.convert_image(image, save_path=save_path)
   if (request.form.get('b64_output') != None):
+    print("imageto64")
     b64_image = go_nord.image_to_base64(image, 'png')
     base64_img_string = b64_image.decode('UTF-8')
     response['b64_img'] = base64_img_string
 
+  print(response)
   return response
 
 def setup_instance(req):
