@@ -5,6 +5,11 @@ from flask_cors import CORS, cross_origin
 
 from ImageGoNord import GoNord, NordPaletteFile
 
+from rq import Queue
+from rq.job import Job
+from worker import conn
+
+q = Queue(connection=conn)
 API_VERSION = '/v1'
 
 app = Flask(__name__)
@@ -78,6 +83,51 @@ def convert():
     response['b64_img'] = base64_img_string
   
   return jsonify(response)
+
+
+@app.route(API_VERSION + "/convert-async", methods=["POST"])
+@cross_origin(origin='*')
+def convert_queue():
+  go_nord = setup_instance(request)
+  output_path = ''
+  response = {'success': True}
+
+  if (request.files.get('file') != None):
+    image = go_nord.open_image(request.files.get('file').stream)
+  elif (request.form.get('file_path') != None):
+    image = go_nord.open_image(request.form.get('file_path'))
+  elif (request.form.get('b64_input') != None):
+    image = go_nord.base64_to_image(request.form.get('b64_input'))
+  else:
+    abort(400, 'You need to provide at least a valid image or image path')
+
+  if (request.form.get('width') and request.form.get('height')):
+    image = go_nord.resize_image(image)
+
+  if (request.form.get('output_path') != None):
+    output_path = request.form.get('output_path')
+
+  job = q.enqueue(convert_image, args=(go_nord, image, output_path, response))
+  return job.id
+
+@app.route(API_VERSION + "/get-job", methods=["GET"])
+@cross_origin(origin='*')
+def get_job_result():
+  job = Job.fetch(request.args.get('job_id'), connection=conn)
+  result = job.result
+  if result == None:
+    result = False
+
+  return jsonify({'ok': job.get_status(), 'result': result})
+
+def convert_image(go_nord, image, save_path, request, response):
+  image = go_nord.convert_image(image, save_path=save_path)
+  if (request.form.get('b64_output') != None):
+    b64_image = go_nord.image_to_base64(image, 'png')
+    base64_img_string = b64_image.decode('UTF-8')
+    response['b64_img'] = base64_img_string
+
+  return response
 
 def setup_instance(req):
   go_nord = GoNord()
