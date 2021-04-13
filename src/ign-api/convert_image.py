@@ -8,7 +8,7 @@ from ImageGoNord import GoNord, NordPaletteFile
 from rq import Queue
 from rq.job import Job
 from worker import conn
-from run import app, API_VERSION, q, cors
+from __main__ import app, API_VERSION, q, cors
 
 @app.route(API_VERSION + "/convert-async", methods=["POST"])
 @cross_origin(origin='*')
@@ -33,14 +33,14 @@ def convert_queue():
     output_path = request.form.get('output_path')
 
   # convert_image(go_nord, image, output_path, request, response)
-  job = q.enqueue(f=convert_image, job_timeout='60s', args=(go_nord, image, output_path, request, response))
+  job = q.enqueue(f=convert_image, job_timeout='60s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
   
   return job.id
 
-def convert_image(go_nord, image, save_path, request, response):
+def convert_image(go_nord, image, save_path, b64_output, response):
   print("converto")
   image = go_nord.convert_image(image, save_path=save_path)
-  if (request.form.get('b64_output') != None):
+  if (b64_output != None):
     print("imageto64")
     b64_image = go_nord.image_to_base64(image, 'png')
     base64_img_string = b64_image.decode('UTF-8')
