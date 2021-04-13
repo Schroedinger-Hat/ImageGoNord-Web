@@ -3,6 +3,7 @@
     <div class="demo-wrapper">
       <div class="preview">
         <div class="preview-wrapper">
+          <Loader />
           <input type="file" accept="image/*" id="file" @change="loadFile" style="display:none;">
           <label for="file"></label>
           <canvas width="450" height="450" id="img-preview"></canvas>
@@ -89,9 +90,13 @@
 
 <script>
 import Vue from 'vue';
+import Loader from './Loader.vue';
 
 export default Vue.component('Demo', {
   props: {},
+  components: {
+    Loader,
+  },
   data() {
     return {
       apiUrl: 'https://ign-api.herokuapp.com/v1',
