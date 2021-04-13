@@ -113,6 +113,8 @@ def convert_queue():
 @app.route(API_VERSION + "/get-job", methods=["GET"])
 @cross_origin(origin='*')
 def get_job_result():
+  print(request.args.get('job_id'))
+  print(q.job_ids)
   job = Job.fetch(request.args.get('job_id'), connection=conn)
   print(conn)
   result = job.result
