@@ -17,6 +17,8 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+import convert_image
+
 @app.route(API_VERSION + "/status", methods=["GET"])
 @cross_origin(origin='*')
 def get_api_status():
@@ -85,31 +87,6 @@ def convert():
   return jsonify(response)
 
 
-@app.route(API_VERSION + "/convert-async", methods=["POST"])
-@cross_origin(origin='*')
-def convert_queue():
-  go_nord = setup_instance(request)
-  output_path = ''
-  response = {'success': True}
-
-  if (request.files.get('file') != None):
-    image = go_nord.open_image(request.files.get('file').stream)
-  elif (request.form.get('file_path') != None):
-    image = go_nord.open_image(request.form.get('file_path'))
-  elif (request.form.get('b64_input') != None):
-    image = go_nord.base64_to_image(request.form.get('b64_input'))
-  else:
-    abort(400, 'You need to provide at least a valid image or image path')
-
-  if (request.form.get('width') and request.form.get('height')):
-    image = go_nord.resize_image(image)
-
-  if (request.form.get('output_path') != None):
-    output_path = request.form.get('output_path')
-
-  job = q.enqueue(convert_image, job_timeout='60s', args=(go_nord, image, output_path, request, response))
-  return job.id
-
 @app.route(API_VERSION + "/get-job", methods=["GET"])
 @cross_origin(origin='*')
 def get_job_result():
@@ -122,18 +99,6 @@ def get_job_result():
     result = False
 
   return jsonify({'status': job.get_status(), 'result': result})
-
-def convert_image(go_nord, image, save_path, request, response):
-  print("converto")
-  image = go_nord.convert_image(image, save_path=save_path)
-  if (request.form.get('b64_output') != None):
-    print("imageto64")
-    b64_image = go_nord.image_to_base64(image, 'png')
-    base64_img_string = b64_image.decode('UTF-8')
-    response['b64_img'] = base64_img_string
-
-  print(response)
-  return response
 
 def setup_instance(req):
   go_nord = GoNord()
