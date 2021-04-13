@@ -8,7 +8,7 @@ from ImageGoNord import GoNord, NordPaletteFile
 from rq import Queue
 from rq.job import Job
 from worker import conn
-from run import app, API_VERSION, q, cors
+from __main__ import app, API_VERSION, q, cors
 
 @app.route(API_VERSION + "/convert-async", methods=["POST"])
 @cross_origin(origin='*')
@@ -29,7 +29,7 @@ def convert_queue():
   #if (request.form.get('width') and request.form.get('height')):
   width, height = image.size
   if width > 1000 or height > 800:
-    image = go_nord.resize_image(image, width=width*(40/100), height=height*(40/100))
+    image = go_nord.resize_image(image, (int(width*(40/100)), int(height*(40/100))))
 
   if (request.form.get('output_path') != None):
     output_path = request.form.get('output_path')
