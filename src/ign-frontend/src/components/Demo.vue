@@ -141,7 +141,7 @@ export default Vue.component('Demo', {
 
       // eslint-disable-next-line prefer-destructuring
       const img = this.img;
-      const endpoint = (this.is_filter === true) ? 'quantize' : 'convert';
+      const endpoint = (this.is_filter === true) ? 'quantize' : 'convert-async';
       const avgW = -1;
       const avgH = 1;
 
@@ -167,6 +167,7 @@ export default Vue.component('Demo', {
         method: 'POST',
         body: formData,
       }).then((response) => {
+        console.log(response);
         document.querySelector('.preview').classList.toggle('processing');
         response.json()
           .then((r) => {
