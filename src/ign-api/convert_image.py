@@ -8,7 +8,7 @@ from ImageGoNord import GoNord, NordPaletteFile
 from rq import Queue
 from rq.job import Job
 from worker import conn
-from __main__ import app, API_VERSION, q, cors
+from run import app, API_VERSION, q, cors
 
 @app.route(API_VERSION + "/convert-async", methods=["POST"])
 @cross_origin(origin='*')
