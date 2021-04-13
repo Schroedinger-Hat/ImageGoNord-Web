@@ -137,6 +137,7 @@ export default Vue.component('Demo', {
     },
     processImage(e) {
       e.preventDefault();
+      const self = this;
 
       document.querySelector('.preview').classList.toggle('processing');
 
@@ -172,37 +173,57 @@ export default Vue.component('Demo', {
         method: 'POST',
         body: formData,
       }).then((response) => {
-        console.log(response);
-        document.querySelector('.preview').classList.toggle('processing');
-        response.json()
-          .then((r) => {
-            const im = new Image();
-            im.onload = () => {
-              const canvas = document.getElementById('img-preview');
-              const ctx = document.getElementById('img-preview').getContext('2d');
-              const ratio = img.width / img.height;
-              let newWidth = canvas.width;
-              let newHeight = newWidth / ratio;
-              if (newHeight > canvas.height) {
-                newHeight = canvas.height;
-                newWidth = newHeight * ratio;
-              }
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-              ctx.drawImage(im, 0, 0, newWidth, newHeight);
-            };
-            im.src = `data:image/png;base64, ${r.b64_img}`;
-            const responseImageBlob = this.b64ToBlob(r.b64_img);
-            const responseImageUrl = URL.createObjectURL(responseImageBlob);
-            const downloadBtn = document.querySelector('.download-image .btn');
-            downloadBtn.parentNode.style.display = 'block';
-            downloadBtn.setAttribute('onclick', `window.open('${responseImageUrl}', '_blank')`);
-          });
+        response.text().then((jobId) => {
+          self.pollingAPI(jobId, img);
+        });
       }).catch((err) => {
         document.querySelector('.preview').classList.toggle('processing');
         console.log(err);
       });
 
       return true;
+    },
+    pollingAPI(jobId, img) {
+      const self = this;
+      fetch(`${this.apiUrl}/get-job?job_id=${jobId}`)
+        .then((r) => {
+          r.json().then((json) => {
+            if (json.status === 'finished') {
+              document.querySelector('.preview').classList.toggle('processing');
+              self.showResponseImage(img, json.result);
+            } else if (json.status === 'queued' || json.status === 'started') {
+              setTimeout(() => {
+                self.pollingAPI(jobId);
+              }, 800);
+            } else {
+              document.querySelector('.preview').classList.toggle('processing');
+              console.info('Something went wrong, please retry or write to us!');
+            }
+          });
+        });
+    },
+    showResponseImage(img, r) {
+      const self = this;
+      const im = new Image();
+      im.onload = () => {
+        const canvas = document.getElementById('img-preview');
+        const ctx = document.getElementById('img-preview').getContext('2d');
+        const ratio = self.img.width / self.img.height;
+        let newWidth = canvas.width;
+        let newHeight = newWidth / ratio;
+        if (newHeight > canvas.height) {
+          newHeight = canvas.height;
+          newWidth = newHeight * ratio;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(im, 0, 0, newWidth, newHeight);
+      };
+      im.src = `data:image/png;base64, ${r.b64_img}`;
+      const responseImageBlob = this.b64ToBlob(r.b64_img);
+      const responseImageUrl = URL.createObjectURL(responseImageBlob);
+      const downloadBtn = document.querySelector('.download-image .btn');
+      downloadBtn.parentNode.style.display = 'block';
+      downloadBtn.setAttribute('onclick', `window.open('${responseImageUrl}', '_blank')`);
     },
     preventDefaults(e) {
       e.preventDefault();
