@@ -26,11 +26,6 @@ def convert_queue():
   else:
     abort(400, 'You need to provide at least a valid image or image path')
 
-  #if (request.form.get('width') and request.form.get('height')):
-  width, height = image.size
-  if width > 1000 or height > 800:
-    image = go_nord.resize_image(image, (int(width*(40/100)), int(height*(40/100))))
-
   if (request.form.get('output_path') != None):
     output_path = request.form.get('output_path')
 
