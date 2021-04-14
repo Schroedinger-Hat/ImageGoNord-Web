@@ -5,7 +5,7 @@ on:
   schedule:
     - cron:  '*/30 */6 * * *'
 jobs:
-  upload_episode:
+  upload_and_convert:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
