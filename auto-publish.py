@@ -7,9 +7,9 @@ import base64
 import requests
 
 REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
-REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '6E3oMMV^P4RcX9jA$v!R')
-REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '-5re3mJsv5Dd0Q')
-REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', 'T7rfiTMTN88cSo5zDIw_JlvP8beq-g')
+REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '')
+REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '')
+REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', '')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
@@ -67,10 +67,14 @@ if len(wallpapers_to_process) > 0:
     im = go_nord.base64_to_image(base64.b64encode(requests.get(sub['url']).content))
 
     img_path = 'images/' + sub['uniqid'] + '.' + sub['url'][-3:]
-    go_nord.convert_image(im, save_path=img_path)
-    print('Uploading ' + sub['title'])
-    reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path)
+    print('Processing ' + sub['title'])
+    try:
+      go_nord.convert_image(im, save_path=img_path)
+      print('Uploading ' + sub['title'])
+      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path)
 
-    print('Commenting')
-    reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image available [here](' + sub['url'] + ').')
-    published_post = published_post + 1
+      print('Commenting')
+      reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image available [here](' + sub['url'] + ').')
+      published_post = published_post + 1
+    except Exception as e:
+      print(e)
