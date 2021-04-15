@@ -173,9 +173,17 @@ export default Vue.component('Demo', {
         method: 'POST',
         body: formData,
       }).then((response) => {
+        if (endpoint === 'quantize') {
+          response.json().then((j) => {
+            self.showResponseImage(img, j);
+          });
+          return true;
+        }
+
         response.text().then((jobId) => {
           self.pollingAPI(jobId, img);
         });
+        return true;
       }).catch((err) => {
         document.querySelector('.preview').classList.toggle('processing');
         console.log(err);
@@ -189,7 +197,6 @@ export default Vue.component('Demo', {
         .then((r) => {
           r.json().then((json) => {
             if (json.status === 'finished') {
-              document.querySelector('.preview').classList.toggle('processing');
               self.showResponseImage(img, json.result);
             } else if (json.status === 'queued' || json.status === 'started') {
               setTimeout(() => {
@@ -206,6 +213,7 @@ export default Vue.component('Demo', {
       const self = this;
       const im = new Image();
       im.onload = () => {
+        document.querySelector('.preview').classList.toggle('processing');
         const canvas = document.getElementById('img-preview');
         const ctx = document.getElementById('img-preview').getContext('2d');
         const ratio = self.img.width / self.img.height;
