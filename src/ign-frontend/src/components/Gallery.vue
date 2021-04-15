@@ -22,7 +22,7 @@ export default Vue.component('Gallery', {
     fetchRedditPosts: async () => {
       let posts = [];
       try {
-        const latestPosts = await fetch('https://www.reddit.com/r/imagegonord/new.json?limit=9');
+        const latestPosts = await fetch('https://www.reddit.com/r/imagegonord/hot.json?limit=15');
         const post = await latestPosts.json();
         posts = post.data.children.map(
           ({
@@ -55,7 +55,9 @@ export default Vue.component('Gallery', {
   created() {
     const self = this;
     this.fetchRedditPosts().then((r) => {
-      self.reddit_posts = r;
+      self.reddit_posts = r
+        .filter((o) => (o.urlImg !== undefined && o.urlImg.search(/(jpg)|(png)|(gif)|jpeg/) !== -1))
+        .splice(0, 9);
     });
   },
 });
