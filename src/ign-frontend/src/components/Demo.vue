@@ -99,7 +99,7 @@ export default Vue.component('Demo', {
   },
   data() {
     return {
-      apiUrl: 'https://ign-api.herokuapp.com/v1',
+      apiUrl: 'https://ign-api.schrodinger-hat.it/v1',
       img: null,
       imgData: null,
       selectedColor: [],
