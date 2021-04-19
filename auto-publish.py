@@ -14,7 +14,7 @@ SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper'
-MAX_POST_TO_PUBLISH = 20
+MAX_POST_TO_PUBLISH = 10
 
 if REDDIT_USERNAME == None or REDDIT_PASSWORD == None or REDDIT_APP_ID == None or REDDIT_APP_SECRET == None:
   raise("Error: you need to specify every REDDIT_* secrets in your repository")
