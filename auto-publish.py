@@ -14,7 +14,7 @@ SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper'
-MAX_POST_TO_PUBLISH = 15
+MAX_POST_TO_PUBLISH = 10
 REPOST_SUBREDDIT = ['wallpapers', 'wallpaper', 'minimalwallpaper']
 REPOST_FREQUENCY = 4
 
