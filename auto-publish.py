@@ -7,14 +7,16 @@ import base64
 import requests
 
 REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
-REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '')
-REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '')
-REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', '')
+REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '6E3oMMV^P4RcX9jA$v!R')
+REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '-5re3mJsv5Dd0Q')
+REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', 'T7rfiTMTN88cSo5zDIw_JlvP8beq-g')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper'
-MAX_POST_TO_PUBLISH = 20
+MAX_POST_TO_PUBLISH = 15
+REPOST_SUBREDDIT = ['wallpapers', 'wallpaper', 'minimalwallpaper']
+REPOST_FREQUENCY = 4
 
 if REDDIT_USERNAME == None or REDDIT_PASSWORD == None or REDDIT_APP_ID == None or REDDIT_APP_SECRET == None:
   raise("Error: you need to specify every REDDIT_* secrets in your repository")
@@ -76,5 +78,10 @@ if len(wallpapers_to_process) > 0:
       print('Commenting')
       reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image available [here](' + sub['url'] + ').')
       published_post = published_post + 1
+
+      if (published_post % REPOST_FREQUENCY == 0):
+        for crossposting_subreddit in REPOST_SUBREDDIT:
+          print('Crossposting in ' + crossposting_subreddit)
+          reddit_sub.crosspost(subreddit=crossposting_subreddit)
     except Exception as e:
       print(e)
