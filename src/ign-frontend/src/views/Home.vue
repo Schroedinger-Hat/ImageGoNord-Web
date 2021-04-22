@@ -68,6 +68,13 @@
       <center>
         <h3>Try it yourself</h3>
         <p>Upload a picture and test it out</p>
+        <div class="relative">
+          <span><b>API Status</b>:</span>
+          <div :class="`ring-container ${apiStatus}`">
+              <div class="ringring"></div>
+              <div class="circle"></div>
+          </div>
+        </div>
       </center>
       <Demo />
     </section>
@@ -85,6 +92,7 @@ export default {
   name: 'Home',
   data() {
     return {
+      apiStatus: 'success',
       imgCompareCar: {
         after: 'demo/car-after.png',
         before: 'demo/car-before.png',
@@ -94,6 +102,14 @@ export default {
         before: 'demo/wabri-before.jpg',
       },
     };
+  },
+  mounted() {
+    const self = this;
+    setInterval(() => {
+      fetch('https://ign-api.schrodinger-hat.it/v1/status')
+        .then(() => { self.apiStatus = 'success'; })
+        .catch(() => { self.apiStatus = 'failed'; });
+    }, 8000);
   },
   components: {
     Main,
@@ -172,6 +188,51 @@ export default {
   .separator-double-line {
     margin-bottom: -3em;
   }
+  .ring-container {
+    display: inline-block;
+    position: relative;
+    top: -35px;
+    left: -10px;
+  }
+
+  .circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 23px;
+    left: 23px;
+  }
+
+  .ringring {
+    -webkit-border-radius: 30px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0;
+  }
+
+  .ring-container.success {
+    .circle {
+      background-color: #62bd19;
+    }
+    .ringring {
+      border: 3px solid #62bd19;
+    }
+  }
+
+  .ring-container.failed {
+    .circle {
+      background-color: #bd3219;
+    }
+    .ringring {
+      border: 3px solid #bd3219;
+    }
+  }
 }
 
 @media (min-width: 56.25em) {
@@ -204,6 +265,12 @@ export default {
       }
     }
   }
+}
+
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.1, 1.1); opacity: 0.0;}
 }
 
 </style>
