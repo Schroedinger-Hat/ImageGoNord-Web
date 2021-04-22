@@ -7,13 +7,13 @@ import base64
 import requests
 
 REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
-REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '6E3oMMV^P4RcX9jA$v!R')
-REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '-5re3mJsv5Dd0Q')
-REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', 'T7rfiTMTN88cSo5zDIw_JlvP8beq-g')
+REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '')
+REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '')
+REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', '')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
-WALLPAPER_SUBREDDIT = 'wallpaper'
+WALLPAPER_SUBREDDIT = 'wallpaper+wallpapers'
 MAX_POST_TO_PUBLISH = 10
 REPOST_SUBREDDIT = ['wallpapers', 'wallpaper', 'minimalwallpaper']
 REPOST_FREQUENCY = 4
