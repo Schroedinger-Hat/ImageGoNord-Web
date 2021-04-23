@@ -3,7 +3,7 @@ name: 'Upload and convert /r/wallapaper to /r/imagegonord'
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '*/30 */6 * * *'
+    - cron:  '*/30 */8 * * *'
 jobs:
   upload_and_convert:
     runs-on: ubuntu-latest
