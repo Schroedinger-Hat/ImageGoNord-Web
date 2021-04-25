@@ -224,7 +224,6 @@ if __name__ == '__main__':
 
         for palette in palettes:
             if "--{}".format(palette) in key:
-                PALETTE_CHANGED = True
                 palette_path = src_path + "/palettes/" + palette.capitalize() + "/"
                 go_nord.set_palette_lookup_path(palette_path)
                 if len(key_value) > 1:
@@ -240,6 +239,7 @@ if __name__ == '__main__':
                                 selected_color + ".txt")
                             to_console(confarg.logs["pals"][2]
                                        .format(selected_color))
+                            PALETTE_CHANGED = True
                         else:
                             to_console(confarg.logs["pals"][-1]
                                        .format(selected_color))
