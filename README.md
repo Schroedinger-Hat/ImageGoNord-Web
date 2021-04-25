@@ -43,11 +43,29 @@ Our goal is also to make this project open source and maintainable by the commun
 *We believe in the open source community.*
 
 ### Getting Started
+
 Include any essential instructions for:
-- Getting it
+
+- Getting it:
+  ```
+  git clone https://github.com/Schrodinger-Hat/ImageGoNord
+  ```
 - Installing It
-- Configuring It
+  ```
+  pip -r requirements.txt
+  ```
 - Running it
+  ```
+  python src/cli.py --img='<path_to_your_image>' 
+  ```
+
+The algorithm can takes some time (we are working on improving it), you can find the result with the name *nord.png*.
+
+You can define some more configuration and use different palettes, find more using:
+
+```
+python src/cli.py --help
+```
 
 ### Testing
 - Tests **TODO**
