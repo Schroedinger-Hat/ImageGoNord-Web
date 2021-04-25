@@ -79,7 +79,8 @@ def to_console(*params):
     """
     if QUIET_MODE:
         return
-    print(params)
+    for param in params:
+        print(param)
 
 
 def get_version():
