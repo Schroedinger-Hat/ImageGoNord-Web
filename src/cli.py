@@ -249,8 +249,17 @@ if __name__ == '__main__':
                             to_console(confarg.logs["pals"][3]
                                        .format(palette_color))
                 else:
+                    PALETTE_CHANGED = True
                     to_console(confarg.logs["pals"][0]
                                .format(palette.capitalize()))
+                    palette_path = src_path + "/palettes/" + palette.capitalize() + "/"
+                    go_nord.reset_palette()
+                    palette_set = [palette_file.replace(".txt", '')
+                                   for palette_file in listdir(palette_path)]
+                    go_nord.set_palette_lookup_path(palette_path)
+                    for palette_color in palette_set:
+                        go_nord.add_file_to_palette(
+                            palette_color + ".txt")
 
     if not PALETTE_CHANGED:
         to_console(confarg.logs["pals"][4])
