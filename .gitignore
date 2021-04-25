@@ -7,16 +7,16 @@ __pycache__/
 # envs
 env/
 venv/
+Pipfile.lock
 
 # autopublish
-images/*.jpg
-images/*.jpeg
-images/*.png
+src/ign-publisher/images/*.jpg
+src/ign-publisher/images/*.jpeg
+src/ign-publisher/images/*.png
 
 # test output image
-wat.png
-src/images/out.png
-src/images/quantize.*
+src/images/nord.png
+src/images/test.*
 
 # Vim 
 .vim/
@@ -25,3 +25,7 @@ src/images/quantize.*
 # python files
 .pyc
 __pycache__/
+
+# temp dir
+temp/
+
