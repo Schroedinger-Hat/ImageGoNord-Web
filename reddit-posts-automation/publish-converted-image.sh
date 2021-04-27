@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python auto-publish.py
+python reddit-posts-automation/auto-publish.py
