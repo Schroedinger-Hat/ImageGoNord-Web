@@ -1,3 +1,3 @@
-#!/bin/sh -l
+#!/bin/bash
 
-python ./auto-publish.py
+python auto-publish.py
