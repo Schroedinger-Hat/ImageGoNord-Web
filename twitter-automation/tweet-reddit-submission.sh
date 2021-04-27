@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-node tweet-submission.js
+node twitter-automation/tweet-submission.js

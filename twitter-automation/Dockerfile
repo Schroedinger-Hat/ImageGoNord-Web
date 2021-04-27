@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM node:slim
 
 COPY tweet-reddit-submission.sh /tweet-reddit-submission.sh
 

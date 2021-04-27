@@ -1,4 +1,4 @@
-const twit = require('twit');
+const Twit = require('twit');
 const snoowrap = require('snoowrap');
 
 const IGNSUBREDDIT = 'imagegonord'
@@ -10,8 +10,24 @@ const reddit = new snoowrap({
   password: process.env.REDDIT_PASSWORD
 });
 
+const twitter = new Twit({
+  consumer_key:         process.env.TWITTER_API_KEY,
+  consumer_secret:      process.env.TWITTER_API_KEY_SECRET,
+  access_token:         process.env.TWITTER_ACCESS_TOKEN,
+  access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+  strictSSL:            true,     // optional - requires SSL certificates to be valid.
+});
+
 reddit.getSubreddit(IGNSUBREDDIT).fetch().then((r) => {
-  r.getTop().then((t) => {
-    console.log(t);
-  })
+  r.getNew().then((s) => {
+    for (let key in s) {
+      let status = 'Take a look of our creation on Reddit: ' + s[key].name + s[key].permalink;
+      console.log('Tweeting' + status);
+      twitter.post('statuses/update', { status: status }, function(err, data, response) {
+        console.log(data)
+      });
+      break;
+    }
+  });
 });
