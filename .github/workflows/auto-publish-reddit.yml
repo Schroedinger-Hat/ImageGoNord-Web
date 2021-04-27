@@ -1,19 +1,24 @@
-name: 'Upload and convert /r/wallapaper to /r/imagegonord'
+name: 'Tweeting on schrodinger_hat profile'
 
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '*/30 */8 * * *'
+    - cron:  '*/30 */6 * * *'
 jobs:
   upload_and_convert:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Upload and convert image to IGN
-        uses: ./reddit-posts-automation
+      - name: Tweeting
+        uses: ./twitter-automation
         env:
           REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
           REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
           REDDIT_APP_ID: ${{ secrets.REDDIT_APP_ID }}
           REDDIT_APP_SECRET: ${{ secrets.REDDIT_APP_SECRET }}
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_KEY_SECRET: ${{ secrets.TWITTER_API_KEY_SECRET }}
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET : ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET  }}
           SUBREDDIT: ${{ secrets.SUBREDDIT }}
