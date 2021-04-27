@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node:14
 
 COPY tweet-reddit-submission.sh /tweet-reddit-submission.sh
 
