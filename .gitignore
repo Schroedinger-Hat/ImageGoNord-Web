@@ -25,3 +25,7 @@ src/images/quantize.*
 # python files
 .pyc
 __pycache__/
+
+# node modules
+node_modules
+package-lock.json
