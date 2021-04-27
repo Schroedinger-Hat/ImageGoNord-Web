@@ -22,7 +22,7 @@ const twitter = new Twit({
 reddit.getSubreddit(IGNSUBREDDIT).fetch().then((r) => {
   r.getNew().then((s) => {
     for (let key in s) {
-      let status = 'Take a look of what we made with ImageGoNord on Reddit: ' + 'https://reddit.com' + s[key].permalink;
+      let status = 'Take a look of what we made with #ImageGoNord on Reddit\n#opensource #community #python #nord #linux ' + 'https://reddit.com' + s[key].permalink;
       console.log('Tweeting: ' + status);
       twitter.post('statuses/update', { status: status }, function(err, data, response) {
         console.log(data)
