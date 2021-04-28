@@ -50,9 +50,13 @@ Include any essential instructions for:
   ```
   git clone https://github.com/Schrodinger-Hat/ImageGoNord
   ```
+- Enter to the folder
+  ```
+  cd ImageGoNord
+  ```
 - Installing It
   ```
-  pip -r requirements.txt
+  pip install -r requirements.txt
   ```
 - Running it
   ```
