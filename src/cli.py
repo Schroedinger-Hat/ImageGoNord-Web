@@ -60,7 +60,7 @@ OUTPUT_IMAGE_NAME = "nord" + DEFAULT_EXTENSION
 PALETTE_CHANGED = False
 
 
-def to_console(string):
+def to_console(*params):
     """<Short Description>
 
       <Description>
@@ -79,7 +79,8 @@ def to_console(string):
     """
     if QUIET_MODE:
         return
-    print(string)
+    for param in params:
+        print(param)
 
 
 def get_version():
@@ -129,9 +130,9 @@ if __name__ == '__main__':
             IS_IMAGE_PASSED = True
             break
     if not IS_IMAGE_PASSED:
-        to_console(confarg.logs["img"][1].format(arg))
-        to_console(confarg.logs["img"][-1])
-        to_console(confarg.logs["err"][0])
+        to_console(confarg.logs["img"][1].format(arg),
+                   confarg.logs["img"][-1],
+                   confarg.logs["err"][0])
         sys.exit(1)
 
     QUIET_MODE = "-q" in args or "--quiet" in args
@@ -156,9 +157,9 @@ if __name__ == '__main__':
                 to_console(confarg.logs["img"][0].format(
                     src_path + "/" + key_value[1]))
             else:
-                to_console(confarg.logs["img"][1].format(arg))
-                to_console(confarg.logs["img"][-1])
-                to_console(confarg.logs["err"][0])
+                to_console(confarg.logs["img"][1].format(arg),
+                           confarg.logs["img"][-1],
+                           confarg.logs["err"][0])
                 sys.exit(1)
             continue
 
@@ -173,18 +174,18 @@ if __name__ == '__main__':
                 to_console(confarg.logs["out"][0].format(
                     src_path + "/" + OUTPUT_IMAGE_NAME))
             else:
-                to_console(confarg.logs["out"][1].format(arg))
-                to_console(confarg.logs["out"][-1])
-                to_console(confarg.logs["err"][0])
+                to_console(confarg.logs["out"][1].format(arg),
+                           confarg.logs["out"][-1],
+                           confarg.logs["err"][0])
                 sys.exit(1)
             continue
 
         condition_argument = key in ["--no-avg", "-na"]
         if condition_argument:
             if len(key_value) > 1:
-                to_console(confarg.logs["navg"][1].format(arg))
-                to_console(confarg.logs["navg"][-1])
-                to_console(confarg.logs["err"][0])
+                to_console(confarg.logs["navg"][1].format(arg),
+                           confarg.logs["navg"][-1],
+                           confarg.logs["err"][0])
                 sys.exit(1)
             else:
                 go_nord.disable_avg_algorithm()
@@ -197,24 +198,24 @@ if __name__ == '__main__':
                 area_value = key_value[1].split(",")
                 try:
                     go_nord.set_avg_box_data(w=area_value[0], h=area_value[1])
-                    to_console(confarg.logs["pxls"][0].format(area_value[0]))
-                    to_console(confarg.logs["pxls"][1].format(area_value[1]))
+                    to_console(confarg.logs["pxls"][0].format(area_value[0]),
+                               confarg.logs["pxls"][1].format(area_value[1]))
                 except IndexError:
                     go_nord.set_avg_box_data(w=area_value[0], h=area_value[0])
-                    to_console(confarg.logs["pxls"][0].format(area_value[0]))
-                    to_console(confarg.logs["pxls"][1].format(area_value[0]))
+                    to_console(confarg.logs["pxls"][0].format(area_value[0]),
+                               confarg.logs["pxls"][1].format(area_value[0]))
             except IndexError:
-                to_console(confarg.logs["pxls"][-2].format(arg))
-                to_console(confarg.logs["pxls"][-1])
-                to_console(confarg.logs["err"][0])
+                to_console(confarg.logs["pxls"][-2].format(arg),
+                           confarg.logs["pxls"][-1],
+                           confarg.logs["err"][0])
                 sys.exit(1)
 
         condition_argument = key in ["--blur", "-b"]
         if condition_argument:
             if len(key_value) > 1:
-                to_console(confarg.logs["blur"][-2].format(arg))
-                to_console(confarg.logs["blur"][-1])
-                to_console(confarg.logs["err"][0])
+                to_console(confarg.logs["blur"][-2].format(arg),
+                           confarg.logs["blur"][-1],
+                           confarg.logs["err"][0])
                 sys.exit(1)
             else:
                 go_nord.enable_gaussian_blur()

@@ -9,11 +9,6 @@ env/
 venv/
 Pipfile.lock
 
-# autopublish
-src/ign-publisher/images/*.jpg
-src/ign-publisher/images/*.jpeg
-src/ign-publisher/images/*.png
-
 # test output image
 src/images/nord.png
 src/images/test.*
@@ -29,3 +24,6 @@ __pycache__/
 # temp dir
 temp/
 
+# node modules
+node_modules
+package-lock.json

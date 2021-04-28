@@ -16,7 +16,7 @@ IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper+wallpapers'
 MAX_POST_TO_PUBLISH = 10
 REPOST_SUBREDDIT = ['wallpapers', 'wallpaper', 'minimalwallpaper']
-REPOST_FREQUENCY = 4
+REPOST_FREQUENCY = 8
 
 if REDDIT_USERNAME == None or REDDIT_PASSWORD == None or REDDIT_APP_ID == None or REDDIT_APP_SECRET == None:
   raise("Error: you need to specify every REDDIT_* secrets in your repository")
