@@ -36,7 +36,7 @@ We checked the commnunity and we did not find anything similar or any project th
 
 ### Core Technical Concepts
 
-We are using the PIL because it is the most simple library and it is very useful when you need to manipolate some images.
+We are using the PIL because it is the most simple library and it is very useful when you need to manipulate some images.
 
 Our goal is also to make this project open source and maintainable by the community. We would love to.
 
