@@ -7,16 +7,11 @@ __pycache__/
 # envs
 env/
 venv/
-
-# autopublish
-images/*.jpg
-images/*.jpeg
-images/*.png
+Pipfile.lock
 
 # test output image
-wat.png
-src/images/out.png
-src/images/quantize.*
+src/images/nord.png
+src/images/test.*
 
 # Vim 
 .vim/
@@ -25,6 +20,9 @@ src/images/quantize.*
 # python files
 .pyc
 __pycache__/
+
+# temp dir
+temp/
 
 # node modules
 node_modules
