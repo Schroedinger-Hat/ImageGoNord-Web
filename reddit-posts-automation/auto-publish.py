@@ -29,7 +29,7 @@ def get_image_from_subreddit(subreddit):
       submissions.append({
         'title': ign_submission_title,
         'url': submission.url,
-        'author': submission.author,
+        'author': str(submission.author),
         'uniqid': hashlib.md5(ign_submission_title.encode()).hexdigest()
       })
   return submissions
