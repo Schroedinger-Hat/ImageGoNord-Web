@@ -2,11 +2,11 @@
   <div class="main">
     <div class="middle-section">
       <h1 v-if="h1">{{ h1 }}</h1>
-      <h2 v-if="h2">{{ h2 }}</h2>
-      <router-link v-if="btn1" class="btn btn-primary" :to="link1">{{ btn1 }}</router-link>
-      <router-link v-if="btn2" class="btn btn-info" :to="link2">{{ btn2 }}</router-link>
-      <router-link v-if="btn3" class="btn btn-primary" :to="link3">{{ btn3 }}</router-link>
-      <router-link v-if="btn4" class="btn btn-primary" :to="link4">{{ btn4 }}</router-link>
+      <h2 v-if="h2" v-html="h2"></h2>
+      <a v-if="btn1" class="btn btn-primary" :href="link1">{{ btn1 }}</a>
+      <a v-if="btn2" class="btn btn-info" :href="link2">{{ btn2 }}</a>
+      <a v-if="btn3" class="btn btn-primary" :href="link3">{{ btn3 }}</a>
+      <a v-if="btn4" class="btn btn-primary" :href="link4">{{ btn4 }}</a>
     </div>
   </div>
 </template>

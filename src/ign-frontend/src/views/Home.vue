@@ -57,7 +57,7 @@
         <h3>Gallery</h3>
         <p>
           Here are some images converted with IGN from our community.<br/>
-          You can find more on <a class="external-link-color" href="https://reddit.com/r/imagegonord/" target="_blank">/r/ImageGoNord</a>
+          You can find more on our <a class="external-link-color" href="/wallpaper">Wallpaper page</a>
         </p>
       </center>
       <Gallery />

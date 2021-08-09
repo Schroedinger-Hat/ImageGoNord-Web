@@ -10,6 +10,9 @@
           <a class="github-button" href="https://github.com/Schrodinger-Hat/ImageGoNord" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star Schrodinger-Hat/ImageGoNord on GitHub">Star</a>
           <p>If you find a bug or have an idea for a new feature, please <a class="external-link-color" target="_blank" href="https://github.com/Schrodinger-Hat/ImageGoNord/issues">open an issue on GitHub</a>.</p>
           <p class="social">
+            <a target="_blank" href="https://opencollective.com/schrodinger-hat">
+              <i class="fas fa-donate external-link-color"></i>
+            </a>
             <a href="https://www.facebook.com/schrodingerhat" target="_blank">
               <i class="fab fa-facebook external-link-color"></i>
             </a>
