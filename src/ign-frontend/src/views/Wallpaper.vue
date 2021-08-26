@@ -4,7 +4,7 @@
             h1="Wallpaper"
             h2="Find your wallpaper and consider on supporting us on <a class='external-link-color' href='https://opencollective.com/schrodinger-hat' target='_blank'>open collective</a>"
             link1="https://reddit.com/r/imagegonord/"
-            btn1="Wallaper Subreddit"
+            btn1="Wallpaper Subreddit"
             link2="https://opencollective.com/schrodinger-hat"
             btn2="OpenCollective"
         />
