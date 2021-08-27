@@ -5,6 +5,26 @@
         "file": "palettes/gruvbox.json"
     },
     {
+        "name": "Dracula",
+        "img": "palettes/img/dracula.gif",
+        "file": "palettes/dracula.json"
+    },
+    {
+        "name": "Challenger",
+        "img": "palettes/img/challenger.png",
+        "file": "palettes/challenger.json"
+    },
+    {
+        "name": "Gotham",
+        "img": "palettes/img/gotham.png",
+        "file": "palettes/gotham.json"
+    },
+    {
+        "name": "Tokyo Night",
+        "img": "palettes/img/tokyo-night.png",
+        "file": "palettes/tokyo-night.json"
+    },
+    {
         "name": "Solarized",
         "img": "palettes/img/solarized.png",
         "file": "palettes/solarized.json"
@@ -28,5 +48,15 @@
         "name": "Vaporwave Sunset",
         "img": "palettes/img/vaporwave-sunset.png",
         "file": "palettes/vaporwave-sunset.json"
+    },
+    {
+        "name": "Molokai",
+        "img": "palettes/img/molokai.png",
+        "file": "palettes/molokai.json"
+    },
+    {
+        "name": "Monokai",
+        "img": "palettes/img/monokai.png",
+        "file": "palettes/monokai.json"
     }
 ]

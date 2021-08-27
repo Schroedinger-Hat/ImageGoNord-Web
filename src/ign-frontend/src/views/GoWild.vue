@@ -58,7 +58,7 @@
       </center>
       <div class="palette-grid container">
         <div @click="selectedPalette = palette.file" :class="{'palette-post': true, 'current-palette': (selectedPalette === palette.file)}" v-for="palette in palettes" :key="palette.name">
-          <div :style="`width: 100%; min-height: 200px; background: url(${require('../assets/' + palette.img)})`">
+          <div :style="`width: 100%; min-height: 200px; background-size: cover; background: url(${require('../assets/' + palette.img)})`">
             <span class="palette-title">{{ palette.name }}</span>
           </div>
         </div>
