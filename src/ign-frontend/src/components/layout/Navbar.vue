@@ -12,6 +12,7 @@
           <router-link to="/getting-started">Getting Started</router-link>
           <router-link to="/installation">Installation</router-link>
           <router-link to="/documentation">Documentation</router-link>
+          <router-link to="/color-schemes">ImageGoWild</router-link>
           <router-link to="/wallpaper">Wallpaper</router-link>
           <router-link to="/about">About</router-link>
           <a target="_blank" href="https://opencollective.com/schrodinger-hat">
@@ -175,10 +176,10 @@ header {
       nav {
         .navbar {
           a {
-            &:nth-child(-n+6) {
+            &:nth-child(-n+7) {
               display: inline;
             }
-            &:nth-child(7) {
+            &:nth-child(9) {
               display: none;
             }
           }

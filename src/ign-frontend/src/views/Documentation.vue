@@ -226,7 +226,7 @@
         </div>
         <div class="guide api">
           <h3>Documentation REST API</h3>
-          <p>Work in progress</p>
+          <p>Not available, please contact us</p>
         </div>
       </section>
     </div>

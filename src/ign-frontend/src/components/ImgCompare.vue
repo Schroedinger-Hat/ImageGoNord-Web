@@ -155,6 +155,12 @@ export default Vue.component('ImgCompare', {
   }
 }
 
+.img-compare.demo-gruvbox, .img-compare.demo-vap {
+  .img-compare-wrapper {
+    height: 320px;
+  }
+}
+
 @media (min-width: 56.25em) {
   .img-compare {
     // nope

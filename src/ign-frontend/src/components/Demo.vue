@@ -11,7 +11,11 @@
       </div>
       <div class="params">
         <h3>Palette</h3>
-        <div class="palette">
+        <div class="palette" v-if="palette !== ''">
+          <span>{{ palette.name }}</span>
+          <span v-for="color in palette.colors" :key="color" :data-hex="color" class="highlighted color-element nord0"></span>
+        </div>
+        <div class="palette" v-if="palette === ''">
           <span>Polar Night</span>
           <div class="polar">
             <span data-hex="#2e3440" class="highlighted color-element nord0"></span>
@@ -93,7 +97,9 @@ import Vue from 'vue';
 import Loader from './Loader.vue';
 
 export default Vue.component('Demo', {
-  props: {},
+  props: {
+    selectedPalette: String,
+  },
   components: {
     Loader,
   },
@@ -106,7 +112,18 @@ export default Vue.component('Demo', {
       blur: false,
       is_filter: false,
       avg_index: 0,
+      palette: '',
     };
+  },
+  watch: {
+    selectedPalette(file) {
+      // eslint-disable-next-line
+      this.palette = require(`../assets/${file}`);
+      console.log(this.palette);
+    },
+    palette(p) {
+      this.selectedColor = p.colors;
+    },
   },
   methods: {
     loadFile(event) {
@@ -195,10 +212,10 @@ export default Vue.component('Demo', {
       const self = this;
       fetch(`${this.apiUrl}/get-job?job_id=${jobId}`)
         .then((r) => {
-          r.json().then((json) => {
-            if (json.status === 'finished') {
-              self.showResponseImage(img, json.result);
-            } else if (json.status === 'queued' || json.status === 'started') {
+          r.json().then((jsonResponse) => {
+            if (jsonResponse.status === 'finished') {
+              self.showResponseImage(img, jsonResponse.result);
+            } else if (jsonResponse.status === 'queued' || jsonResponse.status === 'started') {
               setTimeout(() => {
                 self.pollingAPI(jobId);
               }, 800);

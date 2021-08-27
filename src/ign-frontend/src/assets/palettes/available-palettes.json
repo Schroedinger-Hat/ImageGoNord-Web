@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Gruvbox",
+        "img": "palettes/img/gruvbox.png",
+        "file": "palettes/gruvbox.json"
+    },
+    {
+        "name": "Solarized",
+        "img": "palettes/img/solarized.png",
+        "file": "palettes/solarized.json"
+    },
+    {
+        "name": "Vaporwave",
+        "img": "palettes/img/vaporwave.png",
+        "file": "palettes/vaporwave.json"
+    },
+    {
+        "name": "Oceanic",
+        "img": "palettes/img/oceanic.png",
+        "file": "palettes/oceanic.json"
+    },
+    {
+        "name": "Vaporwave Cool",
+        "img": "palettes/img/vaporwave-cool.png",
+        "file": "palettes/vaporwave-cool.json"
+    },
+    {
+        "name": "Vaporwave Sunset",
+        "img": "palettes/img/vaporwave-sunset.png",
+        "file": "palettes/vaporwave-sunset.json"
+    }
+]
