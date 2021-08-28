@@ -40,6 +40,11 @@
         "file": "palettes/oceanic.json"
     },
     {
+        "name": "Onedark",
+        "img": "palettes/img/onedark.png",
+        "file": "palettes/onedark.json"
+    },
+    {
         "name": "Vaporwave Cool",
         "img": "palettes/img/vaporwave-cool.png",
         "file": "palettes/vaporwave-cool.json"
@@ -50,9 +55,19 @@
         "file": "palettes/vaporwave-sunset.json"
     },
     {
+        "name": "Vim one",
+        "img": "palettes/img/vim-one.png",
+        "file": "palettes/vim-one.json"
+    },
+    {
         "name": "Molokai",
         "img": "palettes/img/molokai.png",
         "file": "palettes/molokai.json"
+    },
+    {
+        "name": "Sonokai",
+        "img": "palettes/img/sonokai.png",
+        "file": "palettes/sonokai.json"
     },
     {
         "name": "Monokai",
