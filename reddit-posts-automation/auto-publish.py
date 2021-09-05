@@ -5,6 +5,9 @@ import praw
 import hashlib
 import base64
 import requests
+import re
+
+post_regex = r"( With ImageGoNord)|(\[CHALLENGER\] |\[NORD\] |\[DRACULA\] |\[GOTHAM\] |\[GRUVBOX\] |\[MOLOKAI\] |\[MONOKAI\] |\[OCEANIC\] |\[ONEDARK\] |\[SOLARIZED\] |\[SONOKAI\] |\[TOKYO\] |\[VAPORWAVE\] |\[VIM\] )"
 
 REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
 REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '')
@@ -30,6 +33,7 @@ FLAIR_IDS={
 }
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
+IGN_TITLE_PREFIX = '[NORD] '
 WALLPAPER_SUBREDDIT = 'wallpaper+wallpapers'
 MAX_POST_TO_PUBLISH = 1
 REPOST_SUBREDDIT = ['wallpapers', 'wallpaper', 'minimalwallpaper']
@@ -42,7 +46,7 @@ def get_image_from_subreddit(subreddit):
   submissions = []
   for submission in subreddit.new(limit=None):
     if (submission.url.endswith('jpg') or submission.url.endswith('png') or submission.url.endswith('jpeg') or submission.url.endswith('bmp')):
-      ign_submission_title = submission.title.replace(IGN_TITLE_SUFFIX, '')
+      ign_submission_title = re.sub(post_regex, '', submission.title, 0)
       submissions.append({
         'title': ign_submission_title,
         'url': submission.url,
@@ -91,7 +95,7 @@ if len(wallpapers_to_process) > 0:
     try:
       go_nord.convert_image(im, save_path=img_path)
       print('Uploading ' + sub['title'])
-      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR_IDS.NORD)
+      reddit_sub = imagegonord_subreddit.submit_image(IGN_TITLE_PREFIX + sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR_IDS.NORD)
 
       print('Commenting')
       reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
