@@ -12,7 +12,23 @@ REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '')
 REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', '')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
-NORD_FLAIR_ID='4ae25402-0e3a-11ec-a7a5-f6bad6da933e'
+FLAIR_IDS={
+  'NORD': '4ae25402-0e3a-11ec-a7a5-f6bad6da933e',
+  'CHALLENGER': '76a1a10c-0e43-11ec-98fe-82fbd4bb720f',
+  'DRACULA': '814aa96e-0e43-11ec-ba7a-a626868b292a',
+  'GOTHAM': '8b56be70-0e43-11ec-a045-863bbc2baff3',
+  'GRUVBOX': '91acbffe-0e43-11ec-8dd8-a60d64b7c633',
+  'MOLOKAI': '985ab3d8-0e43-11ec-8037-5e0347bd6e7a',
+  'MONOKAI': '9efa6544-0e43-11ec-9fea-beffa6e6bacf',
+  'OCEANIC': 'a6a7b0e4-0e43-11ec-8fea-a626868b292a',
+  'ONEDARK': 'be8b5878-0e43-11ec-855d-92be80335bba',
+  'SOLARIZED': 'c2f516d8-0e43-11ec-9b15-f2c258f403df',
+  'SONOKAI': 'c819e31e-0e43-11ec-b30d-5a631dd7072a',
+  'TOKYO': 'ccc6e9f2-0e43-11ec-9715-1ea24e7b246f',
+  'VAPORWAVE': 'd84eab48-0e43-11ec-811e-4edcb0b81b7f',
+  'VIM': 'e99ae150-0e43-11ec-aad0-6e6c5b7d00e0'
+}
+
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper+wallpapers'
 MAX_POST_TO_PUBLISH = 1
@@ -75,7 +91,7 @@ if len(wallpapers_to_process) > 0:
     try:
       go_nord.convert_image(im, save_path=img_path)
       print('Uploading ' + sub['title'])
-      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=NORD_FLAIR_ID)
+      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR_IDS.NORD)
 
       print('Commenting')
       reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
