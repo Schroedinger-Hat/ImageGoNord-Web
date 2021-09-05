@@ -12,6 +12,7 @@ REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '')
 REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', '')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
+NORD_FLAIR_ID='4ae25402-0e3a-11ec-a7a5-f6bad6da933e'
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
 WALLPAPER_SUBREDDIT = 'wallpaper+wallpapers'
 MAX_POST_TO_PUBLISH = 1
@@ -74,7 +75,7 @@ if len(wallpapers_to_process) > 0:
     try:
       go_nord.convert_image(im, save_path=img_path)
       print('Uploading ' + sub['title'])
-      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path)
+      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=NORD_FLAIR_ID)
 
       print('Commenting')
       reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
