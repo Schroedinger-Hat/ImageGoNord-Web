@@ -29,7 +29,7 @@ FLAIR={
   # 'SOLARIZED': {'id': 'c2f516d8-0e43-11ec-9b15-f2c258f403df', 'hex_colors': ["#002b36","#073642","#586e75","#657b83","#839496","#93a1a1","#b58900","#cb4b16","#dc322f","#d33682","#6c71c4","#268bd2","#2aa198","#859900"]},
   # 'SONOKAI': {'id': 'c819e31e-0e43-11ec-b30d-5a631dd7072a', 'hex_colors': ["#181a1c","#828a9a","#ff6578","#ff6578","#9dd274","#9dd274","#eacb64","#eacb64","#72cce8","#72cce8","#ba9cf3","#ba9cf3","#f69c5e","#f69c5e","#e1e3e4","#e1e3e4"]},
   # 'TOKYO': {'id': 'ccc6e9f2-0e43-11ec-9715-1ea24e7b246f', 'hex_colors': ["#1a1b26","#4e5173","#F7768E","#F7768E","#9ECE6A","#9ECE6A","#E0AF68","#E0AF68","#7AA2F7","#7AA2F7","#9a7ecc","#9a7ecc","#4abaaf","#4abaaf","#acb0d0","#acb0d0"]},
-  'VAPORWAVE': {'id': 'd84eab48-0e43-11ec-811e-4edcb0b81b7f', 'hex_colors': ["#94D0FF", "#8795E8", "#966bff", "#AD8CFF", "#C774E8"]},
+  # 'VAPORWAVE': {'id': 'd84eab48-0e43-11ec-811e-4edcb0b81b7f', 'hex_colors': ["#94D0FF", "#8795E8", "#966bff", "#AD8CFF", "#C774E8"]},
   # 'VIM': {'id': 'e99ae150-0e43-11ec-aad0-6e6c5b7d00e0', 'hex_colors': ["#0184bc","#4078f2","#a626a4","#50a14f","#e45649","#ca1243","#986801","#c18401","#fafafa","#9e9e9e","#f0f0f0"]}
 }
 
