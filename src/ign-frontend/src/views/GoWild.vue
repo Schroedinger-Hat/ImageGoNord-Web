@@ -2,7 +2,7 @@
   <div class="gowild">
     <div class="container">
       <Main
-        h1="Image Go Wild - Convert anything in the most popoular palettes"
+        h1="Image Go Wild - Convert anything in the most popular palettes"
         h2="Transform each wallpaper, icon, image into your fav palette over the internet"
       />
     </div>
