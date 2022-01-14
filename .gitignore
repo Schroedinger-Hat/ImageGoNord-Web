@@ -8,6 +8,7 @@ __pycache__/
 env/
 venv/
 Pipfile.lock
+poetry.lock
 
 # test output image
 src/images/nord.png
