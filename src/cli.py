@@ -231,21 +231,23 @@ if __name__ == '__main__':
                     go_nord.reset_palette()
                     palette_set = [palette_file.replace(".txt", '')
                                    for palette_file in listdir(palette_path)]
-                    selected_colors = key_value[1].split(",")
+                    selected_colors = [selected_color.lower() for selected_color in key_value[1].split(",")]
                     to_console(confarg.logs["pals"][1]
                                .format(palette.capitalize()))
                     for selected_color in selected_colors:
-                        if selected_color in palette_set:
+                        lowered_palette = list(map(str.lower, palette_set))
+                        if selected_color in lowered_palette:
+                            index_color = lowered_palette.index(selected_color)
                             go_nord.add_file_to_palette(
-                                selected_color + ".txt")
+                                palette_set[index_color] + ".txt")
                             to_console(confarg.logs["pals"][2]
-                                       .format(selected_color))
+                                       .format(palette_set[index_color]))
                             PALETTE_CHANGED = True
                         else:
                             to_console(confarg.logs["pals"][-1]
                                        .format(selected_color))
                     for palette_color in palette_set:
-                        if palette_color not in selected_colors:
+                        if palette_color.lower() not in selected_colors:
                             to_console(confarg.logs["pals"][3]
                                        .format(palette_color))
                 else:
