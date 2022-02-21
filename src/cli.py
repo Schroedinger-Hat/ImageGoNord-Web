@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-#! usr/bin/env python3
+#!usr/bin/env python3
 """ImageGoNord, a converter for a rgb images to norththeme palette.
 Usage: gonord [OPTION]...
 
@@ -45,19 +44,50 @@ Email bug reports, questions, discussions to <schrodinger.hat.show@gmail.com>
 and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new
 """
 
-import sys
+import argparse
 import re
+import sys
 from os import path, listdir
+from pathlib import Path
+
 from ImageGoNord import GoNord
 
 import configs.arguments as confarg
 
-VERSION = open(path.dirname(path.realpath(__file__)) +
-               "/VERSION", 'r').readline()
+
+def get_version():
+    """<Short Description>
+
+      <Description>
+
+    Parameters
+    ----------
+    <argument name>: <type>
+      <argument description>
+    <argument>: <type>
+      <argument description>
+
+    Returns
+    -------
+    <type>
+      <description>
+    """
+    return Path(path.dirname(path.realpath(__file__)) + "/VERSION").read_text()
+
+
 DEFAULT_EXTENSION = ".png"
 QUIET_MODE = False
 OUTPUT_IMAGE_NAME = "nord" + DEFAULT_EXTENSION
 PALETTE_CHANGED = False
+VERSION = get_version()
+
+ap = argparse.ArgumentParser(
+    prog='ImageGoNord',
+    description="ImageGoNord, a converter for a rgb images to norththeme palette."
+)
+ap.add_argument('-v', '--version', action='version', version=f'%(prog)s {get_version()}')
+ap.add_argument('-i', '--img', type=str, metavar='<path>', help='specify input image path')
+ap.add_argument('-q', '--quiet', action='store_true')
 
 
 def to_console(*params):
@@ -83,43 +113,12 @@ def to_console(*params):
         print(param)
 
 
-def get_version():
-    """<Short Description>
-
-      <Description>
-
-    Parameters
-    ----------
-    <argument name>: <type>
-      <argument description>
-    <argument>: <type>
-      <argument description>
-
-    Returns
-    -------
-    <type>
-      <description>
-    """
-    file_version = open(path.dirname(path.realpath(__file__)) + "/VERSION")
-    return file_version.readline()
-
-
 if __name__ == '__main__':
     args = sys.argv[1:]
-
-    if len(args) == 0:
-        print(__doc__)
-        sys.exit(1)
+    parsed_args = ap.parse_args()
+    print(parsed_args)
 
     # If help given then print the docstring of the module and exit
-    if "--help" in args or "-h" in args:
-        print(__doc__)
-        sys.exit(0)
-
-    if "--version" in args or "-v" in args:
-        print(VERSION)
-        sys.exit(0)
-
     go_nord = GoNord()
 
     IMAGE_ARGUMENT_PATTERN = r'-(-img|i)=*'
@@ -129,13 +128,12 @@ if __name__ == '__main__':
         if searched_arg is not None:
             IS_IMAGE_PASSED = True
             break
+            
     if not IS_IMAGE_PASSED:
         to_console(confarg.logs["img"][1].format(arg),
                    confarg.logs["img"][-1],
                    confarg.logs["err"][0])
         sys.exit(1)
-
-    QUIET_MODE = "-q" in args or "--quiet" in args
 
     # Get absolute path of source project
     src_path = path.dirname(path.realpath(__file__))
@@ -152,7 +150,7 @@ if __name__ == '__main__':
         IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
         if condition_argument:
             if (len(key_value) > 1 and
-                    re.search(IMAGE_PATTERN, key_value[1]) is not None):
+                re.search(IMAGE_PATTERN, key_value[1]) is not None):
                 image = go_nord.open_image(key_value[1])
                 to_console(confarg.logs["img"][0].format(
                     src_path + "/" + key_value[1]))
