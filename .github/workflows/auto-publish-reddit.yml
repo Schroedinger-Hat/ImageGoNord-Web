@@ -3,7 +3,7 @@ name: 'Tweeting on schrodinger_hat profile'
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '30 */8 * * *'
+    - cron:  '0 12 * * 3,6'
 jobs:
   upload_and_convert:
     runs-on: ubuntu-latest
