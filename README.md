@@ -36,18 +36,40 @@ We checked the commnunity and we did not find anything similar or any project th
 
 ### Core Technical Concepts
 
-We are using the PIL because it is the most simple library and it is very useful when you need to manipolate some images.
+We are using the PIL because it is the most simple library and it is very useful when you need to manipulate some images.
 
 Our goal is also to make this project open source and maintainable by the community. We would love to.
 
 *We believe in the open source community.*
 
 ### Getting Started
+
 Include any essential instructions for:
-- Getting it
+
+- Getting it:
+  ```
+  git clone https://github.com/Schrodinger-Hat/ImageGoNord
+  ```
+- Enter to the folder
+  ```
+  cd ImageGoNord
+  ```
 - Installing It
-- Configuring It
+  ```
+  pip install -r requirements.txt
+  ```
 - Running it
+  ```
+  python src/cli.py --img='<path_to_your_image>' 
+  ```
+
+The algorithm can takes some time (we are working on improving it), you can find the result with the name *nord.png*.
+
+You can define some more configuration and use different palettes, find more using:
+
+```
+python src/cli.py --help
+```
 
 ### Testing
 - Tests **TODO**

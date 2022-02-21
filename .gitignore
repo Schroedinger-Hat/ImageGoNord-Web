@@ -1,18 +1,29 @@
 # Ide
 .idea
 
-# env
+#python cache
+__pycache__/
+
+# envs
 env/
 venv/
+Pipfile.lock
 
 # test output image
-wat.png
-src/images/out.png
-src/images/quantize.*
+src/images/nord.png
+src/images/test.*
 
-# Vim swap files
+# Vim 
+.vim/
 *.sw*
 
 # python files
 .pyc
 __pycache__/
+
+# temp dir
+temp/
+
+# node modules
+node_modules
+package-lock.json
