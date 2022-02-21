@@ -82,6 +82,7 @@ header {
   height: 5em;
   display: flex;
   padding: 0 !important;
+  margin-top: 25px !important;
 
   .inner-header-container {
     width: 100%;
