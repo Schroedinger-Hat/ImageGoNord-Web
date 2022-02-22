@@ -84,17 +84,34 @@ OUTPUT_IMAGE_NAME = "nord" + DEFAULT_EXTENSION
 PALETTE_CHANGED = False
 VERSION = get_version()
 
-ap = argparse.ArgumentParser(
-    prog='ImageGoNord',
-    description="ImageGoNord, a converter for a rgb images to norththeme palette."
-)
+
+class SplitDimensions(argparse.Action):
+    def __call__(self, parser, namespace, sizes, option_string=None):
+        dimensions = [value.strip() for value in sizes.split(",")]
+        dimensions = [*dimensions, *dimensions] if len(dimensions) == 1 else dimensions
+        setattr(namespace, self.dest, dimensions)
+
+
+ap = argparse.ArgumentParser(prog='ImageGoNord',
+                             description="ImageGoNord, a converter for a rgb images to norththeme palette.")
+
 ap.add_argument('-q', '--quiet', action='store_true')
 ap.add_argument('-v', '--version', action='version', version=f'%(prog)s {get_version()}')
-ap.add_argument('-i', '--img', type=str, metavar='<path>', help='specify input image path')
-ap.add_argument('-o', '--out', type=str, metavar='<path>', help='specify output image path', default=DEFAULT_FILENAME)
+
+ap.add_argument('-i', '--img', type=str, metavar='<path>',
+                help='specify input image path')
+
+ap.add_argument('-o', '--out', type=str, metavar='<path>', default=DEFAULT_FILENAME,
+                help='specify output image path')
 
 ap.add_argument('-na', '--no-avg', action='store_true',
-                help='do not use the average pixels optimization algorithm on conversion', )
+                help='disable average pixels optimization algorithm on conversion')
+
+ap.add_argument('-pa', '--pixels-area', action=SplitDimensions,
+                help='disable average pixels optimization algorithm on conversion')
+
+ap.add_argument('-b', '--blur', action='store_true',
+                help='use blur on the final result')
 
 
 def to_console(*params):
@@ -143,94 +160,21 @@ if __name__ == '__main__':
     to_console(messages.logs["out"]['info'].format(absolute_path + "/" + OUTPUT_IMAGE_NAME))
 
     # Enable/disable avg algoritm
-    if not parsed_args.no_avg:
+    if parsed_args.no_avg:
         go_nord.disable_avg_algorithm()
         to_console(messages.logs["navg"]['info'])
-    else:
-        to_console(
-            messages.logs["navg"]['error']
-            + messages.logs['general_error']
-        )
+
+    # Select pixel area
+    if parsed_args.dimensions:
+        (w, h) = parsed_args.dimensions
+        go_nord.set_avg_box_data(w=w, h=h)
+
+    if parsed_args.blur:
+        go_nord.disable_gaussian_blur()
 
     for arg in args:
-
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
         key = key_value[0].lower()
-
-        condition_argument = key in ["--img", "-i"]
-        IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
-        if condition_argument:
-            if (len(key_value) > 1 and
-                re.search(IMAGE_PATTERN, key_value[1]) is not None):
-                image = go_nord.open_image(key_value[1])
-                to_console(confarg.logs["img"][0].format(
-                    absolute_path + "/" + key_value[1]))
-            else:
-                to_console(confarg.logs["img"][1].format(arg),
-                           confarg.logs["img"][-1],
-                           confarg.logs["err"][0])
-                sys.exit(1)
-            continue
-
-        condition_argument = key in ["--out", "-o"]
-        if condition_argument:
-            if len(key_value) > 1:
-                OUTPUT_IMAGE_NAME = key_value[1]
-                # If the image name have already an extension do not set the
-                # default one
-                OUTPUT_IMAGE_NAME += "" if re.search(
-                    IMAGE_PATTERN, OUTPUT_IMAGE_NAME) else DEFAULT_EXTENSION
-                to_console(confarg.logs["out"][0].format(
-                    absolute_path + "/" + OUTPUT_IMAGE_NAME))
-            else:
-                to_console(confarg.logs["out"][1].format(arg),
-                           confarg.logs["out"][-1],
-                           confarg.logs["err"][0])
-                sys.exit(1)
-            continue
-
-        condition_argument = key in ["--no-avg", "-na"]
-        if condition_argument:
-            if len(key_value) > 1:
-                to_console(confarg.logs["navg"][1].format(arg),
-                           confarg.logs["navg"][-1],
-                           confarg.logs["err"][0])
-                sys.exit(1)
-            else:
-                go_nord.disable_avg_algorithm()
-                to_console(confarg.logs["navg"][0])
-            continue
-
-        condition_argument = key in ["-pa", "--pixels-area"]
-        if condition_argument:
-            try:
-                area_value = key_value[1].split(",")
-                try:
-                    go_nord.set_avg_box_data(w=area_value[0], h=area_value[1])
-                    to_console(confarg.logs["pxls"][0].format(area_value[0]),
-                               confarg.logs["pxls"][1].format(area_value[1]))
-                except IndexError:
-                    go_nord.set_avg_box_data(w=area_value[0], h=area_value[0])
-                    to_console(confarg.logs["pxls"][0].format(area_value[0]),
-                               confarg.logs["pxls"][1].format(area_value[0]))
-            except IndexError:
-                to_console(confarg.logs["pxls"][-2].format(arg),
-                           confarg.logs["pxls"][-1],
-                           confarg.logs["err"][0])
-                sys.exit(1)
-
-        condition_argument = key in ["--blur", "-b"]
-        if condition_argument:
-            if len(key_value) > 1:
-                to_console(confarg.logs["blur"][-2].format(arg),
-                           confarg.logs["blur"][-1],
-                           confarg.logs["err"][0])
-                sys.exit(1)
-            else:
-                go_nord.enable_gaussian_blur()
-                to_console(confarg.logs["blur"][0])
-            continue
-        del condition_argument
 
         for palette in palettes:
             if "--{}".format(palette) in key:
@@ -238,50 +182,39 @@ if __name__ == '__main__':
                 go_nord.set_palette_lookup_path(palette_path)
                 if len(key_value) > 1:
                     go_nord.reset_palette()
-                    palette_set = [palette_file.replace(".txt", '')
-                                   for palette_file in listdir(palette_path)]
+                    palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
                     selected_colors = [selected_color.lower() for selected_color in key_value[1].split(",")]
-                    to_console(confarg.logs["pals"][1]
-                               .format(palette.capitalize()))
+                    to_console(confarg.logs["pals"][1].format(palette.capitalize()))
                     for selected_color in selected_colors:
                         lowered_palette = list(map(str.lower, palette_set))
                         if selected_color in lowered_palette:
                             index_color = lowered_palette.index(selected_color)
-                            go_nord.add_file_to_palette(
-                                palette_set[index_color] + ".txt")
-                            to_console(confarg.logs["pals"][2]
-                                       .format(palette_set[index_color]))
+                            go_nord.add_file_to_palette(palette_set[index_color] + ".txt")
+                            to_console(confarg.logs["pals"][2].format(palette_set[index_color]))
                             PALETTE_CHANGED = True
                         else:
-                            to_console(confarg.logs["pals"][-1]
-                                       .format(selected_color))
+                            to_console(confarg.logs["pals"][-1].format(selected_color))
                     for palette_color in palette_set:
                         if palette_color.lower() not in selected_colors:
-                            to_console(confarg.logs["pals"][3]
-                                       .format(palette_color))
+                            to_console(confarg.logs["pals"][3].format(palette_color))
                 else:
                     PALETTE_CHANGED = True
-                    to_console(confarg.logs["pals"][0]
-                               .format(palette.capitalize()))
+                    to_console(confarg.logs["pals"][0].format(palette.capitalize()))
                     palette_path = absolute_path + "/palettes/" + palette.capitalize() + "/"
                     go_nord.reset_palette()
-                    palette_set = [palette_file.replace(".txt", '')
-                                   for palette_file in listdir(palette_path)]
+                    palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
                     go_nord.set_palette_lookup_path(palette_path)
                     for palette_color in palette_set:
-                        go_nord.add_file_to_palette(
-                            palette_color + ".txt")
+                        go_nord.add_file_to_palette(palette_color + ".txt")
 
     if not PALETTE_CHANGED:
         to_console(confarg.logs["pals"][4])
         palette_path = absolute_path + "/palettes/Nord/"
         go_nord.reset_palette()
-        palette_set = [palette_file.replace(".txt", '')
-                       for palette_file in listdir(palette_path)]
+        palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
         go_nord.set_palette_lookup_path(palette_path)
         for palette_color in palette_set:
-            go_nord.add_file_to_palette(
-                palette_color + ".txt")
+            go_nord.add_file_to_palette(palette_color + ".txt")
 
     quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_NAME)
     sys.exit(0)
