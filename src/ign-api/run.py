@@ -1,4 +1,4 @@
-from ImageGoNord import GoNord
+from ImageGoNord import GoNord, NordPaletteFile
 from flask import Flask
 from flask import jsonify, abort
 from flask import request
@@ -6,125 +6,97 @@ from flask_cors import CORS
 from flask_restx import Api, Resource, fields
 from werkzeug.datastructures import FileStorage
 
+from rq import Queue
+from rq.job import Job
+from worker import conn
+
+q = Queue(connection=conn)
 API_VERSION = 'v1'
 API_VERSION_URL = '/' + API_VERSION
 
 app = Flask(__name__)
 cors = CORS(app)
-api = Api(app, version=API_VERSION, prefix=API_VERSION_URL, title='Image go nord API')
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-success_model = api.model('StatusModel', {
-    'ok': fields.Boolean
-})
+import convert_image
 
+@app.route(API_VERSION + "/status", methods=["GET"])
+@cross_origin(origin='*')
+def get_api_status():
+  return jsonify({'ok': True})
 
-@api.route('/status', doc={'description': 'Check server online'})
-class StatusEndpoint(Resource):
+@app.route(API_VERSION + "/quantize", methods=["POST"])
+@cross_origin(origin='*')
+def quantize():
+  go_nord = setup_instance(request)
+  output_path = ''
+  response = {'success': True}
 
-    @api.response(200, 'Success, server online', success_model)
-    def get(self):
-        return {'ok': True}
+  if (request.files.get('file') != None):
+    image = go_nord.open_image(request.files.get('file').stream)
+  elif (request.form.get('file_path') != None):
+    image = go_nord.open_image(request.form.get('file_path'))
+  elif (request.form.get('b64_input') != None):
+    image = go_nord.base64_to_image(request.form.get('b64_input'))
+  else:
+    abort(400, 'You need to provide at least a valid image or image path')
 
+  if (request.form.get('width') and request.form.get('height')):
+    image = go_nord.resize_image(image)
 
-parser = api.parser()
+  if (request.form.get('output_path') != None):
+    output_path = request.form.get('output_path')
 
-# How is it used?
-parser.add_argument('file_path', type=str, help='Image File path', location='form')
-parser.add_argument('file', help='File posted by form', type=FileStorage, location='files')
-parser.add_argument('b64_input', help='Image in base 64 format', type=str, location='form')
+  image = go_nord.quantize_image(image, save_path=output_path)
+  
+  if (request.form.get('b64_output') != None):
+    b64_image = go_nord.image_to_base64(image, 'png')
+    base64_img_string = b64_image.decode('UTF-8')
+    response['b64_img'] = base64_img_string
+  
+  return jsonify(response)
 
-# How is used without it?
-parser.add_argument('b64_output', help='Should it return base64 image?', type=bool, location='form')
+@app.route(API_VERSION + "/convert", methods=["POST"])
+@cross_origin(origin='*')
+def convert():
+  go_nord = setup_instance(request)
+  output_path = ''
+  response = {'success': True}
 
-# How is it used?
-# convert_parser.add_argument('output_path', help='Define output path', type=str, location='b64_input')
+  if (request.files.get('file') != None):
+    image = go_nord.open_image(request.files.get('file').stream)
+  elif (request.form.get('file_path') != None):
+    image = go_nord.open_image(request.form.get('file_path'))
+  elif (request.form.get('b64_input') != None):
+    image = go_nord.base64_to_image(request.form.get('b64_input'))
+  else:
+    abort(400, 'You need to provide at least a valid image or image path')
 
-# TODO: Check code for this feature
-# convert_parser.add_argument('width', type=bool, help=' Resize image if defined height too', location='form')
-# convert_parser.add_argument('height', type=bool, help=' Resize image if defined width too', location='form')
+  if (request.form.get('width') and request.form.get('height')):
+    image = go_nord.resize_image(image)
 
-converted_image_model = api.model('ConvertedImage', {
-    'success': fields.Boolean,
-    'b64_img': fields.String,
-})
+  if (request.form.get('output_path') != None):
+    output_path = request.form.get('output_path')
 
-
-@api.route('/convert', doc={'description': 'Covert image api posting images'})
-class ConvertEndpoint(Resource):
-
-    @api.expect(parser)
-    @api.response(200, 'Success, image converted', converted_image_model)
-    @api.response(400, 'Validation Error, something go wrong')
-    def post(self):
-        go_nord = setup_instance(request)
-        output_path = ''
-        response = {'success': True}
-
-        if request.files.get('file'):
-            image = go_nord.open_image(request.files.get('file').stream)
-        elif request.form.get('file_path'):
-            image = go_nord.open_image(request.form.get('file_path'))
-        elif request.form.get('b64_input'):
-            image = go_nord.base64_to_image(request.form.get('b64_input'))
-        else:
-            abort(400, 'You need to provide at least a valid image or image path')
-
-        if request.form.get('width') and request.form.get('height'):
-            width = int(request.form.get('width', 0))
-            height = int(request.form.get('height', 0))
-            image = go_nord.resize_image(image, w=width, h=height)
-
-        if request.form.get('output_path'):
-            output_path = request.form.get('output_path')
-
-        image = go_nord.convert_image(image, save_path=output_path)
-
-        if request.form.get('b64_output'):
-            b64_image = go_nord.image_to_base64(image, 'jpeg')
-            base64_img_string = b64_image.decode('UTF-8')
-            response['b64_img'] = base64_img_string
-
-        return response
+  image = go_nord.convert_image(image, save_path=output_path)
+  
+  if (request.form.get('b64_output') != None):
+    b64_image = go_nord.image_to_base64(image, 'png')
+    base64_img_string = b64_image.decode('UTF-8')
+    response['b64_img'] = base64_img_string
+  
+  return jsonify(response)
 
 
-@api.route('/quantize', doc={'description': 'Quantize image using pillow'})
-class ConvertEndpoint(Resource):
+@app.route(API_VERSION + "/get-job", methods=["GET"])
+@cross_origin(origin='*')
+def get_job_result():
+  job = Job.fetch(request.args.get('job_id'), connection=conn)
+  result = job.result
+  if result == None:
+    result = False
 
-    @api.expect(parser)
-    @api.response(200, 'Success, image quantized', converted_image_model)
-    @api.response(400, 'Validation Error, something go wrong')
-    def post(self):
-
-        go_nord = setup_instance(request)
-        output_path = ''
-        response = {'success': True}
-
-        if request.files.get('file'):
-            image = go_nord.open_image(request.files.get('file').stream)
-        elif request.form.get('file_path'):
-            image = go_nord.open_image(request.form.get('file_path'))
-        elif request.form.get('b64_input'):
-            image = go_nord.base64_to_image(request.form.get('b64_input'))
-        else:
-            abort(400, 'You need to provide at least a valid image or image path')
-
-        if request.form.get('width') and request.form.get('height'):
-            width = int(request.form.get('width', 0))
-            height = int(request.form.get('height', 0))
-            image = go_nord.resize_image(image, w=width, h=height)
-
-        if request.form.get('output_path'):
-            output_path = request.form.get('output_path')
-
-        image = go_nord.quantize_image(image, save_path=output_path)
-
-        if request.form.get('b64_output'):
-            b64_image = go_nord.image_to_base64(image, 'jpeg')
-            base64_img_string = b64_image.decode('UTF-8')
-            response['b64_img'] = base64_img_string
-
-        return response
-
+  return jsonify({'status': job.get_status(), 'result': result})
 
 def setup_instance(req):
     go_nord = GoNord()
