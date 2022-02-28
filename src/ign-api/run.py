@@ -1,19 +1,20 @@
+from ImageGoNord import GoNord, NordPaletteFile
 from flask import Flask
 from flask import jsonify, abort
 from flask import request
-from flask_cors import CORS, cross_origin
-
-from ImageGoNord import GoNord, NordPaletteFile
+from flask_cors import CORS
+from flask_restx import Api, Resource, fields
+from werkzeug.datastructures import FileStorage
 
 from rq import Queue
 from rq.job import Job
 from worker import conn
 
 q = Queue(connection=conn)
-API_VERSION = '/v1'
+API_VERSION = 'v1'
+API_VERSION_URL = '/' + API_VERSION
 
 app = Flask(__name__)
-
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -98,27 +99,28 @@ def get_job_result():
   return jsonify({'status': job.get_status(), 'result': result})
 
 def setup_instance(req):
-  go_nord = GoNord()
+    go_nord = GoNord()
 
-  hex_colors = []
-  if (req.form.get('colors') != None):
-    hex_colors = req.form.get('colors').split(',')
+    hex_colors = []
+    if req.form.get('colors'):
+        hex_colors = req.form.get('colors').split(',')
 
-  if (len(hex_colors) > 0):
-    go_nord.reset_palette()
-    for hex_color in hex_colors:
-      go_nord.add_color_to_palette(hex_color)
+    if len(hex_colors) > 0:
+        go_nord.reset_palette()
+        for hex_color in hex_colors:
+            go_nord.add_color_to_palette(hex_color)
 
-  if (req.form.get('is_avg') != None):
-    go_nord.enable_avg_algorithm()
+    if req.form.get('is_avg'):
+        go_nord.enable_avg_algorithm()
 
-  if (req.form.get('avg_box_width') != None and req.form.get('avg_box_height') != None):
-    go_nord.set_avg_box_data(int(req.form.get('avg_box_width')), int(req.form.get('avg_box_height')))
+    if req.form.get('avg_box_width') and req.form.get('avg_box_height'):
+        go_nord.set_avg_box_data(int(req.form.get('avg_box_width')), int(req.form.get('avg_box_height')))
 
-  if (req.form.get('blur') != None):
-    go_nord.enable_gaussian_blur()
+    if req.form.get('blur'):
+        go_nord.enable_gaussian_blur()
 
-  return go_nord
+    return go_nord
+
 
 if __name__ == '__main__':
-	app.run(port=8000, threaded=True)
+    app.run(port=8000, threaded=True)

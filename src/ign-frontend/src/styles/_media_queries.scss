@@ -1,0 +1,17 @@
+@media (min-width: 75em) {
+  .container {
+    max-width: 75em;
+    margin: auto;
+  }
+}
+
+@media (min-width: 56.25em) {
+  .container {
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
+
+  .nyancat-wrapper {
+    display: block;
+  }
+}

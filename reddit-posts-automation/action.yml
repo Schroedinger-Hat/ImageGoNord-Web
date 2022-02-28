@@ -1,0 +1,5 @@
+name: 'Upload and convert /r/wallapaper to /r/imagegonord'
+description: 'Upload the latest wallpaper image once converted into the Nord palette to the relative subreddit'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

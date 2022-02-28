@@ -1,8 +1,16 @@
 # ImageGoNord - RGB image to Nordtheme palette
+[![GitGuardian scan](https://github.com/Schrodinger-Hat/ImageGoNord/actions/workflows/git-guardian.yml/badge.svg)](https://github.com/Schrodinger-Hat/ImageGoNord/actions/workflows/git-guardian.yml)
+
 A tool that can convert your rgb images to nordtheme palette.
 
-This repository is a CLI utility, written in python, that can convert any sort of image into a [nordtheme](https://github.com/arcticicestudio/nord) palette image.
-<br>We are planning to make also an API so it can be more user friendly.
+This repository is:
+- CLI utility, written in python, that can convert any sort of image into a [nordtheme](https://github.com/arcticicestudio/nord) palette image;
+- an API hosted on Heroku that is using the [ImageGoNord Python package](https://github.com/Schrodinger-Hat/ImageGoNord-pip) written in Flask;
+- a demo website hosted on Netlify made using the Nordtheme and VueJS;
+
+**Are you looking for the python package?**
+
+The official python package's repository is [ImageGoNord-pip](https://github.com/Schrodinger-Hat/ImageGoNord-pip). You are welcome :)
 
 <!--
 @TODO
@@ -30,18 +38,40 @@ We checked the commnunity and we did not find anything similar or any project th
 
 ### Core Technical Concepts
 
-We are using the PIL because it is the most simple library and it is very useful when you need to manipolate some images.
+We are using the PIL because it is the most simple library and it is very useful when you need to manipulate some images.
 
 Our goal is also to make this project open source and maintainable by the community. We would love to.
 
 *We believe in the open source community.*
 
 ### Getting Started
+
 Include any essential instructions for:
-- Getting it
+
+- Getting it:
+  ```
+  git clone https://github.com/Schrodinger-Hat/ImageGoNord
+  ```
+- Enter to the folder
+  ```
+  cd ImageGoNord
+  ```
 - Installing It
-- Configuring It
+  ```
+  pip install -r requirements.txt
+  ```
 - Running it
+  ```
+  python src/cli.py --img='<path_to_your_image>' 
+  ```
+
+The algorithm can takes some time (we are working on improving it), you can find the result with the name *nord.png*.
+
+You can define some more configuration and use different palettes, find more using:
+
+```
+python src/cli.py --help
+```
 
 ### Testing
 - Tests **TODO**
