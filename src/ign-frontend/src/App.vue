@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <alert />
     <Navbar />
     <router-view />
     <Contributing />
@@ -15,6 +16,7 @@
 import Navbar from '@/components/layout/Navbar.vue';
 import Contributing from '@/components/Contributing.vue';
 import Footer from '@/components/layout/Footer.vue';
+import Alert from './components/Alert.vue';
 
 export default {
   name: 'App',
@@ -22,6 +24,7 @@ export default {
     Navbar,
     Contributing,
     Footer,
+    Alert,
   },
 };
 </script>

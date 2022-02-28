@@ -12,7 +12,12 @@
           <router-link to="/getting-started">Getting Started</router-link>
           <router-link to="/installation">Installation</router-link>
           <router-link to="/documentation">Documentation</router-link>
+          <router-link to="/color-schemes">ImageGoWild</router-link>
+          <router-link to="/wallpaper">Wallpaper</router-link>
           <router-link to="/about">About</router-link>
+          <a target="_blank" href="https://opencollective.com/schrodinger-hat">
+            <i class="fas fa-donate mobile-menu-icon"></i>
+          </a>
           <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">
             <i class="mobile-menu-icon fab fa-github"></i>
           </a>
@@ -77,6 +82,7 @@ header {
   height: 5em;
   display: flex;
   padding: 0 !important;
+  margin-top: 25px !important;
 
   .inner-header-container {
     width: 100%;
@@ -171,10 +177,10 @@ header {
       nav {
         .navbar {
           a {
-            &:nth-child(-n+5) {
+            &:nth-child(-n+7) {
               display: inline;
             }
-            &:nth-child(6) {
+            &:nth-child(9) {
               display: none;
             }
           }

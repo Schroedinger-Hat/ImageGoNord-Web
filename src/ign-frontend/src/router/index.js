@@ -5,6 +5,8 @@ import GettingStarted from '../views/GettingStarted.vue';
 import Documentation from '../views/Documentation.vue';
 import About from '../views/About.vue';
 import Installation from '../views/Installation.vue';
+import Wallpaper from '../views/Wallpaper.vue';
+import GoWild from '../views/GoWild.vue';
 import Error404 from '../views/Error404.vue';
 
 Vue.use(VueRouter);
@@ -31,9 +33,29 @@ const routes = [
     component: Documentation,
   },
   {
+    path: '/documentation/python',
+    name: 'Documentation Python',
+    component: Documentation,
+  },
+  {
+    path: '/documentation/api',
+    name: 'Documentation API',
+    component: Documentation,
+  },
+  {
     path: '/about',
     name: 'About',
     component: About,
+  },
+  {
+    path: '/wallpaper',
+    name: 'Wallpaper',
+    component: Wallpaper,
+  },
+  {
+    path: '/color-schemes',
+    name: 'GoWild',
+    component: GoWild,
   },
   {
     path: '/*',

@@ -3,6 +3,7 @@
     <div class="demo-wrapper">
       <div class="preview">
         <div class="preview-wrapper">
+          <Loader />
           <input type="file" accept="image/*" id="file" @change="loadFile" style="display:none;">
           <label for="file"></label>
           <canvas width="450" height="450" id="img-preview"></canvas>
@@ -10,7 +11,11 @@
       </div>
       <div class="params">
         <h3>Palette</h3>
-        <div class="palette">
+        <div class="palette" v-if="palette !== ''">
+          <span>{{ palette.name }}</span>
+          <span v-for="color in palette.colors" :key="color" :data-hex="color" class="highlighted color-element nord0"></span>
+        </div>
+        <div class="palette" v-if="palette === ''">
           <span>Polar Night</span>
           <div class="polar">
             <span data-hex="#2e3440" class="highlighted color-element nord0"></span>
@@ -74,6 +79,9 @@
           <div class="process-image">
             <span @click="processImage" class="btn btn-primary">Process</span>
           </div>
+          <div class="download-image">
+            <span class="btn btn-primary">Download</span>
+          </div>
           <small>More info on
             <router-link class="external-link-color" to="/documentation"> documentation
             </router-link>
@@ -86,25 +94,42 @@
 
 <script>
 import Vue from 'vue';
+import Loader from './Loader.vue';
 
 export default Vue.component('Demo', {
-  props: {},
+  props: {
+    selectedPalette: String,
+  },
+  components: {
+    Loader,
+  },
   data() {
     return {
-      apiUrl: 'https://ign-api.herokuapp.com/v1',
+      apiUrl: 'https://ign-api.schrodinger-hat.it/v1',
       img: null,
       imgData: null,
       selectedColor: [],
       blur: false,
       is_filter: false,
       avg_index: 0,
+      palette: '',
     };
+  },
+  watch: {
+    selectedPalette(file) {
+      // eslint-disable-next-line
+      this.palette = require(`../assets/${file}`);
+      console.log(this.palette);
+    },
+    palette(p) {
+      this.selectedColor = p.colors;
+    },
   },
   methods: {
     loadFile(event) {
       const dropArea = document.querySelector('.preview-wrapper');
       dropArea.classList.add('uploaded');
-      console.log(event.target.files);
+
       const [imgData] = event.target.files;
       const canvas = document.getElementById('img-preview');
       const ctx = document.getElementById('img-preview').getContext('2d');
@@ -129,6 +154,7 @@ export default Vue.component('Demo', {
     },
     processImage(e) {
       e.preventDefault();
+      const self = this;
 
       document.querySelector('.preview').classList.toggle('processing');
 
@@ -138,22 +164,22 @@ export default Vue.component('Demo', {
 
       // eslint-disable-next-line prefer-destructuring
       const img = this.img;
-      const endpoint = (this.is_filter === true) ? 'quantize' : 'convert';
+      const endpoint = (this.is_filter === true) ? 'quantize' : 'convert-async';
+      const avgW = -1;
+      const avgH = 1;
 
       const formData = new FormData();
       formData.append('file', this.imgData);
-      formData.append('width', this.img.width);
-      formData.append('height', this.img.height);
+      // formData.append('width', this.img.width);
+      // formData.append('height', this.img.height);
       formData.append('b64_output', true);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
-      formData.append('is_avg', true);
 
       if (this.avg_index !== 0) {
-        const avgW = -2;
-        const avgH = 3;
+        formData.append('is_avg', true);
 
-        formData.append('avg_box_width', avgW + parseInt(this.avg_index, 10));
-        formData.append('avg_box_height', avgH + parseInt(this.avg_index, 10));
+        formData.append('avg_box_width', avgW - parseInt(Math.abs(this.avg_index), 10));
+        formData.append('avg_box_height', avgH + parseInt(Math.abs(this.avg_index), 10));
       }
 
       if (this.blur === true) {
@@ -164,31 +190,65 @@ export default Vue.component('Demo', {
         method: 'POST',
         body: formData,
       }).then((response) => {
-        document.querySelector('.preview').classList.toggle('processing');
-        response.json()
-          .then((r) => {
-            const im = new Image();
-            im.onload = () => {
-              const canvas = document.getElementById('img-preview');
-              const ctx = document.getElementById('img-preview').getContext('2d');
-              const ratio = img.width / img.height;
-              let newWidth = canvas.width;
-              let newHeight = newWidth / ratio;
-              if (newHeight > canvas.height) {
-                newHeight = canvas.height;
-                newWidth = newHeight * ratio;
-              }
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-              ctx.drawImage(im, 0, 0, newWidth, newHeight);
-            };
-            im.src = `data:image/png;base64, ${r.b64_img}`;
+        if (endpoint === 'quantize') {
+          response.json().then((j) => {
+            self.showResponseImage(img, j);
           });
+          return true;
+        }
+
+        response.text().then((jobId) => {
+          self.pollingAPI(jobId, img);
+        });
+        return true;
       }).catch((err) => {
         document.querySelector('.preview').classList.toggle('processing');
         console.log(err);
       });
 
       return true;
+    },
+    pollingAPI(jobId, img) {
+      const self = this;
+      fetch(`${this.apiUrl}/get-job?job_id=${jobId}`)
+        .then((r) => {
+          r.json().then((jsonResponse) => {
+            if (jsonResponse.status === 'finished') {
+              self.showResponseImage(img, jsonResponse.result);
+            } else if (jsonResponse.status === 'queued' || jsonResponse.status === 'started') {
+              setTimeout(() => {
+                self.pollingAPI(jobId);
+              }, 800);
+            } else {
+              document.querySelector('.preview').classList.toggle('processing');
+              console.info('Something went wrong, please retry or write to us!');
+            }
+          });
+        });
+    },
+    showResponseImage(img, r) {
+      const self = this;
+      const im = new Image();
+      im.onload = () => {
+        document.querySelector('.preview').classList.toggle('processing');
+        const canvas = document.getElementById('img-preview');
+        const ctx = document.getElementById('img-preview').getContext('2d');
+        const ratio = self.img.width / self.img.height;
+        let newWidth = canvas.width;
+        let newHeight = newWidth / ratio;
+        if (newHeight > canvas.height) {
+          newHeight = canvas.height;
+          newWidth = newHeight * ratio;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(im, 0, 0, newWidth, newHeight);
+      };
+      im.src = `data:image/png;base64, ${r.b64_img}`;
+      const responseImageBlob = this.b64ToBlob(r.b64_img);
+      const responseImageUrl = URL.createObjectURL(responseImageBlob);
+      const downloadBtn = document.querySelector('.download-image .btn');
+      downloadBtn.parentNode.style.display = 'block';
+      downloadBtn.setAttribute('onclick', `window.open('${responseImageUrl}', '_blank')`);
     },
     preventDefaults(e) {
       e.preventDefault();
@@ -210,6 +270,25 @@ export default Vue.component('Demo', {
       e.preventDefault();
       e.target.classList.toggle('highlighted');
       delete this.selectedColor[this.selectedColor.indexOf(e.target.getAttribute('data-hex'))];
+    },
+    b64ToBlob(b64Data, contentType = 'image/png', sliceSize = 512) {
+      const byteCharacters = atob(b64Data);
+      const byteArrays = [];
+
+      for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        const byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i += 1) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        const byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+      }
+
+      const blob = new Blob(byteArrays, { type: contentType });
+      return blob;
     },
   },
   mounted() {
@@ -321,7 +400,11 @@ export default Vue.component('Demo', {
         }
       }
 
-      .process-image {
+      .download-image {
+        display: none;
+      }
+
+      .process-image, .download-image {
         margin-top: .5em;
 
         .btn {
@@ -442,6 +525,7 @@ export default Vue.component('Demo', {
   .demo {
     .demo-wrapper {
       display: flex;
+      align-items: center;
       .preview {
         width: 80%;
         padding: .8em;

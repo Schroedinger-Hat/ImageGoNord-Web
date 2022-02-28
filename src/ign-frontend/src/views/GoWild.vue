@@ -1,34 +1,30 @@
 <template>
-  <div class="home">
+  <div class="gowild">
     <div class="container">
       <Main
-        h1="A tool to bring any image to the nord palette"
-        h2="Transform each wallpaper, icon, image into the smoothest palette on the internet"
-        link1="/color-schemes"
-        link2="/documentation"
-        btn1="More Palettes"
-        btn2="Documentation"
+        h1="Image Go Wild - Convert anything in the most popular palettes"
+        h2="Transform each wallpaper, icon, image into your fav palette over the internet"
       />
     </div>
     <SeparatorDoubleLine />
     <section class="slider-section">
-      <center>
-        <h3>Nordify every image</h3>
+      <center class="container">
+        <h3>We want to make your favorite image your personal wallpaper in you favorite color scheme as easy as uploading an image</h3>
       </center>
       <div class="container">
         <div class="slider-item">
           <ImgCompare
-            className="wabri"
-            :after="imgCompareWabri.after"
-            :width="350"
-            :height="350"
-            :before="imgCompareWabri.before"
+            className="demo-gruvbox"
+            :after="imgCompareGruvbox.after"
+            :width="500"
+            :height="320"
+            :before="imgCompareGruvbox.before"
           />
           <div class="slider-text">
-            <h3>Customize your profile picture using nordtheme's palette</h3>
+            <h3>Customize your profile picture using your palette</h3>
             <p>
               Everyone needs a profile picture.<br/>
-              You can apply a filter on your profile picture or you can convert fully in nordtheme.
+              You can convert fully in your palette color
             </p>
           </div>
         </div>
@@ -37,16 +33,16 @@
       <div class="container">
         <div class="slider-item">
           <div class="slider-text">
-            <h3>Set your favorites wallpaper in a nordtheme environment</h3>
-            <p>Forget the endless search to find a nord wallpaper.<br/>
-              Convert your favorite wallpapers to nordtheme</p>
+            <h3>Set your favorites wallpaper in a color scheme environment</h3>
+            <p>Forget the endless search to find a color sceme wallpaper.<br/>
+              Convert your favorite wallpapers into a color scheme instead</p>
           </div>
           <ImgCompare
-            className="car"
-            :after="imgCompareCar.after"
-            :before="imgCompareCar.before"
+            className="demo-vap"
+            :after="imgCompareFlyVap.after"
+            :before="imgCompareFlyVap.before"
             :width="500"
-            :height="350"
+            :height="320"
           />
         </div>
       </div>
@@ -54,13 +50,19 @@
     <section class="gallery-section">
       <SeparatorDoubleLine />
       <center>
-        <h3>Gallery</h3>
+        <h3>Available Palettes</h3>
         <p>
-          Here are some images converted with IGN from our community.<br/>
-          You can find more on our <a class="external-link-color" href="/wallpaper">Wallpaper page</a>
+          Here are the available palette collected from the top usage.<br/>
+          You are not finding your fav palette? Reach us on our social!
         </p>
       </center>
-      <Gallery />
+      <div class="palette-grid container">
+        <div @click="selectedPalette = palette.file" :class="{'palette-post': true, 'current-palette': (selectedPalette === palette.file)}" v-for="palette in palettes" :key="palette.name">
+          <div :style="`width: 100%; min-height: 200px; background-size: cover; background: url(${require('../assets/' + palette.img)})`">
+            <span class="palette-title">{{ palette.name }}</span>
+          </div>
+        </div>
+      </div>
       <br/>
       <SeparatorDoubleLine />
     </section>
@@ -76,7 +78,7 @@
           </div>
         </div>
       </center>
-      <Demo />
+      <Demo :selectedPalette="`${(selectedPalette !== '') ? selectedPalette : []}`" />
     </section>
   </div>
 </template>
@@ -86,20 +88,22 @@ import Main from '@/components/Main.vue';
 import Demo from '@/components/Demo.vue';
 import SeparatorDoubleLine from '@/components/separator/DoubleLine.vue';
 import ImgCompare from '@/components/ImgCompare.vue';
-import Gallery from '@/components/Gallery.vue';
+import json from '../assets/palettes/available-palettes.json';
 
 export default {
-  name: 'Home',
+  name: 'GoWild',
   data() {
     return {
       apiStatus: 'success',
-      imgCompareCar: {
-        after: 'demo/car-after.png',
-        before: 'demo/car-before.png',
+      palettes: json,
+      selectedPalette: '',
+      imgCompareFlyVap: {
+        after: 'demo/fly-vaporwave.png',
+        before: 'demo/fly-before.jpg',
       },
-      imgCompareWabri: {
-        after: 'demo/wabri-after.jpg',
-        before: 'demo/wabri-before.jpg',
+      imgCompareGruvbox: {
+        after: 'demo/fly-gruvbox.png',
+        before: 'demo/fly-before.jpg',
       },
     };
   },
@@ -116,7 +120,6 @@ export default {
     Demo,
     SeparatorDoubleLine,
     ImgCompare,
-    Gallery,
   },
 };
 </script>
@@ -235,6 +238,46 @@ export default {
   }
 }
 
+.palette-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  flex-direction: row;
+
+  .palette-post {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    margin: 15px 10px;
+    flex: auto;
+    border: 8px solid transparent;
+
+    &:hover, &:focus, &:active, &.current-palette {
+      border-color: $nord12;
+      cursor: pointer;
+    }
+
+    .palette-title {
+      font-size: 25px;
+      text-align: center;
+      width: calc(100% - 16px);
+      padding-top: 5em;
+      height: 6em;
+      color: $nord6;
+      background: #757575c9;
+      font-weight: bold;
+      display: block;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 215px;
+      border: 6px solid $nord4;
+      border-radius: 5px;
+    }
+  }
+}
+
 @media (min-width: 56.25em) {
   .slider-section {
     .slider-item {
@@ -247,6 +290,27 @@ export default {
         margin-top: 4em;
       }
     }
+  }
+  .palette-grid {
+    .palette-post {
+      display: inline-flex;
+      width: 30%;
+      margin: 15px 10px;
+      flex: auto;
+    }
+    .palette-title {
+      font-size: 25px;
+      text-align: center;
+      width: calc(100% - 16px);
+      padding-top: 5em;
+      height: 6em;
+      color: $nord6;
+      background: #757575c9;
+      font-weight: bold;
+      display: block;
+      border: 8px solid transparent;
+    }
+
   }
 }
 
