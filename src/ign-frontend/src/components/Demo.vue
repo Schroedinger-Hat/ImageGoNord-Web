@@ -232,7 +232,7 @@ export default Vue.component('Demo', {
       im.onload = () => {
         window.gtag('event', 'converted-image', {
           event_category: 'converted-image',
-          event_label: 'converted',
+          event_label: this.palette.name,
           value: this.palette.name,
         });
         document.querySelector('.preview').classList.toggle('processing');
