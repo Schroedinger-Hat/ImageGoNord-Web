@@ -73,5 +73,20 @@
         "name": "Monokai",
         "img": "palettes/img/monokai.png",
         "file": "palettes/monokai.json"
+    },
+    {
+        "name": "Catpuccin Night",
+        "img": "palettes/img/catpuccin-night.png",
+        "file": "palettes/catpuccin-night.json"
+    },
+    {
+        "name": "Catpuccin Light",
+        "img": "palettes/img/catpuccin-light.png",
+        "file": "palettes/catpuccin-light.json"
+    },
+    {
+        "name": "Srcery",
+        "img": "palettes/img/srcery.png",
+        "file": "palettes/srcery.json"
     }
 ]

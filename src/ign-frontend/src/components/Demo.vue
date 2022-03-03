@@ -230,6 +230,11 @@ export default Vue.component('Demo', {
       const self = this;
       const im = new Image();
       im.onload = () => {
+        window.gtag('event', 'converted-image', {
+          event_category: 'converted-image',
+          event_label: 'converted',
+          value: this.palette.name,
+        });
         document.querySelector('.preview').classList.toggle('processing');
         const canvas = document.getElementById('img-preview');
         const ctx = document.getElementById('img-preview').getContext('2d');
