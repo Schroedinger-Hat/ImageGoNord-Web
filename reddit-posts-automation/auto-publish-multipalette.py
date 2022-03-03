@@ -10,10 +10,10 @@ import re
 post_regex = r"( With ImageGoNord)|(\[CHALLENGER\] |\[NORD\] |\[DRACULA\] |\[GOTHAM\] |\[GRUVBOX\] |\[MOLOKAI\] |\[MONOKAI\] |\[OCEANIC\] |\[ONEDARK\] |\[SOLARIZED\] |\[SONOKAI\] |\[TOKYO\] |\[VAPORWAVE\] |\[CATPPUCCIN\] |\[VIM\] )"
 
 
-REDDIT_USERNAME = os.environ['REDDIT_USERNAME']
-REDDIT_PASSWORD = os.environ['REDDIT_PASSWORD']
-REDDIT_APP_ID = os.environ['REDDIT_APP_ID']
-REDDIT_APP_SECRET = os.environ['REDDIT_APP_SECRET']
+REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME')
+REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD')
+REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID')
+REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 FLAIR={
