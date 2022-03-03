@@ -26,7 +26,8 @@ FLAIR_IDS={
   'SONOKAI': 'c819e31e-0e43-11ec-b30d-5a631dd7072a',
   'TOKYO': 'ccc6e9f2-0e43-11ec-9715-1ea24e7b246f',
   'VAPORWAVE': 'd84eab48-0e43-11ec-811e-4edcb0b81b7f',
-  'VIM': 'e99ae150-0e43-11ec-aad0-6e6c5b7d00e0'
+  'VIM': 'e99ae150-0e43-11ec-aad0-6e6c5b7d00e0',
+  'CATPPUCCIN': 'e62951d2-7a09-11ec-abde-ca9aae39851e'
 }
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
@@ -91,7 +92,7 @@ if len(wallpapers_to_process) > 0:
     try:
       go_nord.convert_image(im, save_path=img_path)
       print('Uploading ' + sub['title'])
-      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR_IDS.NORD)
+      reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR_IDS['NORD'])
 
       print('Commenting')
       reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
