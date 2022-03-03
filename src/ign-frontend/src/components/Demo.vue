@@ -233,7 +233,7 @@ export default Vue.component('Demo', {
         window.gtag('event', 'converted-image', {
           event_category: 'converted-image',
           event_label: this.palette.name,
-          value: this.palette.name,
+          value: ('Nordtheme' || this.palette.name),
         });
         document.querySelector('.preview').classList.toggle('processing');
         const canvas = document.getElementById('img-preview');
