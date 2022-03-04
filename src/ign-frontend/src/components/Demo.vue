@@ -232,8 +232,8 @@ export default Vue.component('Demo', {
       im.onload = () => {
         window.gtag('event', 'converted-image', {
           event_category: 'converted-image',
-          event_label: this.palette.name,
-          value: ('Nordtheme' || this.palette.name),
+          event_label: (this.palette.name || 'Nordtheme'),
+          value: (this.palette.name || 'Nordtheme'),
         });
         document.querySelector('.preview').classList.toggle('processing');
         const canvas = document.getElementById('img-preview');
