@@ -74,6 +74,9 @@
               <div class="ringring"></div>
               <div class="circle"></div>
           </div>
+          <div>
+            <strong>Total converted images: </strong>{{ apiCount }}
+          </div>
         </div>
       </center>
       <Demo />
@@ -93,6 +96,7 @@ export default {
   data() {
     return {
       apiStatus: 'success',
+      apiCount: 99999,
       imgCompareCar: {
         after: 'demo/car-after.png',
         before: 'demo/car-before.png',
@@ -107,7 +111,7 @@ export default {
     const self = this;
     setInterval(() => {
       fetch('https://ign-api.schrodinger-hat.it/v1/status')
-        .then(() => { self.apiStatus = 'success'; })
+        .then((r) => { self.apiStatus = 'success'; r.json().then((j) => { self.apiCount = j.count; }); })
         .catch(() => { self.apiStatus = 'failed'; });
     }, 8000);
   },
