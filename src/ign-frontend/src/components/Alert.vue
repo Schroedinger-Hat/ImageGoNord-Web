@@ -1,6 +1,6 @@
 <template>
     <div class="notification-top-bar">
-      <p>This is an open source project and the service is running on OVH VPS. Please, consider on support us on <small><a target="_blank" href="https://opencollective.com/schrodinger-hat">OpenCollective</a></small>. Thank you</p>
+      <p>The website will go down on <b>May 1st</b> because of insuffient funds for running on a OVH VPS. Please, consider on support us on <small><a target="_blank" href="https://opencollective.com/schrodinger-hat">OpenCollective <i class='fas fa-external-link-alt '></i></a></small> or <a href='https://twitter.com/schrodinger_hat' target="_blank">reach us<i class='fas fa-external-link-alt '></i></a> in order to sponsor the project.<br />Share the love & credits. Thank you</p>
     </div>
 </template>
 
@@ -18,9 +18,10 @@ export default Vue.component('Alert', {
   position: fixed;
   top: 0;
   left: 0;
-  height: 40px;
-  line-height: 40px;
+  height: 50px;
+  line-height: 20px;
   width: 100%;
+  padding-top: 10px;
   background: $nord11;
   text-align: center;
   font-family: sans-serif;
