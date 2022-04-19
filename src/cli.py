@@ -17,14 +17,13 @@ I/O Images:
 
 Theme options:
   --PALETTE[=LIST_COLOR_SET]        the palette can be found on the
-                                    src/palettes/ directory (actually there is
-                                    only nord), by replace the palette with the
-                                    name is possible to select the theme and if
-                                    necessary you can specify the set of colors
-                                    you want to use.
-                                    Ex: python src/cli.py --nord=aur,p,s is
-                                    possible to pass the name of the color or
-                                    the first character of the name set.
+                                    src/palettes/ directory by replace the palette
+                                     with the name is possible to select the theme
+                                     and if necessary you can specify the set of
+                                     colors you want to use.
+                                     Ex: python src/cli.py --nord=aur,p,s
+                                     is possible to pass the name of the color
+                                     or the first character of the name set.
 
 Conversion:
   -na, --no-avg                     do not use the average pixels optimization
@@ -150,7 +149,7 @@ if __name__ == '__main__':
         go_nord.set_avg_box_data(w=w, h=h)
 
     if parsed_args.blur:
-        go_nord.disable_gaussian_blur()
+        go_nord.enable_gaussian_blur()
 
     for arg in args:
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
