@@ -47,7 +47,6 @@ from pathlib import Path
 
 from ImageGoNord import GoNord
 
-from configs import arguments as confarg
 from configs import messages
 
 ABSOLUTE_PATH = path.dirname(path.realpath(__file__))
@@ -102,7 +101,7 @@ def check_required_arguments(parsed_args):
     if not parsed_args.out:
         ap.error(messages.logs['out']['error'].format(parsed_args.out) + messages.logs['general_error'])
 
-    #TODO: scrivere il codice per avere una palette alla volta
+    # TODO: scrivere il codice per avere una palette alla volta
 
 
 if __name__ == '__main__':
@@ -145,6 +144,27 @@ if __name__ == '__main__':
     # Get all palettes
     palettes = [palette.lower() for palette in listdir(ABSOLUTE_PATH + "/palettes")]
 
+    selected_palette = next(p for p in vars(parsed_args).keys() if p in palettes and p is not None)
+    palette_colors = vars(parsed_args)[selected_palette] if selected_palette else None
+
+    if selected_palette:
+        palette_path = ABSOLUTE_PATH + "/palettes/" + selected_palette.capitalize() + "/"
+
+        go_nord.set_palette_lookup_path(palette_path)
+        go_nord.reset_palette()
+
+        palette_file_list = listdir(palette_path)
+        print(palette_file_list)
+        if isinstance(palette_colors, list):
+            palette_colors_files = [p.lower() + '.txt' for p in palette_colors]
+            palette_file_list = [pf1 for pf1 in palette_file_list if pf1.lower() in palette_colors_files]
+
+        for pf in palette_file_list:
+            go_nord.add_file_to_palette(pf)
+
+    quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_PATH)
+    sys.exit(0)
+
     for arg in args:
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
         key = key_value[0].lower()
@@ -160,7 +180,6 @@ if __name__ == '__main__':
                     console_log(confarg.logs["pals"][1].format(palette.capitalize()))
                     for selected_color in selected_colors:
                         lowered_palette = list(map(str.lower, palette_set))
-                        print(lowered_palette)
                         if selected_color in lowered_palette:
                             index_color = lowered_palette.index(selected_color)
                             go_nord.add_file_to_palette(palette_set[index_color] + ".txt")
@@ -175,8 +194,8 @@ if __name__ == '__main__':
                     PALETTE_CHANGED = True
                     console_log(confarg.logs["pals"][0].format(palette.capitalize()))
                     go_nord.set_palette_lookup_path(palette_path)
-                    for ps in [palette_file for palette_file in listdir(palette_path)]:
-                        go_nord.add_file_to_palette(ps)
+                    for pf in [palette_file for palette_file in listdir(palette_path)]:
+                        go_nord.add_file_to_palette(pf)
 
     if not PALETTE_CHANGED:
         console_log(confarg.logs["pals"][4])
@@ -184,8 +203,8 @@ if __name__ == '__main__':
         go_nord.reset_palette()
         palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
         go_nord.set_palette_lookup_path(palette_path)
-        for ps in palette_set:
-            go_nord.add_file_to_palette(ps + ".txt")
+        for pf in palette_set:
+            go_nord.add_file_to_palette(pf + ".txt")
 
     quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_PATH)
     sys.exit(0)
