@@ -101,7 +101,12 @@ def check_required_arguments(parsed_args):
     if not parsed_args.out:
         ap.error(messages.logs['out']['error'].format(parsed_args.out) + messages.logs['general_error'])
 
-    # TODO: scrivere il codice per avere una palette alla volta
+    palette_list = [p for p, v in vars(parsed_args).items() if p in PALETTE_LIST and v is not None]
+    if len(palette_list) > 1:
+        ap.error(
+            messages.logs['palette']['too_many_palettes_error'].format(", ".join(palette_list))
+            + messages.logs['general_error']
+        )
 
 
 if __name__ == '__main__':
