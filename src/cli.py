@@ -1,5 +1,6 @@
 #!usr/bin/env python3
-"""ImageGoNord, a converter for a rgb images to norththeme palette.
+"""
+ImageGoNord, a converter for a rgb images to norththeme palette.
 Usage: gonord [OPTION]...
 
 Mandatory arguments to long options are mandatory for short options too.
@@ -40,7 +41,6 @@ and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new
 """
 
 import argparse
-import re
 import sys
 from os import path, listdir
 from pathlib import Path
@@ -50,34 +50,15 @@ from ImageGoNord import GoNord
 from configs import arguments as confarg
 from configs import messages
 
-
-def get_version():
-    """<Short Description>
-
-      <Description>
-
-    Parameters
-    ----------
-    <argument name>: <type>
-      <argument description>
-    <argument>: <type>
-      <argument description>
-
-    Returns
-    -------
-    <type>
-      <description>
-    """
-    return Path(path.dirname(path.realpath(__file__)) + "/VERSION").read_text()
-
+ABSOLUTE_PATH = path.dirname(path.realpath(__file__))
 
 DEFAULT_EXTENSION = ".png"
 DEFAULT_FILENAME = f'out.{DEFAULT_EXTENSION}'
 
 QUIET_MODE = False
-OUTPUT_IMAGE_NAME = "nord" + DEFAULT_EXTENSION
+OUTPUT_IMAGE_PATH = "nord" + DEFAULT_EXTENSION
 PALETTE_CHANGED = False
-VERSION = get_version()
+VERSION = Path(ABSOLUTE_PATH + "/VERSION").read_text()
 
 
 class SplitDimensions(argparse.Action):
@@ -89,11 +70,11 @@ class SplitDimensions(argparse.Action):
 
 ap = argparse.ArgumentParser(prog='ImageGoNord', description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
 ap.add_argument('-q', '--quiet', action='store_true')
-ap.add_argument('-v', '--version', action='version', version=f'%(prog)s {get_version()}')
+ap.add_argument('-v', '--version', action='version', version=f'%(prog)s {VERSION}')
 ap.add_argument('-i', '--img', type=str, metavar='<path>')
 ap.add_argument('-o', '--out', type=str, metavar='<path>', default=DEFAULT_FILENAME)
 ap.add_argument('-na', '--no-avg', action='store_true')
-ap.add_argument('-pa', '--pixels-area', action=SplitDimensions)
+ap.add_argument('-pa', '--pixel-area', action=SplitDimensions)
 ap.add_argument('-b', '--blur', action='store_true')
 
 
@@ -124,19 +105,19 @@ if __name__ == '__main__':
     go_nord = GoNord()
 
     # Get absolute path of source project
-    absolute_path = path.dirname(path.realpath(__file__))
+    ABSOLUTE_PATH = path.dirname(path.realpath(__file__))
 
-    # Get all palettes created
-    palettes = [palette.lower() for palette in listdir(absolute_path + "/palettes")]
+    # Get all palettes
+    palettes = [palette.lower() for palette in listdir(ABSOLUTE_PATH + "/palettes")]
 
     # Reading input image
     image = go_nord.open_image(parsed_args.img)
-    to_console(messages.logs["img"]['info'].format(absolute_path + "/" + parsed_args.img))
+    to_console(messages.logs["img"]['info'].format(ABSOLUTE_PATH + "/" + parsed_args.img))
 
     # Setting output
-    IMAGE_PATTERN = r'([A-z]|[\/|\.|\-|\_|\s])*\.([a-z]{3}|[a-z]{4})$'
-    OUTPUT_IMAGE_NAME += "" if re.search(IMAGE_PATTERN, parsed_args.out) else DEFAULT_EXTENSION
-    to_console(messages.logs["out"]['info'].format(absolute_path + "/" + OUTPUT_IMAGE_NAME))
+    output_path = Path(parsed_args.out)
+    OUTPUT_IMAGE_PATH = str(output_path) + (DEFAULT_EXTENSION if not output_path.suffix else "")
+    to_console(messages.logs["out"]['info'].format(ABSOLUTE_PATH + "/" + OUTPUT_IMAGE_PATH))
 
     # Enable/disable avg algoritm
     if parsed_args.no_avg:
@@ -144,8 +125,8 @@ if __name__ == '__main__':
         to_console(messages.logs["navg"]['info'])
 
     # Select pixel area
-    if parsed_args.dimensions:
-        (w, h) = parsed_args.dimensions
+    if parsed_args.pixel_area:
+        (w, h) = parsed_args.pixel_area
         go_nord.set_avg_box_data(w=w, h=h)
 
     if parsed_args.blur:
@@ -157,7 +138,7 @@ if __name__ == '__main__':
 
         for palette in palettes:
             if "--{}".format(palette) in key:
-                palette_path = absolute_path + "/palettes/" + palette.capitalize() + "/"
+                palette_path = ABSOLUTE_PATH + "/palettes/" + palette.capitalize() + "/"
                 go_nord.set_palette_lookup_path(palette_path)
                 if len(key_value) > 1:
                     go_nord.reset_palette()
@@ -179,7 +160,7 @@ if __name__ == '__main__':
                 else:
                     PALETTE_CHANGED = True
                     to_console(confarg.logs["pals"][0].format(palette.capitalize()))
-                    palette_path = absolute_path + "/palettes/" + palette.capitalize() + "/"
+                    palette_path = ABSOLUTE_PATH + "/palettes/" + palette.capitalize() + "/"
                     go_nord.reset_palette()
                     palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
                     go_nord.set_palette_lookup_path(palette_path)
@@ -188,12 +169,12 @@ if __name__ == '__main__':
 
     if not PALETTE_CHANGED:
         to_console(confarg.logs["pals"][4])
-        palette_path = absolute_path + "/palettes/Nord/"
+        palette_path = ABSOLUTE_PATH + "/palettes/Nord/"
         go_nord.reset_palette()
         palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
         go_nord.set_palette_lookup_path(palette_path)
         for palette_color in palette_set:
             go_nord.add_file_to_palette(palette_color + ".txt")
 
-    quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_NAME)
+    quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_PATH)
     sys.exit(0)
