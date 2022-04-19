@@ -69,7 +69,7 @@ class SplitCommaSeparatedArguments(argparse.Action):
 
 class ParsePaletteArgument(argparse.Action):
     def __call__(self, parser, namespace, palette, option_string=None):
-        palette = palette if palette else True
+        palette = palette.strip().split(',') if palette else []
         setattr(namespace, self.dest, palette)
 
 
@@ -86,7 +86,7 @@ ap.add_argument('-b', '--blur', action='store_true')
 PALETTE_LIST = []
 for palette in listdir(f"{ABSOLUTE_PATH}/palettes/"):
     PALETTE_LIST += [palette.lower()]
-    ap.add_argument(f"--{palette.lower()}", nargs="*")
+    ap.add_argument(f"--{palette.lower()}", action=ParsePaletteArgument, default=None, nargs='?')
 
 
 def console_log(*params):
@@ -107,8 +107,6 @@ def check_required_arguments(parsed_args):
 if __name__ == '__main__':
     args = sys.argv[1:]
     parsed_args = ap.parse_args()
-    # print(parsed_args)
-    # print(vars(parsed_args))
     check_required_arguments(parsed_args)
 
     QUIET_MODE = parsed_args.quiet
@@ -143,68 +141,31 @@ if __name__ == '__main__':
 
     # Get all palettes
     palettes = [palette.lower() for palette in listdir(ABSOLUTE_PATH + "/palettes")]
+    parsed_args_dictionary = vars(parsed_args)
+    selected_palette = next(p for p, v in parsed_args_dictionary.items() if p in PALETTE_LIST and v is not None)
+    if not selected_palette:
+        selected_palette = "north"
+        console_log(messages.logs["pals"][4])
 
-    selected_palette = next(p for p in vars(parsed_args).keys() if p in palettes and p is not None)
-    palette_colors = vars(parsed_args)[selected_palette] if selected_palette else None
+    palette_path = ABSOLUTE_PATH + "/palettes/" + selected_palette.capitalize() + "/"
+    parsed_colors = parsed_args_dictionary.get(selected_palette)
 
-    if selected_palette:
-        palette_path = ABSOLUTE_PATH + "/palettes/" + selected_palette.capitalize() + "/"
+    palette_colors_files = [f.capitalize() + '.txt' for f in parsed_colors]
+    for pf in palette_colors_files:
+        if not Path(palette_path + pf).is_file():
+            console_log(messages.logs["pals"][-1].format(pf))
+            palette_colors_files.remove(pf)
 
-        go_nord.set_palette_lookup_path(palette_path)
-        go_nord.reset_palette()
+    if not palette_colors_files:
+        console_log(messages.logs["pals"][0].format(selected_palette.capitalize()))
+        palette_colors_files = listdir(palette_path)
 
-        palette_file_list = listdir(palette_path)
-        print(palette_file_list)
-        if isinstance(palette_colors, list):
-            palette_colors_files = [p.lower() + '.txt' for p in palette_colors]
-            palette_file_list = [pf1 for pf1 in palette_file_list if pf1.lower() in palette_colors_files]
-
-        for pf in palette_file_list:
-            go_nord.add_file_to_palette(pf)
-
-    quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_PATH)
-    sys.exit(0)
-
-    for arg in args:
-        key_value = [kv for kv in arg.split("=", 1) if kv != ""]
-        key = key_value[0].lower()
-
-        for palette in palettes:
-            if "--{}".format(palette) in key:
-                palette_path = ABSOLUTE_PATH + "/palettes/" + palette.capitalize() + "/"
-                go_nord.set_palette_lookup_path(palette_path)
-                go_nord.reset_palette()
-                if len(key_value) > 1:
-                    palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
-                    selected_colors = [selected_color.lower() for selected_color in key_value[1].split(",")]
-                    console_log(confarg.logs["pals"][1].format(palette.capitalize()))
-                    for selected_color in selected_colors:
-                        lowered_palette = list(map(str.lower, palette_set))
-                        if selected_color in lowered_palette:
-                            index_color = lowered_palette.index(selected_color)
-                            go_nord.add_file_to_palette(palette_set[index_color] + ".txt")
-                            console_log(confarg.logs["pals"][2].format(palette_set[index_color]))
-                            PALETTE_CHANGED = True
-                        else:
-                            console_log(confarg.logs["pals"][-1].format(selected_color))
-                    for palette_color in palette_set:
-                        if palette_color.lower() not in selected_colors:
-                            console_log(confarg.logs["pals"][3].format(palette_color))
-                else:
-                    PALETTE_CHANGED = True
-                    console_log(confarg.logs["pals"][0].format(palette.capitalize()))
-                    go_nord.set_palette_lookup_path(palette_path)
-                    for pf in [palette_file for palette_file in listdir(palette_path)]:
-                        go_nord.add_file_to_palette(pf)
-
-    if not PALETTE_CHANGED:
-        console_log(confarg.logs["pals"][4])
-        palette_path = ABSOLUTE_PATH + "/palettes/Nord/"
-        go_nord.reset_palette()
-        palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
-        go_nord.set_palette_lookup_path(palette_path)
-        for pf in palette_set:
-            go_nord.add_file_to_palette(pf + ".txt")
+    console_log(messages.logs["pals"][1].format(selected_palette.capitalize()))
+    go_nord.set_palette_lookup_path(palette_path)
+    go_nord.reset_palette()
+    for pf in palette_colors_files:
+        console_log(messages.logs["pals"][2].format(pf))
+        go_nord.add_file_to_palette(pf)
 
     quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_PATH)
     sys.exit(0)
