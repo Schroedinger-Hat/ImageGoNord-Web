@@ -37,5 +37,9 @@ logs = {
         "[WARNING] No set found for: {} \u2753",
     ],
 
+    "palette": {
+        "too_many_palettes_error": "\n[ERROR] Too many palette set! Choose just one from ({})"
+    },
+
     "general_error": "\n[INFO] No image created, solve all ERROR and retry."
 }
