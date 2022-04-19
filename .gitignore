@@ -1,5 +1,6 @@
 # Ide
 .idea
+images/*
 
 #python cache
 __pycache__/
