@@ -78,12 +78,9 @@ ap.add_argument('-pa', '--pixel-area', action=SplitDimensions)
 ap.add_argument('-b', '--blur', action='store_true')
 
 
-def to_console(*params):
-    if QUIET_MODE:
-        return
-
-    for param in params:
-        print(param)
+def console_log(*params):
+    if not QUIET_MODE:
+        print("\n".join(params))
 
 
 def check_required_arguments(parsed_args):
@@ -112,17 +109,17 @@ if __name__ == '__main__':
 
     # Reading input image
     image = go_nord.open_image(parsed_args.img)
-    to_console(messages.logs["img"]['info'].format(ABSOLUTE_PATH + "/" + parsed_args.img))
+    console_log(messages.logs["img"]['info'].format(ABSOLUTE_PATH + "/" + parsed_args.img))
 
     # Setting output
     output_path = Path(parsed_args.out)
     OUTPUT_IMAGE_PATH = str(output_path) + (DEFAULT_EXTENSION if not output_path.suffix else "")
-    to_console(messages.logs["out"]['info'].format(ABSOLUTE_PATH + "/" + OUTPUT_IMAGE_PATH))
+    console_log(messages.logs["out"]['info'].format(ABSOLUTE_PATH + "/" + OUTPUT_IMAGE_PATH))
 
     # Enable/disable avg algoritm
     if parsed_args.no_avg:
         go_nord.disable_avg_algorithm()
-        to_console(messages.logs["navg"]['info'])
+        console_log(messages.logs["navg"]['info'])
 
     # Select pixel area
     if parsed_args.pixel_area:
@@ -144,22 +141,22 @@ if __name__ == '__main__':
                     go_nord.reset_palette()
                     palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
                     selected_colors = [selected_color.lower() for selected_color in key_value[1].split(",")]
-                    to_console(confarg.logs["pals"][1].format(palette.capitalize()))
+                    console_log(confarg.logs["pals"][1].format(palette.capitalize()))
                     for selected_color in selected_colors:
                         lowered_palette = list(map(str.lower, palette_set))
                         if selected_color in lowered_palette:
                             index_color = lowered_palette.index(selected_color)
                             go_nord.add_file_to_palette(palette_set[index_color] + ".txt")
-                            to_console(confarg.logs["pals"][2].format(palette_set[index_color]))
+                            console_log(confarg.logs["pals"][2].format(palette_set[index_color]))
                             PALETTE_CHANGED = True
                         else:
-                            to_console(confarg.logs["pals"][-1].format(selected_color))
+                            console_log(confarg.logs["pals"][-1].format(selected_color))
                     for palette_color in palette_set:
                         if palette_color.lower() not in selected_colors:
-                            to_console(confarg.logs["pals"][3].format(palette_color))
+                            console_log(confarg.logs["pals"][3].format(palette_color))
                 else:
                     PALETTE_CHANGED = True
-                    to_console(confarg.logs["pals"][0].format(palette.capitalize()))
+                    console_log(confarg.logs["pals"][0].format(palette.capitalize()))
                     palette_path = ABSOLUTE_PATH + "/palettes/" + palette.capitalize() + "/"
                     go_nord.reset_palette()
                     palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
@@ -168,7 +165,7 @@ if __name__ == '__main__':
                         go_nord.add_file_to_palette(palette_color + ".txt")
 
     if not PALETTE_CHANGED:
-        to_console(confarg.logs["pals"][4])
+        console_log(confarg.logs["pals"][4])
         palette_path = ABSOLUTE_PATH + "/palettes/Nord/"
         go_nord.reset_palette()
         palette_set = [palette_file.replace(".txt", '') for palette_file in listdir(palette_path)]
