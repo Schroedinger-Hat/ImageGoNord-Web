@@ -5,18 +5,15 @@ Usage: gonord [OPTION]...
 Mandatory arguments to long options are mandatory for short options too.
 
 Startup:
-  -h,  --help                       print this help and exit
-
-  -v,  --version                    display the version of Image Go Nord and
-                                    exit
+  -h, --help                       print this help and exit
+  -v, --version                    display the version of Image Go Nord and exit
 
 Logging:
-  -q,  --quiet                      quiet (no output)
+  -q, --quiet                      quiet (no output)
 
 I/O Images:
-  -i=FILE,  --img=FILE              specify input image name
-
-  -o=FILE,  --out=FILE              specify output image name
+  -i=FILE, --img=FILE              specify input image name
+  -o=FILE, --out=FILE              specify output image name
 
 Theme options:
   --PALETTE[=LIST_COLOR_SET]        the palette can be found on the
@@ -30,7 +27,6 @@ Theme options:
                                     the first character of the name set.
 
 Conversion:
-
   -na, --no-avg                     do not use the average pixels optimization
                                     algorithm on conversion
 
@@ -92,26 +88,14 @@ class SplitDimensions(argparse.Action):
         setattr(namespace, self.dest, dimensions)
 
 
-ap = argparse.ArgumentParser(prog='ImageGoNord',
-                             description="ImageGoNord, a converter for a rgb images to norththeme palette.")
-
+ap = argparse.ArgumentParser(prog='ImageGoNord', description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
 ap.add_argument('-q', '--quiet', action='store_true')
 ap.add_argument('-v', '--version', action='version', version=f'%(prog)s {get_version()}')
-
-ap.add_argument('-i', '--img', type=str, metavar='<path>',
-                help='specify input image path')
-
-ap.add_argument('-o', '--out', type=str, metavar='<path>', default=DEFAULT_FILENAME,
-                help='specify output image path')
-
-ap.add_argument('-na', '--no-avg', action='store_true',
-                help='disable average pixels optimization algorithm on conversion')
-
-ap.add_argument('-pa', '--pixels-area', action=SplitDimensions,
-                help='disable average pixels optimization algorithm on conversion')
-
-ap.add_argument('-b', '--blur', action='store_true',
-                help='use blur on the final result')
+ap.add_argument('-i', '--img', type=str, metavar='<path>')
+ap.add_argument('-o', '--out', type=str, metavar='<path>', default=DEFAULT_FILENAME)
+ap.add_argument('-na', '--no-avg', action='store_true')
+ap.add_argument('-pa', '--pixels-area', action=SplitDimensions)
+ap.add_argument('-b', '--blur', action='store_true')
 
 
 def to_console(*params):
@@ -122,24 +106,20 @@ def to_console(*params):
         print(param)
 
 
+def check_required_arguments(parsed_args):
+    if not parsed_args.img:
+        ap.error(messages.logs['img']['error'].format(parsed_args.img) + messages.logs['general_error'])
+
+    if not parsed_args.out:
+        ap.error(messages.logs['out']['error'].format(parsed_args.out) + messages.logs['general_error'])
+
+
 if __name__ == '__main__':
     args = sys.argv[1:]
     parsed_args = ap.parse_args()
+    check_required_arguments(parsed_args)
 
-    print(parsed_args)
     QUIET_MODE = parsed_args.quiet
-
-    if not parsed_args.img:
-        ap.error(
-            messages.logs['img']['error'].format(parsed_args.img)
-            + messages.logs['general_error']
-        )
-
-    if not parsed_args.out:
-        ap.error(
-            messages.logs['out']['error'].format(parsed_args.out)
-            + messages.logs['general_error']
-        )
 
     # If help given then print the docstring of the module and exit
     go_nord = GoNord()
