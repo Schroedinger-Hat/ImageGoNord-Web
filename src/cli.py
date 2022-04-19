@@ -69,13 +69,16 @@ class SplitDimensions(argparse.Action):
 
 
 ap = argparse.ArgumentParser(prog='ImageGoNord', description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-ap.add_argument('-q', '--quiet', action='store_true')
 ap.add_argument('-v', '--version', action='version', version=f'%(prog)s {VERSION}')
-ap.add_argument('-i', '--img', type=str, metavar='<path>')
+ap.add_argument('-q', '--quiet', action='store_true')
+ap.add_argument('-i', '--img', type=str, metavar='<path>', required=True)
 ap.add_argument('-o', '--out', type=str, metavar='<path>', default=DEFAULT_FILENAME)
 ap.add_argument('-na', '--no-avg', action='store_true')
-ap.add_argument('-pa', '--pixel-area', action=SplitDimensions)
+ap.add_argument('-pa', '--pixel-area', action=SplitDimensions, default=[])
 ap.add_argument('-b', '--blur', action='store_true')
+
+for palette in listdir(f"{ABSOLUTE_PATH}/palettes/"):
+    ap.add_argument(f"--{palette.lower()}", action='store_true')
 
 
 def console_log(*params):
@@ -104,9 +107,6 @@ if __name__ == '__main__':
     # Get absolute path of source project
     ABSOLUTE_PATH = path.dirname(path.realpath(__file__))
 
-    # Get all palettes
-    palettes = [palette.lower() for palette in listdir(ABSOLUTE_PATH + "/palettes")]
-
     # Reading input image
     image = go_nord.open_image(parsed_args.img)
     console_log(messages.logs["img"]['info'].format(ABSOLUTE_PATH + "/" + parsed_args.img))
@@ -128,6 +128,9 @@ if __name__ == '__main__':
 
     if parsed_args.blur:
         go_nord.enable_gaussian_blur()
+
+    # Get all palettes
+    palettes = [palette.lower() for palette in listdir(ABSOLUTE_PATH + "/palettes")]
 
     for arg in args:
         key_value = [kv for kv in arg.split("=", 1) if kv != ""]
