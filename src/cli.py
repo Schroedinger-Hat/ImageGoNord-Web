@@ -50,7 +50,7 @@ from configs import messages
 ABSOLUTE_PATH = path.dirname(path.realpath(__file__))
 
 DEFAULT_EXTENSION = ".png"
-DEFAULT_FILENAME = f'out.{DEFAULT_EXTENSION}'
+DEFAULT_FILENAME = f'out{DEFAULT_EXTENSION}'
 
 QUIET_MODE = False
 OUTPUT_IMAGE_PATH = "nord" + DEFAULT_EXTENSION
@@ -108,7 +108,6 @@ def check_required_arguments(parsed_args):
 
 
 if __name__ == '__main__':
-    args = sys.argv[1:]
     parsed_args = ap.parse_args()
     check_required_arguments(parsed_args)
 
@@ -139,11 +138,12 @@ if __name__ == '__main__':
         (w, h) = parsed_args.pixel_area
         go_nord.set_avg_box_data(w=w, h=h)
 
+    # Enable Gaussian filter
     if parsed_args.blur:
         go_nord.enable_gaussian_blur()
+        console_log(messages.logs["blur"][0])
 
-    # Get all palettes
-    palettes = [palette.lower() for palette in listdir(ABSOLUTE_PATH + "/palettes")]
+    # Get selected palette
     parsed_args_dictionary = vars(parsed_args)
     selected_palette = next(p for p, v in parsed_args_dictionary.items() if p in PALETTE_LIST and v is not None)
     if not selected_palette:
