@@ -42,6 +42,7 @@ and/or open issues at https://github.com/Schrodinger-Hat/ImageGoNord/issues/new
 
 import argparse
 import sys
+from copy import copy
 from os import path, listdir
 from pathlib import Path
 
@@ -155,22 +156,27 @@ if __name__ == '__main__':
     palette_path = ABSOLUTE_PATH + "/palettes/" + selected_palette.capitalize() + "/"
     parsed_colors = parsed_args_dictionary.get(selected_palette)
 
+    # Loading selected palette
     palette_colors_files = [f.capitalize() + '.txt' for f in parsed_colors]
-    for pf in palette_colors_files:
+    for pf in copy(palette_colors_files):
         if not Path(palette_path + pf).is_file():
-            console_log(messages.logs["pals"][-1].format(pf))
+            console_log(messages.logs["pals"][-1].format(pf.replace('.txt', '')))
             palette_colors_files.remove(pf)
 
+    # If no palette is valid or non is chosed, use all colors palettes
     if not palette_colors_files:
         console_log(messages.logs["pals"][0].format(selected_palette.capitalize()))
         palette_colors_files = listdir(palette_path)
 
+    # Apply selected colors
     console_log(messages.logs["pals"][1].format(selected_palette.capitalize()))
     go_nord.set_palette_lookup_path(palette_path)
     go_nord.reset_palette()
     for pf in palette_colors_files:
-        console_log(messages.logs["pals"][2].format(pf))
         go_nord.add_file_to_palette(pf)
+        console_log(messages.logs["pals"][2].format(pf))
 
+    # Convert the image
     quantize_image = go_nord.convert_image(image, save_path=OUTPUT_IMAGE_PATH)
     sys.exit(0)
+
