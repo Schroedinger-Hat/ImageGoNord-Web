@@ -22,9 +22,7 @@ Theme options:
                                      with the name is possible to select the theme
                                      and if necessary you can specify the set of
                                      colors you want to use.
-                                     Ex: python src/cli.py --nord=aur,p,s
-                                     is possible to pass the name of the color
-                                     or the first character of the name set.
+                                     Ex: python src/cli.py --nord=Aurora,Frost
 
 Conversion:
   -na, --no-avg                     do not use the average pixels optimization
