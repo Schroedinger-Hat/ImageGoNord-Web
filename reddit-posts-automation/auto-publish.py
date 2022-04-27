@@ -5,6 +5,9 @@ import praw
 import hashlib
 import base64
 import requests
+import re
+
+post_regex = r"( With ImageGoNord)|(\[CHALLENGER\] |\[NORD\] |\[DRACULA\] |\[GOTHAM\] |\[GRUVBOX\] |\[MOLOKAI\] |\[MONOKAI\] |\[OCEANIC\] |\[ONEDARK\] |\[SOLARIZED\] |\[SONOKAI\] |\[TOKYO\] |\[VAPORWAVE\] |\[VIM\] )"
 
 REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
 REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '')
@@ -31,6 +34,7 @@ FLAIR_IDS={
 }
 
 IGN_TITLE_SUFFIX = ' With ImageGoNord'
+IGN_TITLE_PREFIX = '[NORD] '
 WALLPAPER_SUBREDDIT = 'wallpaper+wallpapers'
 MAX_POST_TO_PUBLISH = 1
 REPOST_SUBREDDIT = ['wallpapers', 'wallpaper', 'minimalwallpaper']
@@ -43,7 +47,7 @@ def get_image_from_subreddit(subreddit):
   submissions = []
   for submission in subreddit.new(limit=None):
     if (submission.url.endswith('jpg') or submission.url.endswith('png') or submission.url.endswith('jpeg') or submission.url.endswith('bmp')):
-      ign_submission_title = submission.title.replace(IGN_TITLE_SUFFIX, '')
+      ign_submission_title = re.sub(post_regex, '', submission.title, 0)
       submissions.append({
         'title': ign_submission_title,
         'url': submission.url,

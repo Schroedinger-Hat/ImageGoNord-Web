@@ -16,6 +16,7 @@ API_VERSION_URL = '/' + API_VERSION
 
 app = Flask(__name__)
 cors = CORS(app)
+
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 import convert_image
@@ -97,6 +98,7 @@ def get_job_result():
     result = False
 
   return jsonify({'status': job.get_status(), 'result': result})
+
 
 def setup_instance(req):
     go_nord = GoNord()
