@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#! usr/bin/env python3
+#! /usr/bin/env python3
 """ImageGoNord, a converter for a rgb images to norththeme palette.
 Usage: gonord [OPTION]...
 
