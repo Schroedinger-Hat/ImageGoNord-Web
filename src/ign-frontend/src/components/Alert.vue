@@ -1,6 +1,6 @@
 <template>
     <div class="notification-top-bar">
-      <p>The website will go down on <b>May 1st</b> because of insuffient funds for running on a OVH VPS. Please, consider on support us on <small><a target="_blank" href="https://opencollective.com/schrodinger-hat">OpenCollective <i class='fas fa-external-link-alt '></i></a></small> or <a href='https://twitter.com/schrodinger_hat' target="_blank">reach us<i class='fas fa-external-link-alt '></i></a> in order to sponsor the project.<br />Share the love & credits. Thank you</p>
+      <p>Thanks to GitKraken we are able to continue on hosting our services on a OVH VPS. Please, consider on support us on <small><a target="_blank" href="https://opencollective.com/schrodinger-hat">OpenCollective <i class='fas fa-external-link-alt '></i></a></small> or <a href='https://twitter.com/schrodinger_hat' target="_blank">reach us<i class='fas fa-external-link-alt '></i></a> in order to sponsor the project.<br />Share the love & credits. Thank you</p>
     </div>
 </template>
 
