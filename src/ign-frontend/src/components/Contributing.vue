@@ -28,6 +28,9 @@
             <a href="https://www.youtube.com/channel/UC1QLLgrGrPmlaFhS0orykCA" target="_blank">
               <i class="fab fa-youtube external-link-color"></i>
             </a>
+            <a href="https://discord.gg/RTXr8A3eFn" target="_blank">
+              <i class="fab fa-discord external-link-color"></i>
+            </a>
           </p>
         </div>
       </div>
