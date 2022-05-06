@@ -4,9 +4,9 @@
       <Main
         h1="A tool to bring any image to the nord palette"
         h2="Transform each wallpaper, icon, image into the smoothest palette on the internet"
-        link1="/getting-started"
+        link1="/color-schemes"
         link2="/documentation"
-        btn1="Getting Started"
+        btn1="More Palettes"
         btn2="Documentation"
       />
     </div>
@@ -51,11 +51,33 @@
         </div>
       </div>
     </section>
+    <section class="gallery-section">
+      <SeparatorDoubleLine />
+      <center>
+        <h3>Gallery</h3>
+        <p>
+          Here are some images converted with IGN from our community.<br/>
+          You can find more on our <a class="external-link-color" href="/wallpaper">Wallpaper page</a>
+        </p>
+      </center>
+      <Gallery />
+      <br/>
+      <SeparatorDoubleLine />
+    </section>
     <section class="demo-section">
-      <!-- <SeparatorDoubleLine /> -->
       <center>
         <h3>Try it yourself</h3>
         <p>Upload a picture and test it out</p>
+        <div class="relative">
+          <span><b>API Status</b>:</span>
+          <div :class="`ring-container ${apiStatus}`">
+              <div class="ringring"></div>
+              <div class="circle"></div>
+          </div>
+          <div>
+            <strong>Total converted images: </strong>{{ apiCount }}
+          </div>
+        </div>
       </center>
       <Demo />
     </section>
@@ -67,11 +89,14 @@ import Main from '@/components/Main.vue';
 import Demo from '@/components/Demo.vue';
 import SeparatorDoubleLine from '@/components/separator/DoubleLine.vue';
 import ImgCompare from '@/components/ImgCompare.vue';
+import Gallery from '@/components/Gallery.vue';
 
 export default {
   name: 'Home',
   data() {
     return {
+      apiStatus: 'success',
+      apiCount: 99999,
       imgCompareCar: {
         after: 'demo/car-after.png',
         before: 'demo/car-before.png',
@@ -82,11 +107,20 @@ export default {
       },
     };
   },
+  mounted() {
+    const self = this;
+    setInterval(() => {
+      fetch('https://ign-api.schrodinger-hat.it/v1/status')
+        .then((r) => { self.apiStatus = 'success'; r.json().then((j) => { self.apiCount = j.count; }); })
+        .catch(() => { self.apiStatus = 'failed'; });
+    }, 8000);
+  },
   components: {
     Main,
     Demo,
     SeparatorDoubleLine,
     ImgCompare,
+    Gallery,
   },
 };
 </script>
@@ -130,6 +164,15 @@ export default {
   }
 }
 
+.gallery-section {
+  background: $nord5;
+
+  h3 {
+    font-size: 2em;
+    margin: .3em 0;
+  }
+}
+
 .demo-section {
   min-height: 500px;
   background: $nord5;
@@ -149,6 +192,51 @@ export default {
   .separator-double-line {
     margin-bottom: -3em;
   }
+  .ring-container {
+    display: inline-block;
+    position: relative;
+    top: -35px;
+    left: -10px;
+  }
+
+  .circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 23px;
+    left: 23px;
+  }
+
+  .ringring {
+    -webkit-border-radius: 30px;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    opacity: 0.0;
+  }
+
+  .ring-container.success {
+    .circle {
+      background-color: #62bd19;
+    }
+    .ringring {
+      border: 3px solid #62bd19;
+    }
+  }
+
+  .ring-container.failed {
+    .circle {
+      background-color: #bd3219;
+    }
+    .ringring {
+      border: 3px solid #bd3219;
+    }
+  }
 }
 
 @media (min-width: 56.25em) {
@@ -167,7 +255,7 @@ export default {
 }
 
 .#{$dark-mode-class} {
-  .demo-section, .slider-section {
+  .demo-section, .slider-section, .gallery-section {
     background: $nord2;
   }
 
@@ -181,6 +269,12 @@ export default {
       }
     }
   }
+}
+
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.1, 1.1); opacity: 0.0;}
 }
 
 </style>

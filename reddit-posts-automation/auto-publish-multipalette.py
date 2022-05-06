@@ -7,13 +7,14 @@ import base64
 import requests
 import re
 
+
 post_regex = r"( With ImageGoNord)|(\[CHALLENGER\] |\[NORD\] |\[DRACULA\] |\[GOTHAM\] |\[GRUVBOX\] |\[MOLOKAI\] |\[MONOKAI\] |\[OCEANIC\] |\[ONEDARK\] |\[SOLARIZED\] |\[SONOKAI\] |\[TOKYO\] |\[VAPORWAVE\] |\[CATPPUCCIN\] |\[VIM\] )"
 
 
-REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
-REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '6E3oMMV^P4RcX9jA$v!R')
-REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '-5re3mJsv5Dd0Q')
-REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', 'T7rfiTMTN88cSo5zDIw_JlvP8beq-g')
+REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME')
+REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD')
+REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID')
+REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET')
 SUBREDDIT = os.environ.get('SUBREDDIT', 'imagegonord')
 
 FLAIR={
@@ -111,3 +112,4 @@ if len(wallpapers_to_process) > 0:
         print(e)
 
     published_post = published_post + 1
+

@@ -11,7 +11,7 @@
         </div>
         <nav>
           <div class="navbar">
-            <span>&copy;2020 Schrödinger Hat</span>
+            <span>&copy;{{ new Date().getFullYear() }} Schrödinger Hat</span>
           </div>
         </nav>
       </div>

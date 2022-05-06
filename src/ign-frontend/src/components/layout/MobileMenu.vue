@@ -6,6 +6,8 @@
         <router-link to="/getting-started">Getting Started</router-link>
         <router-link to="/installation">Installation</router-link>
         <router-link to="/documentation">Documentation</router-link>
+        <router-link to="/color-schemes">ImageGoWild</router-link>
+        <router-link to="/wallpaper">Wallpaper</router-link>
         <router-link to="/about">About</router-link>
         <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">GitHub</a>
       </div>
