@@ -1,5 +1,4 @@
 # ImageGoNord - RGB image to Nordtheme palette
-[![GitGuardian scan](https://github.com/Schrodinger-Hat/ImageGoNord/actions/workflows/git-guardian.yml/badge.svg)](https://github.com/Schrodinger-Hat/ImageGoNord/actions/workflows/git-guardian.yml)
 
 A tool that can convert your rgb images to nordtheme palette.
 
