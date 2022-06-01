@@ -14,6 +14,7 @@
     <section class="slider-section">
       <center>
         <h3>Nordify every image</h3>
+        <a href="https://www.producthunt.com/posts/imagegonord?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-imagegonord" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=348145&theme=neutral" alt="ImageGoNord - Convert&#0032;your&#0032;images&#0032;into&#0032;your&#0032;fav&#0032;color&#0032;palette&#0033; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
       </center>
       <div class="container">
         <div class="slider-item">
