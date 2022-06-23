@@ -20,15 +20,16 @@ I/O Images:
   -o=FILE,  --out=FILE              specify output image name
 
 Theme options:
-  --PALETTE[=LIST_COLOR_SET]        the palette can be found on the
+  --PALETTE[=LIST_COLOR_SET]        the palettes can be found in the
                                     src/palettes/ directory (actually there is
-                                    only nord), by replace the palette with the
-                                    name is possible to select the theme and if
+                                    only nord), by replacing 'PALETTE' with a
+                                    theme name it is possible to select a theme. If
                                     necessary you can specify the set of colors
                                     you want to use.
                                     Ex: python src/cli.py --nord=aur,p,s is
                                     possible to pass the name of the color or
                                     the first character of the name set.
+                                    To use the Monokai theme use this command: python src/cli.py --Monokai
 
 Conversion:
 
