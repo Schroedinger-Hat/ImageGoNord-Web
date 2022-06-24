@@ -23,7 +23,7 @@ Theme options:
   --PALETTE[=LIST_COLOR_SET]        the palettes can be found in the
                                     src/palettes/ directory (actually there is
                                     only nord), by replacing 'PALETTE' with a
-                                    theme name it is possible to select a theme. If
+                                    theme name it is possible to select it. If
                                     necessary you can specify the set of colors
                                     you want to use.
                                     Ex: python src/cli.py --nord=aur,p,s is
