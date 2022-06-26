@@ -29,7 +29,7 @@ Theme options:
                                     Ex: python src/cli.py --nord=aur,p,s is
                                     possible to pass the name of the color or
                                     the first character of the name set.
-                                    To use the Monokai theme use this command: python src/cli.py --Monokai
+                                    To use the Monokai theme use this command: python src/cli.py --monokai
 
 Conversion:
 
