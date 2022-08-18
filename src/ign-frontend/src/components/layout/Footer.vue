@@ -40,7 +40,8 @@ export default {
     SeparatorTripleLine,
   },
   methods: {
-    closeModal: () => {
+    closeModal: (e) => {
+      e.preventDefault();
       document.querySelector('.modal-window').classList.toggle('modal-window__active');
     },
   },

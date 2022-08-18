@@ -240,7 +240,7 @@ export default Vue.component('Demo', {
         });
         document.querySelector('.preview').classList.toggle('processing');
 
-        if (conversionCount % 3 === 0) {
+        if (conversionCount !== 0 && conversionCount % 3 === 0) {
           document.querySelector('.modal-window').classList.toggle('modal-window__active');
         }
 
