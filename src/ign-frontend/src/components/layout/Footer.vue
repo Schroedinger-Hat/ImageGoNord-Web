@@ -16,6 +16,17 @@
         </nav>
       </div>
     </div>
+    <div id="open-modal" class="modal-window">
+      <div>
+        <a href="#" title="Close" @click="closeModal" class="modal-close">Close</a>
+        <h3>Thank you for using our tool & service!</h3>
+        <div>
+          <small>Please, consider on support us via a donation on <a class="external-link-color" target="_blank" href="https://opencollective.com/schrodinger-hat">OpenCollective <i class='fas fa-external-link-alt '></i></a>
+           or <a class="external-link-color" href='https://twitter.com/schrodinger_hat' target="_blank">reach us<i class='fas fa-external-link-alt '></i></a> in order to sponsor the project.
+           <br /><br />Share the love & credits</small>
+        </div>
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -27,6 +38,11 @@ export default {
   props: {},
   components: {
     SeparatorTripleLine,
+  },
+  methods: {
+    closeModal: () => {
+      document.querySelector('.modal-window').classList.toggle('modal-window__active');
+    },
   },
 };
 </script>

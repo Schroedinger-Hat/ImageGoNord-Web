@@ -95,6 +95,7 @@
 <script>
 import Vue from 'vue';
 import Loader from './Loader.vue';
+import CookieManager from '../utility/CookieManager';
 
 export default Vue.component('Demo', {
   props: {
@@ -230,12 +231,19 @@ export default Vue.component('Demo', {
       const self = this;
       const im = new Image();
       im.onload = () => {
+        const conversionCount = CookieManager.getCookie('conversion-counter') || 0;
+        CookieManager.setCookie('conversion-counter', conversionCount + 1);
         window.gtag('event', 'converted-image', {
           event_category: 'converted-image',
           event_label: (this.palette.name || 'Nordtheme'),
           value: (this.palette.name || 'Nordtheme'),
         });
         document.querySelector('.preview').classList.toggle('processing');
+
+        if (conversionCount % 3 === 0) {
+          document.querySelector('.modal-window').classList.toggle('modal-window__active');
+        }
+
         const canvas = document.getElementById('img-preview');
         const ctx = document.getElementById('img-preview').getContext('2d');
         const ratio = self.img.width / self.img.height;
