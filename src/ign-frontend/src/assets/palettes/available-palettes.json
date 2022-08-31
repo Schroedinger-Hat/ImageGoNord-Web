@@ -88,5 +88,15 @@
         "name": "Srcery",
         "img": "palettes/img/srcery.png",
         "file": "palettes/srcery.json"
+    },
+    {
+        "name": "Serenade",
+        "img": "palettes/img/serenade.png",
+        "file": "palettes/serenade.json"
+    },
+    {
+        "name": "Palenight",
+        "img": "palettes/img/palenight.png",
+        "file": "palettes/palenight.json"
     }
 ]
