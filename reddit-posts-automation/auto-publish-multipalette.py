@@ -31,7 +31,7 @@ FLAIR={
   # 'TOKYO': {'id': 'ccc6e9f2-0e43-11ec-9715-1ea24e7b246f', 'hex_colors': ["#1a1b26","#4e5173","#F7768E","#F7768E","#9ECE6A","#9ECE6A","#E0AF68","#E0AF68","#7AA2F7","#7AA2F7","#9a7ecc","#9a7ecc","#4abaaf","#4abaaf","#acb0d0","#acb0d0"]},
   'VAPORWAVE': {'id': 'd84eab48-0e43-11ec-811e-4edcb0b81b7f', 'hex_colors': ["#94D0FF", "#8795E8", "#966bff", "#AD8CFF", "#C774E8"]},
   'CATPPUCCIN': {'id': 'e62951d2-7a09-11ec-abde-ca9aae39851e', 'hex_colors': ["#F5E0DC", "#F2CDCD", "#DDB6F2", "#F5C2E7", "#E8A2AF", "#F28FAD", "#F8BD96", "#FAE3B0", "#ABE9B3", "#B5E8E0", "#96CDFB", "#89DCEB", "#C9CBFF", "#161320","#1A1826","#1E1E2E","#302D41","#575268","#6E6C7E","#988BA2","#C3BAC6","#D9E0EE"]},
-  'MOONLIGHT': {'id': '', 'hex_colors': ["#c0cedd", "#99a0a8", "#c6c3c0", "#191f28", "#1f2730", "#374656", "#ecbd7c", "#c69f68", "#93764d", "#c68768", "#c66868", "#c66890", "#6880c6","#68aec6","#9fc76d"]},
+  'MOONLIGHT': {'id': '9bbf781a-2cfb-11ed-a549-1ac2767c974c', 'hex_colors': ["#c0cedd", "#99a0a8", "#c6c3c0", "#191f28", "#1f2730", "#374656", "#ecbd7c", "#c69f68", "#93764d", "#c68768", "#c66868", "#c66890", "#6880c6","#68aec6","#9fc76d"]},
   # 'VIM': {'id': 'e99ae150-0e43-11ec-aad0-6e6c5b7d00e0', 'hex_colors': ["#0184bc","#4078f2","#a626a4","#50a14f","#e45649","#ca1243","#986801","#c18401","#fafafa","#9e9e9e","#f0f0f0"]}
 }
 
