@@ -66,6 +66,15 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "senali-d",
+      "name": "Senali",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52546856?v=4",
+      "profile": "https://github.com/senali-d",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
