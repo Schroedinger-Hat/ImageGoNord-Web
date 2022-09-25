@@ -66,6 +66,15 @@
         "doc",
         "code"
       ]
+    },
+    {
+      "login": "JuanCldCmt",
+      "name": "JuanCC",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72336775?v=4",
+      "profile": "https://juancldcmt.github.io",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
