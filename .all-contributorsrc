@@ -55,6 +55,17 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "jlc893",
+      "name": "Jason",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77926457?v=4",
+      "profile": "https://github.com/jlc893",
+      "contributions": [
+        "design",
+        "doc",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
