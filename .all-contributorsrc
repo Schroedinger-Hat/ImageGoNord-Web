@@ -46,6 +46,15 @@
         "maintenance",
         "projectManagement"
       ]
+    },
+    {
+      "login": "Abod1960",
+      "name": "Abdullah Omar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/79435005?v=4",
+      "profile": "http://abod1960.cf",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
