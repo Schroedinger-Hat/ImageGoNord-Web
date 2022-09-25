@@ -1,0 +1,30 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "Wabri",
+      "name": "GabrielePuliti",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12409541?v=4",
+      "profile": "https://www.linkedin.com/in/%F0%9F%90%A7gabriele-puliti-b62915a9/",
+      "contributions": [
+        "code",
+        "doc",
+        "design",
+        "ideas",
+        "maintenance",
+        "projectManagement"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "ImageGoNord",
+  "projectOwner": "Schrodinger-Hat"
+}
