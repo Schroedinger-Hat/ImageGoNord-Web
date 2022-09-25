@@ -1,6 +1,6 @@
 # ImageGoNord - RGB image to Nordtheme palette
 
-A tool that can convert your rgb images to nordtheme palette.
+A tool that can convert your rgb images to [Nordtheme](https://www.nordtheme.com/) palette.
 
 This repository is:
 - CLI utility, written in python, that can convert any sort of image into a [nordtheme](https://github.com/arcticicestudio/nord) palette image;
@@ -93,9 +93,16 @@ python src/cli.py --help
 
 **NOTE**: we are not (yet) affiliated with the Nordtheme or [Arcticicestudio](https://github.com/arcticicestudio).
 
-# Credits
+## Contributors
 
-[Nordtheme](https://www.nordtheme.com/)
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ### License
 
