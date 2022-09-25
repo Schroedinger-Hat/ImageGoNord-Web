@@ -33,6 +33,19 @@
         "maintenance",
         "projectManagement"
       ]
+    },
+    {
+      "login": "BugliL",
+      "name": "BugliL",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3107276?v=4",
+      "profile": "https://github.com/BugliL",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "maintenance",
+        "projectManagement"
+      ]
     }
   ],
   "contributorsPerLine": 7,
