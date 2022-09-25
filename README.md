@@ -1,6 +1,6 @@
 # ImageGoNord - RGB image to Nordtheme palette
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 A tool that can convert your rgb images to [Nordtheme](https://www.nordtheme.com/) palette.
@@ -107,6 +107,7 @@ python src/cli.py --help
       <td align="center"><a href="https://www.linkedin.com/in/%F0%9F%90%A7gabriele-puliti-b62915a9/"><img src="https://avatars.githubusercontent.com/u/12409541?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GabrielePuliti</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=Wabri" title="Code">💻</a> <a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=Wabri" title="Documentation">📖</a> <a href="#design-Wabri" title="Design">🎨</a> <a href="#ideas-Wabri" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-Wabri" title="Maintenance">🚧</a> <a href="#projectManagement-Wabri" title="Project Management">📆</a></td>
       <td align="center"><a href="https://www.mikilombardi.com"><img src="https://avatars.githubusercontent.com/u/6616203?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Miki Lombardi</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=TheJoin95" title="Code">💻</a> <a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=TheJoin95" title="Documentation">📖</a> <a href="#design-TheJoin95" title="Design">🎨</a> <a href="#ideas-TheJoin95" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-TheJoin95" title="Maintenance">🚧</a> <a href="#projectManagement-TheJoin95" title="Project Management">📆</a></td>
       <td align="center"><a href="https://github.com/BugliL"><img src="https://avatars.githubusercontent.com/u/3107276?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BugliL</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=BugliL" title="Code">💻</a> <a href="#design-BugliL" title="Design">🎨</a> <a href="#ideas-BugliL" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-BugliL" title="Maintenance">🚧</a> <a href="#projectManagement-BugliL" title="Project Management">📆</a></td>
+      <td align="center"><a href="http://abod1960.cf"><img src="https://avatars.githubusercontent.com/u/79435005?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Abdullah Omar</b></sub></a><br /><a href="#design-Abod1960" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>
