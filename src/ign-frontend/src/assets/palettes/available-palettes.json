@@ -98,5 +98,10 @@
         "name": "Palenight",
         "img": "palettes/img/palenight.png",
         "file": "palettes/palenight.json"
+    },
+    {
+        "name": "Monalisa",
+        "img": "palettes/img/monalisa.png",
+        "file": "palettes/monalisa.json"
     }
 ]
