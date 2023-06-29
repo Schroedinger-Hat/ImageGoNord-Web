@@ -2,8 +2,6 @@ name: 'Tweeting on schrodinger_hat profile'
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron:  '0 12 * * 1,4'
 
 jobs:
   upload_and_convert:
