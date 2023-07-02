@@ -18,8 +18,5 @@ Steps to reproduce the behavior:
 **Are there any correletion between you and the project / color / palette / image are you submitting?**
 A honest answer
 
-**In which project: CLI, Web?**
-Indicate in which part of the project you would like to put it
-
 **Additional notes**
 Add any other notes here.
