@@ -232,7 +232,7 @@ export default Vue.component('Demo', {
       const im = new Image();
       im.onload = () => {
         const conversionCount = CookieManager.getCookie('conversion-counter') || 0;
-        CookieManager.setCookie('conversion-counter', parseInt(conversionCount) + 1);
+        CookieManager.setCookie('conversion-counter', parseInt(conversionCount, 10) + 1);
         window.gtag('event', 'converted-image', {
           event_category: 'converted-image',
           event_label: (this.palette.name || 'Nordtheme'),

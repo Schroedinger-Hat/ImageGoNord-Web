@@ -2,7 +2,7 @@ from ImageGoNord import GoNord, NordPaletteFile
 from flask import Flask
 from flask import jsonify, abort
 from flask import request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask_restx import Api, Resource, fields
 from werkzeug.datastructures import FileStorage
 
@@ -10,20 +10,22 @@ from rq import Queue
 from rq.job import Job
 from worker import conn
 
+from convert_image import convert_async_api
+
 q = Queue(connection=conn)
-API_VERSION = 'v1'
+API_VERSION = '/v1'
 API_VERSION_URL = '/' + API_VERSION
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-import convert_image
+app.register_blueprint(convert_async_api)
 
 @app.route(API_VERSION + "/status", methods=["GET"])
 @cross_origin(origin='*')
 def get_api_status():
-  return jsonify({'ok': True})
+  return jsonify({'ok': True, 'count': conn.get('conversion_count')})
 
 @app.route(API_VERSION + "/quantize", methods=["POST"])
 @cross_origin(origin='*')
@@ -123,4 +125,4 @@ def setup_instance(req):
 
 
 if __name__ == '__main__':
-    app.run(port=8000, threaded=True)
+    app.run(host='127.0.0.1', port=8000, threaded=True)

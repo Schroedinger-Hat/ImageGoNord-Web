@@ -2,15 +2,20 @@ from flask import Flask
 from flask import jsonify, abort
 from flask import request
 from flask_cors import CORS, cross_origin
+from flask import Blueprint
 
 from ImageGoNord import GoNord, NordPaletteFile
 
 from rq import Queue
 from rq.job import Job
 from worker import conn
-from run import app, API_VERSION, q, cors
 
-@app.route(API_VERSION + "/convert-async", methods=["POST"])
+q = Queue(connection=conn)
+API_VERSION = '/v1'
+
+convert_async_api = Blueprint('convert_async_api', __name__)
+
+@convert_async_api.route(API_VERSION + "/convert-async", methods=["POST"])
 @cross_origin(origin='*')
 def convert_queue():
   go_nord = setup_instance(request)
@@ -29,9 +34,9 @@ def convert_queue():
   if (request.form.get('output_path') != None):
     output_path = request.form.get('output_path')
 
-  # convert_image(go_nord, image, output_path, request, response)
-  job = q.enqueue(f=convert_image, job_timeout='60s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
-  
+  conn.incr('conversion_count', 1)
+  job = q.enqueue(f=convert_image, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
+
   return job.id
 
 def convert_image(go_nord, image, save_path, b64_output, response):
