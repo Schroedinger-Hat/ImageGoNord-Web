@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import jsonify, abort
-from flask import request
+from flask import request, send_file
 from flask_cors import CORS, cross_origin
 from flask import Blueprint
 
@@ -9,6 +9,7 @@ from ImageGoNord import GoNord, NordPaletteFile
 from rq import Queue
 from rq.job import Job
 from worker import conn
+import os
 
 q = Queue(connection=conn)
 API_VERSION = '/v1'
@@ -21,12 +22,13 @@ def convert_queue():
   go_nord = setup_instance(request)
   output_path = ''
   response = {'success': True}
+  file = None
 
   if (request.files.get('file') != None):
-    image = go_nord.open_image(request.files.get('file').stream)
-  elif (request.form.get('file_path') != None):
+    file = request.files.get('file')
+  elif (request.form.get('file_path') != None): # not used in the website
     image = go_nord.open_image(request.form.get('file_path'))
-  elif (request.form.get('b64_input') != None):
+  elif (request.form.get('b64_input') != None): # not used in the website
     image = go_nord.base64_to_image(request.form.get('b64_input'))
   else:
     abort(400, 'You need to provide at least a valid image or image path')
@@ -35,9 +37,26 @@ def convert_queue():
     output_path = request.form.get('output_path')
 
   conn.incr('conversion_count', 1)
-  job = q.enqueue(f=convert_image, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
+
+  if is_image(file.filename):
+    image = go_nord.open_image(request.files.get('file').stream)
+    job = q.enqueue(f=convert_image, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
+  elif is_video(file.filename):
+    path_to_video = os.path.join('/tmp', file.filename)
+    #file.save(path_to_video)
+    job = q.enqueue(f=convert_video, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, path_to_video))
+  else:
+    abort(400, 'No valid file: you can upload video in mp4, avi, webp and mov and images (up to 16MB)')
 
   return job.id
+
+def is_video(filename):
+  return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ['mp4', 'mov', 'avi', 'webm']
+
+def is_image(filename):
+  return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ['png', 'jpg', 'jpeg']
 
 def convert_image(go_nord, image, save_path, b64_output, response):
   image = go_nord.convert_image(image, save_path=save_path)
@@ -47,6 +66,10 @@ def convert_image(go_nord, image, save_path, b64_output, response):
     response['b64_img'] = base64_img_string
 
   return response
+
+def convert_video(go_nord, path_to_video):
+  output_papth = go_nord.convert_video(path_to_video, 'custom_palette', save_path='/tmp')
+  return send_file(output_papth)
 
 def setup_instance(req):
   go_nord = GoNord()

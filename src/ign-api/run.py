@@ -19,6 +19,8 @@ API_VERSION_URL = '/' + API_VERSION
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['UPLOAD_FOLDER'] = '/tmp'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000 # 16MB
 
 app.register_blueprint(convert_async_api)
 
@@ -58,7 +60,7 @@ def quantize():
   
   return jsonify(response)
 
-@app.route(API_VERSION + "/convert", methods=["POST"])
+@app.route(API_VERSION + "/convert", methods=["POST"]) # not used in website
 @cross_origin(origin='*')
 def convert():
   go_nord = setup_instance(request)
