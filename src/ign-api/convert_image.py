@@ -1,15 +1,15 @@
-from flask import Flask
-from flask import jsonify, abort
-from flask import request, send_file
-from flask_cors import CORS, cross_origin
+from flask import abort
+from flask import request
+from flask_cors import cross_origin
 from flask import Blueprint
 
-from ImageGoNord import GoNord, NordPaletteFile
+from ImageGoNord import GoNord
 
 from rq import Queue
-from rq.job import Job
 from worker import conn
 import os
+from datetime import datetime
+
 
 q = Queue(connection=conn)
 API_VERSION = '/v1'
@@ -42,8 +42,10 @@ def convert_queue():
     image = go_nord.open_image(request.files.get('file').stream)
     job = q.enqueue(f=convert_image, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
   elif is_video(file.filename):
-    path_to_video = os.path.join('/tmp', file.filename)
-    #file.save(path_to_video)
+    now = datetime.now() # current date and time
+    filename = now.strftime("%m%d%Y-%H%M%S")
+    path_to_video = os.path.join('/tmp', 'ign-video-' + filename + '.' + file.filename.rsplit('.', 1)[1])
+    file.save(path_to_video)
     job = q.enqueue(f=convert_video, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, path_to_video))
   else:
     abort(400, 'No valid file: you can upload video in mp4, avi, webp and mov and images (up to 16MB)')
@@ -68,8 +70,12 @@ def convert_image(go_nord, image, save_path, b64_output, response):
   return response
 
 def convert_video(go_nord, path_to_video):
-  output_papth = go_nord.convert_video(path_to_video, 'custom_palette', save_path='/tmp')
-  return send_file(output_papth)
+  try:
+    output_path = go_nord.convert_video(path_to_video, 'custom_palette', save_path='/tmp')
+  finally:
+    os.remove(path_to_video)
+
+  return {'output_path': output_path}
 
 def setup_instance(req):
   go_nord = GoNord()

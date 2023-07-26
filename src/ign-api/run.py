@@ -1,16 +1,15 @@
-from ImageGoNord import GoNord, NordPaletteFile
+from ImageGoNord import GoNord
 from flask import Flask
 from flask import jsonify, abort
-from flask import request
+from flask import request, send_file
 from flask_cors import CORS, cross_origin
-from flask_restx import Api, Resource, fields
-from werkzeug.datastructures import FileStorage
 
 from rq import Queue
 from rq.job import Job
 from worker import conn
 
 from convert_image import convert_async_api
+import os
 
 q = Queue(connection=conn)
 API_VERSION = '/v1'
@@ -97,10 +96,14 @@ def convert():
 def get_job_result():
   job = Job.fetch(request.args.get('job_id'), connection=conn)
   result = job.result
+  f = None
   if result == None:
     result = False
+  elif 'output_path' in result:
+    f = send_file(result['output_path'], as_attachment=True, cache_timeout=0)
+    os.remove(result['output_path'])
 
-  return jsonify({'status': job.get_status(), 'result': result})
+  return jsonify({'status': job.get_status(), 'result': result}) if f == None else f
 
 def setup_instance(req):
     go_nord = GoNord()
