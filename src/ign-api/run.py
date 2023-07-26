@@ -8,7 +8,7 @@ from rq import Queue
 from rq.job import Job
 from worker import conn
 
-from convert_image import convert_async_api
+from conversion import convert_async_api
 import os
 
 q = Queue(connection=conn)
