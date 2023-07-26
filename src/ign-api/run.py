@@ -19,7 +19,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['UPLOAD_FOLDER'] = '/tmp'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000 # 16MB
+app.config['MAX_CONTENT_LENGTH'] = 128 * 1000 * 1000 # 128MB
 
 app.register_blueprint(convert_async_api)
 

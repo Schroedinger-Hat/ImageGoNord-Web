@@ -46,7 +46,7 @@ def convert_queue():
     filename = now.strftime("%m%d%Y-%H%M%S")
     path_to_video = os.path.join('/tmp', 'ign-video-' + filename + '.' + file.filename.rsplit('.', 1)[1])
     file.save(path_to_video)
-    job = q.enqueue(f=convert_video, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, path_to_video))
+    job = q.enqueue(f=convert_video, ttl=900, failure_ttl=900, job_timeout='300s', args=(go_nord, path_to_video))
   else:
     abort(400, 'No valid file: you can upload video in mp4, avi, webp and mov and images (up to 16MB)')
 
@@ -71,7 +71,7 @@ def convert_image(go_nord, image, save_path, b64_output, response):
 
 def convert_video(go_nord, path_to_video):
   try:
-    output_path = go_nord.convert_video(path_to_video, 'custom_palette', save_path='/tmp')
+    output_path = go_nord.convert_video(path_to_video, 'custom_palette')
   finally:
     os.remove(path_to_video)
 
