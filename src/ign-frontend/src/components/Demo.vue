@@ -4,7 +4,7 @@
       <div class="preview">
         <div class="preview-wrapper">
           <Loader />
-          <input type="file" accept="image/*" id="file" @change="loadFile" style="display:none;">
+          <input type="file" accept="image/*, video/*" id="file" @change="loadFile" style="display:none;">
           <label for="file"></label>
           <canvas width="450" height="450" id="img-preview"></canvas>
         </div>
@@ -106,7 +106,7 @@ export default Vue.component('Demo', {
   },
   data() {
     return {
-      apiUrl: 'https://ign-api.schrodinger-hat.it/v1',
+      apiUrl: 'http://localhost:8000/v1',
       img: null,
       imgData: null,
       selectedColor: [],
@@ -120,7 +120,6 @@ export default Vue.component('Demo', {
     selectedPalette(file) {
       // eslint-disable-next-line
       this.palette = require(`../assets/${file}`);
-      console.log(this.palette);
     },
     palette(p) {
       this.selectedColor = p.colors;
@@ -132,26 +131,32 @@ export default Vue.component('Demo', {
       dropArea.classList.add('uploaded');
 
       const [imgData] = event.target.files;
-      const canvas = document.getElementById('img-preview');
-      const ctx = document.getElementById('img-preview').getContext('2d');
-      canvas.width = canvas.parentNode.offsetWidth * 0.8;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const img = new Image();
+      this.imgData = imgData;
+      this.isVideo = true;
 
-      img.onload = () => {
-        const ratio = img.width / img.height;
-        let newWidth = canvas.width;
-        let newHeight = newWidth / ratio;
-        if (newHeight > canvas.height) {
-          newHeight = canvas.height;
-          newWidth = newHeight * ratio;
-        }
-        this.img = img;
-        this.imgData = imgData;
-        ctx.drawImage(img, 0, 0, newWidth, newHeight);
-      };
+      if (event.target.files[0].type.indexOf('video') === -1) {
+        this.isVideo = false;
+        const canvas = document.getElementById('img-preview');
+        const ctx = document.getElementById('img-preview').getContext('2d');
+        canvas.width = canvas.parentNode.offsetWidth * 0.8;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const img = new Image();
 
-      img.src = URL.createObjectURL(event.target.files[0]);
+        img.onload = () => {
+          const ratio = img.width / img.height;
+          let newWidth = canvas.width;
+          let newHeight = newWidth / ratio;
+          if (newHeight > canvas.height) {
+            newHeight = canvas.height;
+            newWidth = newHeight * ratio;
+          }
+          this.img = img;
+          this.imgData = imgData;
+          ctx.drawImage(img, 0, 0, newWidth, newHeight);
+        };
+
+        img.src = URL.createObjectURL(event.target.files[0]);
+      }
     },
     processImage(e) {
       e.preventDefault();
@@ -174,6 +179,7 @@ export default Vue.component('Demo', {
       // formData.append('width', this.img.width);
       // formData.append('height', this.img.height);
       formData.append('b64_output', true);
+      formData.append('palette_name', this.palette.name);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
 
       if (this.avg_index !== 0) {
@@ -213,6 +219,7 @@ export default Vue.component('Demo', {
       const self = this;
       fetch(`${this.apiUrl}/get-job?job_id=${jobId}`)
         .then((r) => {
+          const rClone = r.clone();
           r.json().then((jsonResponse) => {
             if (jsonResponse.status === 'finished') {
               self.showResponseImage(img, jsonResponse.result);
@@ -224,6 +231,21 @@ export default Vue.component('Demo', {
               document.querySelector('.preview').classList.toggle('processing');
               console.info('Something went wrong, please retry or write to us!');
             }
+          }).catch(() => {
+            if (self.isVideo) {
+              rClone.blob().then((blob) => {
+                const newBlob = new Blob([blob]);
+                const blobUrl = window.URL.createObjectURL(newBlob);
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.setAttribute('download', 'converted-video.mp4');
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
+
+                window.URL.revokeObjectURL(blobUrl);
+              });
+            }
           });
         });
     },
@@ -232,7 +254,7 @@ export default Vue.component('Demo', {
       const im = new Image();
       im.onload = () => {
         const conversionCount = CookieManager.getCookie('conversion-counter') || 0;
-        CookieManager.setCookie('conversion-counter', parseInt(conversionCount) + 1);
+        CookieManager.setCookie('conversion-counter', parseInt(conversionCount, 10) + 1);
         window.gtag('event', 'converted-image', {
           event_category: 'converted-image',
           event_label: (this.palette.name || 'Nordtheme'),

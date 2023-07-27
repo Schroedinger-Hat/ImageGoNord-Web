@@ -1,29 +1,32 @@
-from ImageGoNord import GoNord, NordPaletteFile
+from ImageGoNord import GoNord
 from flask import Flask
 from flask import jsonify, abort
-from flask import request
-from flask_cors import CORS
-from flask_restx import Api, Resource, fields
-from werkzeug.datastructures import FileStorage
+from flask import request, send_file
+from flask_cors import CORS, cross_origin
 
 from rq import Queue
 from rq.job import Job
 from worker import conn
 
+from conversion import convert_async_api
+import os
+
 q = Queue(connection=conn)
-API_VERSION = 'v1'
+API_VERSION = '/v1'
 API_VERSION_URL = '/' + API_VERSION
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['UPLOAD_FOLDER'] = '/tmp'
+app.config['MAX_CONTENT_LENGTH'] = 128 * 1000 * 1000 # 128MB
 
-import convert_image
+app.register_blueprint(convert_async_api)
 
 @app.route(API_VERSION + "/status", methods=["GET"])
 @cross_origin(origin='*')
 def get_api_status():
-  return jsonify({'ok': True})
+  return jsonify({'ok': True, 'count': conn.get('conversion_count')})
 
 @app.route(API_VERSION + "/quantize", methods=["POST"])
 @cross_origin(origin='*')
@@ -56,7 +59,7 @@ def quantize():
   
   return jsonify(response)
 
-@app.route(API_VERSION + "/convert", methods=["POST"])
+@app.route(API_VERSION + "/convert", methods=["POST"]) # not used in website
 @cross_origin(origin='*')
 def convert():
   go_nord = setup_instance(request)
@@ -93,10 +96,14 @@ def convert():
 def get_job_result():
   job = Job.fetch(request.args.get('job_id'), connection=conn)
   result = job.result
+  f = None
   if result == None:
     result = False
+  elif 'output_path' in result:
+    f = send_file(result['output_path'], as_attachment=True, cache_timeout=0)
+    os.remove(result['output_path'])
 
-  return jsonify({'status': job.get_status(), 'result': result})
+  return jsonify({'status': job.get_status(), 'result': result}) if f == None else f
 
 def setup_instance(req):
     go_nord = GoNord()
@@ -123,4 +130,4 @@ def setup_instance(req):
 
 
 if __name__ == '__main__':
-    app.run(port=8000, threaded=True)
+    app.run(host='127.0.0.1', port=8000, threaded=True)
