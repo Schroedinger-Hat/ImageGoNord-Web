@@ -23,6 +23,7 @@ def convert_queue():
   output_path = ''
   response = {'success': True}
   file = None
+  palette_name = 'Nordtheme'
 
   if (request.files.get('file') != None):
     file = request.files.get('file')
@@ -36,6 +37,9 @@ def convert_queue():
   if (request.form.get('output_path') != None):
     output_path = request.form.get('output_path')
 
+  if (request.form.get('palette_name') != None):
+    palette_name = request.form.get('palette_name')
+
   conn.incr('conversion_count', 1)
 
   if is_image(file.filename):
@@ -46,7 +50,7 @@ def convert_queue():
     filename = now.strftime("%m%d%Y-%H%M%S")
     path_to_video = os.path.join('/tmp', 'ign-video-' + filename + '.' + file.filename.rsplit('.', 1)[1])
     file.save(path_to_video)
-    job = q.enqueue(f=convert_video, ttl=900, failure_ttl=900, job_timeout='300s', args=(go_nord, path_to_video))
+    job = q.enqueue(f=convert_video, ttl=900, failure_ttl=900, job_timeout='900s', args=(go_nord, palette_name, path_to_video))
   else:
     abort(400, 'No valid file: you can upload video in mp4, avi, webp and mov and images (up to 16MB)')
 
@@ -69,9 +73,9 @@ def convert_image(go_nord, image, save_path, b64_output, response):
 
   return response
 
-def convert_video(go_nord, path_to_video):
+def convert_video(go_nord, palette_name, path_to_video):
   try:
-    output_path = go_nord.convert_video(path_to_video, 'custom_palette')
+    output_path = go_nord.convert_video(path_to_video, '/tmp/' + palette_name)
   finally:
     os.remove(path_to_video)
 

@@ -120,7 +120,6 @@ export default Vue.component('Demo', {
     selectedPalette(file) {
       // eslint-disable-next-line
       this.palette = require(`../assets/${file}`);
-      console.log(this.palette);
     },
     palette(p) {
       this.selectedColor = p.colors;
@@ -180,6 +179,7 @@ export default Vue.component('Demo', {
       // formData.append('width', this.img.width);
       // formData.append('height', this.img.height);
       formData.append('b64_output', true);
+      formData.append('palette_name', this.palette.name);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
 
       if (this.avg_index !== 0) {
