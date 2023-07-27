@@ -106,7 +106,7 @@ export default Vue.component('Demo', {
   },
   data() {
     return {
-      apiUrl: 'http://localhost:8000/v1',
+      apiUrl: 'http://ign.schrodinger-hat.it/v1',
       img: null,
       imgData: null,
       selectedColor: [],
