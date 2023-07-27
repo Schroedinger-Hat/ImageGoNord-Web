@@ -208,9 +208,8 @@ export default Vue.component('Demo', {
           self.pollingAPI(jobId, img);
         });
         return true;
-      }).catch((err) => {
+      }).catch(() => {
         document.querySelector('.preview').classList.toggle('processing');
-        console.log(err);
       });
 
       return true;
