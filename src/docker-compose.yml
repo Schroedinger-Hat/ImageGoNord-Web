@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  ign-api:
+    container_name: ign-app
+    build: .
+    ports:
+      - "8000:5000"
+    depends_on:
+      - redis
+  
+  redis:
+    image: "redis:latest"
+    container_name: redis
+    ports:
+      - "6379:6379"
