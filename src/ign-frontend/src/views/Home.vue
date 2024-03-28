@@ -76,7 +76,7 @@
               <div class="circle"></div>
           </div>
           <div>
-            <strong>Total converted images: </strong>{{ apiCount }}
+            <strong>Total converted images: </strong>{{ apiCount.toString().replace(/[^\d]|[\']/g, '') }}
           </div>
         </div>
       </center>
