@@ -101,7 +101,7 @@ The [question][gh-issues-label-question] issue label is a good place to find ong
 
 ## Styleguides
 
-More to come
+Please refer to style used in the code until now.
 
 ## MCVE
 
