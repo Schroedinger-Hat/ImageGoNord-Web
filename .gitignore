@@ -1,6 +1,8 @@
 # Ide
 .idea
 images/*
+!images/ign-demo-image.gif
+!images/ign-demo-gruvbox.gif
 
 #python cache
 __pycache__/
