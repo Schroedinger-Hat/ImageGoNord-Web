@@ -3,39 +3,31 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-A tool that can convert your rgb images to [Nordtheme](https://www.nordtheme.com/) palette.
-**A tool that can convert your rgb images to any palette!**
+Image Go Nord is a tool that can convert your rgb images to not only [Nordtheme](https://www.nordtheme.com/) palette.
+**IGN is a tool that can convert your rgb images to any palette!**
 
 This repository is:
 - an API hosted on Heroku that is using the [ImageGoNord Python package](https://github.com/Schrodinger-Hat/ImageGoNord-pip) written in Flask;
-- a demo website hosted on Netlify made using the Nordtheme and VueJS;
-- a demo website hosted on Netlify which can convert your image or video into any palette!
+- a demo website made in VueJS hosted on Netlify which can convert your image or video into any palette!
 
 **Are you looking for the python package?**
 
 The official python package's repository is [ImageGoNord-pip](https://github.com/Schrodinger-Hat/ImageGoNord-pip). You are welcome :)
 
-<!--
-@TODO
-- Describe very briefly but clearly what the project does.
-- State if it is out-of-the-box user-friendly, so it’s clear to the user.
-- List its most useful/innovative/noteworthy features.
-- State its goals/what problem(s) it solves.
-- Note and briefly describe any key concepts (technical, philosophical, or both) important to the user’s understanding.
-- Link to any supplementary blog posts or project main pages.
-- Note its development status.
-- Include badges.
-- If possible, include screenshots and demo videos.
--->
-
 ### Inspiration
 
-We are in love with Nordtheme, that is why we created this repository.
+We are in love with Nordtheme and Linux Rice, that is why we created this repository.
 
-[![Nord Color Palette Overview](https://raw.githubusercontent.com/arcticicestudio/nord-docs/develop/assets/images/nord/repository-color-palettes.svg?sanitize=true)](https://www.nordtheme.com/docs/colors-and-palettes)
-
-Our goal is to make a shortcut to convert anything into this theme, by starting from the images.
+Our goal is to make a shortcut to convert image or video into any theme.
 <br>An example could be an awesome wallpaper converted into the Nordtheme palette.
+
+<img src="https://raw.githubusercontent.com/Schrodinger-Hat/ImageGoNord/master/images/ign-demo-image.gif">
+
+<br>Or an example of an image converted into the Gruvbox palette
+
+<img src="https://raw.githubusercontent.com/Schrodinger-Hat/ImageGoNord/master/images/ign-demo-gruvbox.gif">
+
+<br>
 
 We checked the commnunity and we did not find anything similar or any project that can accomplish this task. So, here we are.
 
@@ -49,25 +41,52 @@ Our goal is also to make this project open source and maintainable by the commun
 
 ### Getting Started
 
-**TODO: add site and api docs**
+Clone the repository then go to the `src/ign-frontend` folder
+
+```npm install && npm run serve```
+
+This will bring our website in your local.
+
+### How to add a new palette on the website?
+
+It's very easy and you can refer to this [PR](https://github.com/Schrodinger-Hat/ImageGoNord/pull/150) as a sort of documentation.
+
+**What I need to do?**
+You need to create a JSON file in `src/ign-frontend/src/assets/palettes/[themeName].json` with the following format:
+
+```
+{
+    "name": "yourThemeName",
+    "colors": [
+        "#FFFFFF",
+        "#FFFFFF",
+        "YOUR_HEXs"
+    ]
+}
+```
+
+After this, please find a good image (e.g. Dracula image) or a palette primary color image (you can use [coolors](https://coolors.co/)), then add it in the `src/ign-frontend/src/assets/palettes/img/[themeName].png` folder.
+
+Then, you need to make this palette available in the demo website by upading the `src/ign-frontend/src/assets/palettes/available-palettes.json` with the following format:
+
+```
+{
+    "name": "[themeName]",
+    "img": "palettes/img/[themeName].png",
+    "file": "palettes/[themeName].json"
+}
+```
+
+Verify that everything is working great and open a PR :)
 
 ### Contributing
 - Follow the contributor guidelines
 - Follow the code style / requirements
 - Format for commit messages
 
-### TODO
-- Portable environemnt
-- Testing
-- Improvements on image quality and supporting any image format
-- Make contributing guidelines
-- API / UI
-
 # Authors
 
 [TheJoin95](https://github.com/TheJoin95) & [Wabri](https://github.com/Wabri)
-
-**NOTE**: we are not affiliated with the Nordtheme or [Arcticicestudio](https://github.com/arcticicestudio) or any other palette project.
 
 ## Contributors
 
