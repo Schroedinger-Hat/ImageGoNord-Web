@@ -226,7 +226,7 @@ export default Vue.component('Demo', {
             } else if (jsonResponse.status === 'queued' || jsonResponse.status === 'started') {
               setTimeout(() => {
                 self.pollingAPI(jobId);
-              }, 800);
+              }, 8000);
             } else {
               document.querySelector('.preview').classList.toggle('processing');
               console.info('Something went wrong, please retry or write to us!');
