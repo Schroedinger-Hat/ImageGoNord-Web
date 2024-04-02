@@ -225,7 +225,7 @@ export default Vue.component('Demo', {
             } else if (jsonResponse.status === 'queued' || jsonResponse.status === 'started') {
               setTimeout(() => {
                 self.pollingAPI(jobId);
-              }, 800);
+              }, 8000);
             } else {
               document.querySelector('.preview').classList.toggle('processing');
               console.info('Something went wrong, please retry or write to us!');
@@ -261,7 +261,7 @@ export default Vue.component('Demo', {
         });
         document.querySelector('.preview').classList.toggle('processing');
 
-        if (conversionCount !== 0 && conversionCount % 3 === 0) {
+        if (conversionCount === 0 || conversionCount % 3 === 0) {
           document.querySelector('.modal-window').classList.toggle('modal-window__active');
         }
 
