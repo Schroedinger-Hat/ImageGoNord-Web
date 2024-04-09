@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import GettingStarted from '../views/GettingStarted.vue';
+import ImagIA from '../views/ImagIA.vue';
 import Documentation from '../views/Documentation.vue';
 import About from '../views/About.vue';
 import Installation from '../views/Installation.vue';
@@ -21,6 +22,11 @@ const routes = [
     path: '/getting-started',
     name: 'GettingStarted',
     component: GettingStarted,
+  },
+  {
+    path: '/imagia',
+    name: 'ImagIA',
+    component: ImagIA,
   },
   {
     path: '/installation',
