@@ -14,4 +14,26 @@
   .nyancat-wrapper {
     display: block;
   }
+
+  .palette-grid {
+    .palette-post {
+      display: inline-flex;
+      width: 30%;
+      margin: 15px 10px;
+      flex: auto;
+    }
+    .palette-title {
+      font-size: 25px;
+      text-align: center;
+      width: calc(100% - 16px);
+      padding-top: 5em;
+      height: 6em;
+      color: $nord6;
+      background: #757575c9;
+      font-weight: bold;
+      display: block;
+      border: 8px solid transparent;
+    }
+
+  }
 }
