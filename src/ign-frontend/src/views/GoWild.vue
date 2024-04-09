@@ -238,46 +238,6 @@ export default {
   }
 }
 
-.palette-grid {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  flex-direction: row;
-
-  .palette-post {
-    display: flex;
-    text-align: center;
-    width: 100%;
-    margin: 15px 10px;
-    flex: auto;
-    border: 8px solid transparent;
-
-    &:hover, &:focus, &:active, &.current-palette {
-      border-color: $nord12;
-      cursor: pointer;
-    }
-
-    .palette-title {
-      font-size: 25px;
-      text-align: center;
-      width: calc(100% - 16px);
-      padding-top: 5em;
-      height: 6em;
-      color: $nord6;
-      background: #757575c9;
-      font-weight: bold;
-      display: block;
-    }
-
-    img {
-      max-width: 100%;
-      max-height: 215px;
-      border: 6px solid $nord4;
-      border-radius: 5px;
-    }
-  }
-}
-
 @media (min-width: 56.25em) {
   .slider-section {
     .slider-item {
@@ -290,27 +250,6 @@ export default {
         margin-top: 4em;
       }
     }
-  }
-  .palette-grid {
-    .palette-post {
-      display: inline-flex;
-      width: 30%;
-      margin: 15px 10px;
-      flex: auto;
-    }
-    .palette-title {
-      font-size: 25px;
-      text-align: center;
-      width: calc(100% - 16px);
-      padding-top: 5em;
-      height: 6em;
-      color: $nord6;
-      background: #757575c9;
-      font-weight: bold;
-      display: block;
-      border: 8px solid transparent;
-    }
-
   }
 }
 
