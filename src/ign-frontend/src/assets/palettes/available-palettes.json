@@ -103,5 +103,10 @@
         "name": "Monalisa",
         "img": "palettes/img/monalisa.png",
         "file": "palettes/monalisa.json"
+    },
+    {
+        "name" : "Kanagawa",
+        "img" : "palettes/img/kanagawa.jpg",
+        "file" : "palettes/kanagawa.json"
     }
 ]
