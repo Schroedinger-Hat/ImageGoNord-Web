@@ -4,6 +4,9 @@
         h1="Image Go AI 🤖"
         h2="Use the power of the PaletteNet to recolor your images"
       />
+    <center>
+      <a class="github-button" href="https://github.com/Schrodinger-Hat/ImageGoNord" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star Schrodinger-Hat/ImageGoNord on GitHub">Star</a>
+    </center>
     <div class="canvas-container">
       <svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">
         <path transform="translate(0, -20)" d="M0,10 c80,-22 240,0 350,18 c90,17 260,7.5
@@ -24,7 +27,7 @@
           </div>
         </div>
       </div>
-      <Demo :selectedPalette="`${(selectedPalette !== '') ? selectedPalette : []}`" />
+      <Demo :isAi="true" :selectedPalette="`${(selectedPalette !== '') ? selectedPalette : []}`" />
     </section>
   </div>
 </template>
