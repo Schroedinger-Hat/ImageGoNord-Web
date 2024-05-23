@@ -1,1 +1,1 @@
-image-go-nord==0.1.4
+image-go-nord==1.1.0
