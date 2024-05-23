@@ -39,12 +39,16 @@ def convert_queue():
 
   if (request.form.get('palette_name') != None):
     palette_name = request.form.get('palette_name')
+  
+  use_model = False
+  if (request.form.get('is_ai') != None):
+    use_model = True
 
   conn.incr('conversion_count', 1)
 
   if is_image(file.filename):
     image = go_nord.open_image(request.files.get('file').stream)
-    job = q.enqueue(f=convert_image, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, image, output_path, request.form.get('b64_output'), response))
+    job = q.enqueue(f=convert_image, ttl=900, failure_ttl=900, job_timeout='180s', args=(go_nord, image, output_path, request.form.get('b64_output'), response, use_model))
   elif is_video(file.filename):
     now = datetime.now() # current date and time
     filename = now.strftime("%m%d%Y-%H%M%S")
@@ -64,8 +68,8 @@ def is_image(filename):
   return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ['png', 'jpg', 'jpeg']
 
-def convert_image(go_nord, image, save_path, b64_output, response):
-  image = go_nord.convert_image(image, save_path=save_path)
+def convert_image(go_nord, image, save_path, b64_output, response, use_model=False):
+  image = go_nord.convert_image(image, save_path=save_path, use_model=use_model)
   if (b64_output != None):
     b64_image = go_nord.image_to_base64(image, 'png')
     base64_img_string = b64_image.decode('UTF-8')
