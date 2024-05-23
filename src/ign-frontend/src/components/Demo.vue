@@ -67,7 +67,17 @@
               <span class="slider round"></span>
             </label>
           </div>
-          <div class="avg">
+          <div class="ai space-between">
+            <span>
+              AI<br/>
+              <small>Use AI on output</small>
+            </span>
+            <label class="switch">
+              <input type="checkbox" v-model="ai" :checked="ai === true">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="avg" v-if="!ai">
             <p>
               AVG pixel area<br/>
               <small>Enable avg algorithm</small>
@@ -100,6 +110,7 @@ import CookieManager from '../utility/CookieManager';
 export default Vue.component('Demo', {
   props: {
     selectedPalette: String,
+    isAi: Boolean,
   },
   components: {
     Loader,
@@ -111,6 +122,7 @@ export default Vue.component('Demo', {
       imgData: null,
       selectedColor: [],
       blur: false,
+      ai: this.isAi || false,
       is_filter: false,
       avg_index: 0,
       palette: '',
@@ -118,11 +130,16 @@ export default Vue.component('Demo', {
   },
   watch: {
     selectedPalette(file) {
-      // eslint-disable-next-line
-      this.palette = require(`../assets/${file}`);
+      try {
+        // eslint-disable-next-line
+        this.palette = require(`../assets/${file}`);
+      } catch (e) {
+        // eslint-disable-next-line
+        this.palette = require('../assets/palettes/ai-palettes/6x-palette.json').find((p) => p.name === file);
+      }
     },
     palette(p) {
-      this.selectedColor = p.colors;
+      this.selectedColor = p?.colors;
     },
   },
   methods: {
@@ -176,8 +193,6 @@ export default Vue.component('Demo', {
 
       const formData = new FormData();
       formData.append('file', this.imgData);
-      // formData.append('width', this.img.width);
-      // formData.append('height', this.img.height);
       formData.append('b64_output', true);
       formData.append('palette_name', this.palette.name);
       formData.append('colors', this.selectedColor.filter((c) => c).join(','));
@@ -191,6 +206,10 @@ export default Vue.component('Demo', {
 
       if (this.blur === true) {
         formData.append('blur', this.blur);
+      }
+
+      if (this.ai === true) {
+        formData.append('is_ai', this.ai);
       }
 
       fetch(`${this.apiUrl}/${endpoint}`, {
