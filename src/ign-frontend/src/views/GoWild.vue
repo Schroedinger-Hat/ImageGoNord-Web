@@ -262,6 +262,7 @@ export default {
       font-size: 25px;
       text-align: center;
       font-weight: bold;
+      color: $nord4;
       position: absolute;
     }
 
