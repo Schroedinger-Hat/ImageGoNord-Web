@@ -254,6 +254,7 @@ export default {
     &:hover, &:focus, &:active, &.current-palette {
       border-color: $nord12;
       .palette-img {
+        -webkit-filter: brightness(0.6) blur(0);
         filter: brightness(0.6) blur(0);
       }
     }
@@ -271,6 +272,7 @@ export default {
       aspect-ratio: 4/3;
       object-fit: cover;
       background-size: cover;
+      -webkit-filter: brightness(0.3) blur(2px);
       filter: brightness(0.3) blur(2px);
       overflow: hidden;
     }
