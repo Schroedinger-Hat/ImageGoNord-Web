@@ -50,4 +50,9 @@ html.dark-theme {
   input:focus + .slider {
     box-shadow: 0 0 1px $nord1;
   }
+
+  .markdown-body pre {
+    background-color: $nord1;
+  }
+
 }
