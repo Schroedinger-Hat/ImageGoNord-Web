@@ -58,9 +58,8 @@
       </center>
       <div class="palette-grid container">
         <div @click="selectedPalette = palette.file" :class="{'palette-post': true, 'current-palette': (selectedPalette === palette.file)}" v-for="palette in palettes" :key="palette.name">
-          <div :style="`width: 100%; min-height: 200px; background-size: cover; background: url(${require('../assets/' + palette.img)})`">
-            <span class="palette-title">{{ palette.name }}</span>
-          </div>
+          <div class="palette-img" :style="`background-image: url(${require('../assets/' + palette.img)})`"/>
+          <span class="palette-title">{{ palette.name }}</span>
         </div>
       </div>
       <br/>
@@ -239,42 +238,45 @@ export default {
 }
 
 .palette-grid {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1em;
+  box-sizing: border-box;
+  padding: 0 1em;
 
   .palette-post {
     display: flex;
-    text-align: center;
-    width: 100%;
-    margin: 15px 10px;
-    flex: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     border: 8px solid transparent;
-
+    cursor: pointer;
     &:hover, &:focus, &:active, &.current-palette {
       border-color: $nord12;
-      cursor: pointer;
+      .palette-img {
+        -webkit-filter: brightness(0.6) blur(0);
+        filter: brightness(0.6) blur(0);
+      }
     }
 
     .palette-title {
       font-size: 25px;
       text-align: center;
-      width: calc(100% - 16px);
-      padding-top: 5em;
-      height: 6em;
-      color: $nord6;
-      background: #757575c9;
       font-weight: bold;
-      display: block;
+      color: $nord4;
+      position: absolute;
     }
 
-    img {
-      max-width: 100%;
-      max-height: 215px;
-      border: 6px solid $nord4;
-      border-radius: 5px;
+    .palette-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background-size: cover;
+      -webkit-filter: brightness(0.3) blur(2px);
+      filter: brightness(0.3) blur(2px);
+      overflow: hidden;
     }
+
   }
 }
 
@@ -290,27 +292,6 @@ export default {
         margin-top: 4em;
       }
     }
-  }
-  .palette-grid {
-    .palette-post {
-      display: inline-flex;
-      width: 30%;
-      margin: 15px 10px;
-      flex: auto;
-    }
-    .palette-title {
-      font-size: 25px;
-      text-align: center;
-      width: calc(100% - 16px);
-      padding-top: 5em;
-      height: 6em;
-      color: $nord6;
-      background: #757575c9;
-      font-weight: bold;
-      display: block;
-      border: 8px solid transparent;
-    }
-
   }
 }
 
