@@ -40,10 +40,7 @@ def convert_queue():
   if (request.form.get('palette_name') != None):
     palette_name = request.form.get('palette_name')
   
-  use_model = False
-  if (request.form.get('is_ai') != None):
-    use_model = True
-
+  use_model = request.form.get('is_ai') is not None
   conn.incr('conversion_count', 1)
 
   if is_image(file.filename):

@@ -237,49 +237,6 @@ export default {
   }
 }
 
-.palette-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 1em;
-  box-sizing: border-box;
-  padding: 0 1em;
-
-  .palette-post {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border: 8px solid transparent;
-    cursor: pointer;
-    &:hover, &:focus, &:active, &.current-palette {
-      border-color: $nord12;
-      .palette-img {
-        -webkit-filter: brightness(0.6) blur(0);
-        filter: brightness(0.6) blur(0);
-      }
-    }
-
-    .palette-title {
-      font-size: 25px;
-      text-align: center;
-      font-weight: bold;
-      color: $nord4;
-      position: absolute;
-    }
-
-    .palette-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      background-size: cover;
-      -webkit-filter: brightness(0.3) blur(2px);
-      filter: brightness(0.3) blur(2px);
-      overflow: hidden;
-    }
-
-  }
-}
-
 @media (min-width: 56.25em) {
   .slider-section {
     .slider-item {

@@ -139,7 +139,7 @@ export default Vue.component('Demo', {
       }
     },
     palette(p) {
-      this.selectedColor = p?.colors;
+      this.selectedColor = p.colors;
     },
   },
   methods: {
