@@ -3,7 +3,7 @@
     <nav>
       <div class="close-icon"><i @click="closeMobileMenu" class="fa fa-times"></i></div>
       <div class="navbar">
-        <router-link to="/getting-started">Getting Started</router-link>
+        <router-link to="/imagia">🤖 ImagIA</router-link>
         <router-link to="/installation">Installation</router-link>
         <router-link to="/documentation">Documentation</router-link>
         <router-link to="/color-schemes">ImageGoWild</router-link>

@@ -1,0 +1,2818 @@
+[
+    {
+      "colors": [
+        "#090300",
+        "#DB2D20",
+        "#01A252",
+        "#FDED02",
+        "#01A0E4",
+        "#A16A94"
+      ],
+      "name": "3024 Day"
+    },
+    {
+      "colors": [
+        "#090300",
+        "#DB2D20",
+        "#01A252",
+        "#FDED02",
+        "#01A0E4",
+        "#A16A94"
+      ],
+      "name": "3024 Night"
+    },
+    {
+      "colors": [
+        "#363636",
+        "#FF0883",
+        "#83FF08",
+        "#FF8308",
+        "#0883FF",
+        "#8308FF"
+      ],
+      "name": "Aci"
+    },
+    {
+      "colors": [
+        "#3F3F3F",
+        "#FF0883",
+        "#83FF08",
+        "#FF8308",
+        "#0883FF",
+        "#8308FF"
+      ],
+      "name": "Aco"
+    },
+    {
+      "colors": [
+        "#050404",
+        "#BD0013",
+        "#4AB118",
+        "#E7741E",
+        "#0F4AC6",
+        "#665993"
+      ],
+      "name": "Adventure Time"
+    },
+    {
+      "colors": [
+        "#151515",
+        "#A53C23",
+        "#7B9246",
+        "#D3A04D",
+        "#6C99BB",
+        "#9F4E85"
+      ],
+      "name": "Afterglow"
+    },
+    {
+      "colors": [
+        "#112616",
+        "#7F2B27",
+        "#2F7E25",
+        "#717F24",
+        "#2F6A7F",
+        "#47587F"
+      ],
+      "name": "Alien Blood"
+    },
+    {
+      "colors": [
+        "#1C1C1C",
+        "#AF5F5F",
+        "#5F875F",
+        "#87875F",
+        "#5F87AF",
+        "#5F5F87"
+      ],
+      "name": "Apprentice"
+    },
+    {
+      "colors": [
+        "#232323",
+        "#FF000F",
+        "#8CE10B",
+        "#FFB900",
+        "#008DF8",
+        "#6D43A6"
+      ],
+      "name": "Argonaut"
+    },
+    {
+      "colors": [
+        "#3D352A",
+        "#CD5C5C",
+        "#86AF80",
+        "#E8AE5B",
+        "#6495ED",
+        "#DEB887"
+      ],
+      "name": "Arthur"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FD5FF1",
+        "#87C38A",
+        "#FFD7B1",
+        "#85BEFD",
+        "#B9B6FC"
+      ],
+      "name": "Atom"
+    },
+    {
+      "colors": [
+        "#110F18",
+        "#FF6767",
+        "#61FFCA",
+        "#FFCA85",
+        "#A277FF",
+        "#A277FF"
+      ],
+      "name": "Aura"
+    },
+    {
+      "colors": [
+        "#0A0E14",
+        "#FF3333",
+        "#C2D94C",
+        "#FF8F40",
+        "#59C2FF",
+        "#FFEE99"
+      ],
+      "name": "Ayu Dark"
+    },
+    {
+      "colors": [
+        "#575F66",
+        "#F51818",
+        "#86B300",
+        "#F2AE49",
+        "#399EE6",
+        "#A37ACC"
+      ],
+      "name": "Ayu Light"
+    },
+    {
+      "colors": [
+        "#1F2430",
+        "#FF3333",
+        "#BAE67E",
+        "#FFA759",
+        "#73D0FF",
+        "#D4BFFF"
+      ],
+      "name": "Ayu Mirage"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#AC6D74",
+        "#74AC6D",
+        "#ACA46D",
+        "#6D74AC",
+        "#A46DAC"
+      ],
+      "name": "Azu"
+    },
+    {
+      "colors": [
+        "#20111B",
+        "#BE100E",
+        "#858162",
+        "#EAA549",
+        "#426A79",
+        "#97522C"
+      ],
+      "name": "Belafonte Day"
+    },
+    {
+      "colors": [
+        "#20111B",
+        "#BE100E",
+        "#858162",
+        "#EAA549",
+        "#426A79",
+        "#97522C"
+      ],
+      "name": "Belafonte Night"
+    },
+    {
+      "colors": [
+        "#2C2423",
+        "#F557A0",
+        "#A9EE55",
+        "#F5A255",
+        "#5EA2EC",
+        "#A957EC"
+      ],
+      "name": "Bim"
+    },
+    {
+      "colors": [
+        "#573D26",
+        "#BE2D26",
+        "#6BA18A",
+        "#E99D2A",
+        "#5A86AD",
+        "#AC80A6"
+      ],
+      "name": "Birds Of Paradise"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#B87A7A",
+        "#7AB87A",
+        "#B8B87A",
+        "#7A7AB8",
+        "#B87AB8"
+      ],
+      "name": "Blazer"
+    },
+    {
+      "colors": [
+        "#D5D6DD",
+        "#D52753",
+        "#23974A",
+        "#DF631C",
+        "#275FE4",
+        "#823FF1"
+      ],
+      "name": "Bluloco Light"
+    },
+    {
+      "colors": [
+        "#E4E5F1",
+        "#D52753",
+        "#23974A",
+        "#DF631C",
+        "#275FE4",
+        "#823FF1"
+      ],
+      "name": "Bluloco Zsh Light"
+    },
+    {
+      "colors": [
+        "#4F4F4F",
+        "#FF6C60",
+        "#A8FF60",
+        "#FFFFB6",
+        "#96CBFE",
+        "#FF73FD"
+      ],
+      "name": "Borland"
+    },
+    {
+      "colors": [
+        "#1E2229",
+        "#ED1515",
+        "#44853A",
+        "#F67400",
+        "#1D99F3",
+        "#9B59B6"
+      ],
+      "name": "Breath"
+    },
+    {
+      "colors": [
+        "#1E2229",
+        "#ED1515",
+        "#44853A",
+        "#F67400",
+        "#1D99F3",
+        "#9B59B6"
+      ],
+      "name": "Breath Darker"
+    },
+    {
+      "colors": [
+        "#E8E8E8",
+        "#ED1515",
+        "#C0392B",
+        "#F67400",
+        "#1D99F3",
+        "#9B59B6"
+      ],
+      "name": "Breath Light"
+    },
+    {
+      "colors": [
+        "#1E2229",
+        "#ED1515",
+        "#44853A",
+        "#F67400",
+        "#1D99F3",
+        "#9B59B6"
+      ],
+      "name": "Breath Silverfox"
+    },
+    {
+      "colors": [
+        "#232627",
+        "#ED1515",
+        "#11D116",
+        "#F67400",
+        "#1D99F3",
+        "#9B59B6"
+      ],
+      "name": "Breeze"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DA4939",
+        "#519F50",
+        "#FFD24A",
+        "#6D9CBE",
+        "#D0D0FF"
+      ],
+      "name": "Broadcast"
+    },
+    {
+      "colors": [
+        "#1F1F1F",
+        "#F81118",
+        "#2DC55E",
+        "#ECBA0F",
+        "#2A84D2",
+        "#4E5AB7"
+      ],
+      "name": "Brogrammer"
+    },
+    {
+      "colors": [
+        "#8C7E78",
+        "#E68A8A",
+        "#99CC99",
+        "#FAD7A0",
+        "#6699CC",
+        "#C8A2C8"
+      ],
+      "name": "Butrin"
+    },
+    {
+      "colors": [
+        "#090300",
+        "#883932",
+        "#55A049",
+        "#BFCE72",
+        "#40318D",
+        "#8B3F96"
+      ],
+      "name": "C64"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CA274D",
+        "#4DCA27",
+        "#CAA427",
+        "#274DCA",
+        "#A427CA"
+      ],
+      "name": "Cai"
+    },
+    {
+      "colors": [
+        "#0C0C0C",
+        "#C50F1F",
+        "#13A10E",
+        "#C19C00",
+        "#0037DA",
+        "#881798"
+      ],
+      "name": "Campbell"
+    },
+    {
+      "colors": [
+        "#51576D",
+        "#E78284",
+        "#A6D189",
+        "#E5C890",
+        "#8CAAEE",
+        "#F4B8E4"
+      ],
+      "name": "Catppuccin Frappé"
+    },
+    {
+      "colors": [
+        "#5C5F77",
+        "#D20F39",
+        "#40A02B",
+        "#DF8E1D",
+        "#1E66F5",
+        "#EA76CB"
+      ],
+      "name": "Catppuccin Latte"
+    },
+    {
+      "colors": [
+        "#494D64",
+        "#ED8796",
+        "#A6DA95",
+        "#EED49F",
+        "#8AADF4",
+        "#F5BDE6"
+      ],
+      "name": "Catppuccin Macchiato"
+    },
+    {
+      "colors": [
+        "#45475A",
+        "#F38BA8",
+        "#A6E3A1",
+        "#F9E2AF",
+        "#89B4FA",
+        "#F5C2E7"
+      ],
+      "name": "Catppuccin Mocha"
+    },
+    {
+      "colors": [
+        "#646464",
+        "#F58E8E",
+        "#A9D3AB",
+        "#FED37E",
+        "#7AABD4",
+        "#D6ADD5"
+      ],
+      "name": "Chalk"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#C37372",
+        "#72C373",
+        "#C2C372",
+        "#7372C3",
+        "#C372C2"
+      ],
+      "name": "Chalkboard"
+    },
+    {
+      "colors": [
+        "#2C2C2C",
+        "#CC231C",
+        "#689D69",
+        "#D79922",
+        "#366B71",
+        "#4E5165"
+      ],
+      "name": "Chameleon"
+    },
+    {
+      "colors": [
+        "#181818",
+        "#810009",
+        "#48513B",
+        "#CC8B3F",
+        "#576D8C",
+        "#724D7C"
+      ],
+      "name": "Ciapre"
+    },
+    {
+      "colors": [
+        "#2E3436",
+        "#CC0000",
+        "#4E9A06",
+        "#C4A000",
+        "#3465A4",
+        "#75507B"
+      ],
+      "name": "Clone Of Ubuntu"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#F8282A",
+        "#328A5D",
+        "#FA701D",
+        "#135CD0",
+        "#9F00BD"
+      ],
+      "name": "Clrs"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF0000",
+        "#38DE21",
+        "#FFE50A",
+        "#1460D2",
+        "#FF005D"
+      ],
+      "name": "Cobalt 2"
+    },
+    {
+      "colors": [
+        "#142631",
+        "#FF2320",
+        "#3BA5FF",
+        "#E9E75C",
+        "#8FF586",
+        "#781AA0"
+      ],
+      "name": "Cobalt Neon"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#D70000",
+        "#5FAF00",
+        "#5FAF00",
+        "#005F87",
+        "#D70000"
+      ],
+      "name": "Colorcli"
+    },
+    {
+      "colors": [
+        "#2B1B1D",
+        "#91002B",
+        "#579524",
+        "#AB311B",
+        "#8C87B0",
+        "#692F50"
+      ],
+      "name": "Crayon Pony Fish"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF5555",
+        "#55FF55",
+        "#FFFF55",
+        "#5555FF",
+        "#FF55FF"
+      ],
+      "name": "Dark Pastel"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#E8341C",
+        "#68C256",
+        "#F2D42C",
+        "#1C98E8",
+        "#8E69C9"
+      ],
+      "name": "Darkside"
+    },
+    {
+      "colors": [
+        "#333333",
+        "#FF5555",
+        "#5FD38D",
+        "#FF9955",
+        "#3771C8",
+        "#BC5FD3"
+      ],
+      "name": "Dehydration"
+    },
+    {
+      "colors": [
+        "#4D4D4D",
+        "#FF2B2B",
+        "#98FB98",
+        "#F0E68C",
+        "#CD853F",
+        "#FFDEAD"
+      ],
+      "name": "Desert"
+    },
+    {
+      "colors": [
+        "#3A3D43",
+        "#BE3F48",
+        "#879A3B",
+        "#C5A635",
+        "#4F76A1",
+        "#855C8D"
+      ],
+      "name": "Dimmed Monokai"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DC322F",
+        "#56DB3A",
+        "#FF8400",
+        "#0084D4",
+        "#B729D9"
+      ],
+      "name": "Dissonance"
+    },
+    {
+      "colors": [
+        "#44475A",
+        "#FF5555",
+        "#50FA7B",
+        "#FFB86C",
+        "#8BE9FD",
+        "#BD93F9"
+      ],
+      "name": "Dracula"
+    },
+    {
+      "colors": [
+        "#121418",
+        "#C94234",
+        "#85C54C",
+        "#F5AE2E",
+        "#1398B9",
+        "#D0633D"
+      ],
+      "name": "Earthsong"
+    },
+    {
+      "colors": [
+        "#3C3C30",
+        "#98290F",
+        "#479A43",
+        "#7F7111",
+        "#497F7D",
+        "#7F4E2F"
+      ],
+      "name": "Elemental"
+    },
+    {
+      "colors": [
+        "#303030",
+        "#E1321A",
+        "#6AB017",
+        "#FFC005",
+        "#004F9E",
+        "#EC0048"
+      ],
+      "name": "Elementary"
+    },
+    {
+      "colors": [
+        "#303030",
+        "#E1321A",
+        "#6AB017",
+        "#FFC005",
+        "#729FCF",
+        "#EC0048"
+      ],
+      "name": "Elic"
+    },
+    {
+      "colors": [
+        "#303030",
+        "#E1321A",
+        "#6AB017",
+        "#FFC005",
+        "#729FCF",
+        "#EC0048"
+      ],
+      "name": "Elio"
+    },
+    {
+      "colors": [
+        "#353535",
+        "#D25252",
+        "#A5C261",
+        "#FFC66D",
+        "#6C99BB",
+        "#D197D9"
+      ],
+      "name": "Espresso"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CC0000",
+        "#1A921C",
+        "#F0E53A",
+        "#0066FF",
+        "#C5656B"
+      ],
+      "name": "Espresso Libre"
+    },
+    {
+      "colors": [
+        "#232A2D",
+        "#E57474",
+        "#8CCF7E",
+        "#E5C76B",
+        "#67B0E8",
+        "#C47FD5"
+      ],
+      "name": "Everblush"
+    },
+    {
+      "colors": [
+        "#4B565C",
+        "#E67E80",
+        "#A7C080",
+        "#DBBC7F",
+        "#7FBBB3",
+        "#D699B6"
+      ],
+      "name": "Everforest Dark"
+    },
+    {
+      "colors": [
+        "#5C6A72",
+        "#F85552",
+        "#8DA101",
+        "#DFA000",
+        "#3A94C5",
+        "#DF69BA"
+      ],
+      "name": "Everforest Light"
+    },
+    {
+      "colors": [
+        "#42395D",
+        "#A8757B",
+        "#FF857F",
+        "#E6C000",
+        "#AE81FF",
+        "#716799"
+      ],
+      "name": "Fairy Floss"
+    },
+    {
+      "colors": [
+        "#42395D",
+        "#A8757B",
+        "#FF857F",
+        "#E6C000",
+        "#AE81FF",
+        "#716799"
+      ],
+      "name": "Fairy Floss Dark"
+    },
+    {
+      "colors": [
+        "#03073C",
+        "#C6004A",
+        "#ACF157",
+        "#FECD5E",
+        "#525FB8",
+        "#986F82"
+      ],
+      "name": "Fishtank"
+    },
+    {
+      "colors": [
+        "#2C3E50",
+        "#C0392B",
+        "#27AE60",
+        "#F39C12",
+        "#2980B9",
+        "#8E44AD"
+      ],
+      "name": "Flat"
+    },
+    {
+      "colors": [
+        "#1F2229",
+        "#D41919",
+        "#5EBDAB",
+        "#FEA44C",
+        "#367BF0",
+        "#BF2E5D"
+      ],
+      "name": "Flat Remix"
+    },
+    {
+      "colors": [
+        "#1D1D19",
+        "#F18339",
+        "#9FD364",
+        "#F4EF6D",
+        "#5096BE",
+        "#695ABC"
+      ],
+      "name": "Flatland"
+    },
+    {
+      "colors": [
+        "#2A2A2E",
+        "#B98EFF",
+        "#FF7DE9",
+        "#729FCF",
+        "#66A05B",
+        "#75507B"
+      ],
+      "name": "Foxnightly"
+    },
+    {
+      "colors": [
+        "#073642",
+        "#DC322F",
+        "#859900",
+        "#B58900",
+        "#268BD2",
+        "#EC0048"
+      ],
+      "name": "Freya"
+    },
+    {
+      "colors": [
+        "#242526",
+        "#F8511B",
+        "#565747",
+        "#FA771D",
+        "#2C70B7",
+        "#F02E4F"
+      ],
+      "name": "Frontend Delight"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#D6262B",
+        "#919C00",
+        "#BE8A13",
+        "#4699A3",
+        "#8D4331"
+      ],
+      "name": "Frontend Fun Forrest"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#F9555F",
+        "#21B089",
+        "#FEF02A",
+        "#589DF6",
+        "#944D95"
+      ],
+      "name": "Frontend Galaxy"
+    },
+    {
+      "colors": [
+        "#F9F5F5",
+        "#CC0000",
+        "#1F1E1F",
+        "#ADA110",
+        "#FF004E",
+        "#75507B"
+      ],
+      "name": "Geohot"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#F78166",
+        "#56D364",
+        "#E3B341",
+        "#6CA4F8",
+        "#DB61A2"
+      ],
+      "name": "Github Dark"
+    },
+    {
+      "colors": [
+        "#24292f",
+        "#cf222e",
+        "#1a7f37",
+        "#9a6700",
+        "#0969da",
+        "#8250df"
+      ],
+      "name": "Github Light"
+    },
+    {
+      "colors": [
+        "#292D3E",
+        "#F07178",
+        "#62DE84",
+        "#FFCB6B",
+        "#75A1FF",
+        "#F580FF"
+      ],
+      "name": "Gogh"
+    },
+    {
+      "colors": [
+        "#000009",
+        "#BB4F6C",
+        "#72CCAE",
+        "#C65E3D",
+        "#58B6CA",
+        "#6488C4"
+      ],
+      "name": "Gooey"
+    },
+    {
+      "colors": [
+        "#202124",
+        "#EA4335",
+        "#34A853",
+        "#FBBC04",
+        "#4285F4",
+        "#A142F4"
+      ],
+      "name": "Google Dark"
+    },
+    {
+      "colors": [
+        "#202124",
+        "#EA4335",
+        "#34A853",
+        "#FBBC04",
+        "#4285F4",
+        "#A142F4"
+      ],
+      "name": "Google Light"
+    },
+    {
+      "colors": [
+        "#0A0F14",
+        "#C33027",
+        "#26A98B",
+        "#EDB54B",
+        "#195465",
+        "#4E5165"
+      ],
+      "name": "Gotham"
+    },
+    {
+      "colors": [
+        "#2D283F",
+        "#ED2261",
+        "#1FA91B",
+        "#8DDC20",
+        "#487DF4",
+        "#8D35C9"
+      ],
+      "name": "Grape"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#BB0000",
+        "#00BB00",
+        "#E7B000",
+        "#0000A3",
+        "#950062"
+      ],
+      "name": "Grass"
+    },
+    {
+      "colors": [
+        "#FBF1C7",
+        "#CC241D",
+        "#98971A",
+        "#D79921",
+        "#458588",
+        "#B16286"
+      ],
+      "name": "Gruvbox"
+    },
+    {
+      "colors": [
+        "#282828",
+        "#CC241D",
+        "#98971A",
+        "#D79921",
+        "#458588",
+        "#B16286"
+      ],
+      "name": "Gruvbox Dark"
+    },
+    {
+      "colors": [
+        "#3C3836",
+        "#EA6962",
+        "#A9B665",
+        "#D8A657",
+        "#7DAEA3",
+        "#D3869B"
+      ],
+      "name": "Gruvbox Material"
+    },
+    {
+      "colors": [
+        "#1B1D1E",
+        "#F92672",
+        "#A6E22E",
+        "#FD971F",
+        "#66D9EF",
+        "#9E6FFE"
+      ],
+      "name": "Hardcore"
+    },
+    {
+      "colors": [
+        "#010101",
+        "#F8B63F",
+        "#7FB5E1",
+        "#D6DA25",
+        "#489E48",
+        "#B296C6"
+      ],
+      "name": "Harper"
+    },
+    {
+      "colors": [
+        "#444444",
+        "#FF0054",
+        "#B1D630",
+        "#9D895E",
+        "#67BEE3",
+        "#B576BC"
+      ],
+      "name": "Hemisu Dark"
+    },
+    {
+      "colors": [
+        "#777777",
+        "#FF0055",
+        "#739100",
+        "#503D15",
+        "#538091",
+        "#5B345E"
+      ],
+      "name": "Hemisu Light"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#D00E18",
+        "#138034",
+        "#FFCB3E",
+        "#006BB3",
+        "#6B2775"
+      ],
+      "name": "Highway"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#B6214A",
+        "#00A600",
+        "#BFBF00",
+        "#246EB2",
+        "#B200B2"
+      ],
+      "name": "Hipster Green"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#990000",
+        "#00A600",
+        "#999900",
+        "#0000B2",
+        "#B200B2"
+      ],
+      "name": "Homebrew"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#990000",
+        "#00A600",
+        "#999900",
+        "#0000B2",
+        "#B200B2"
+      ],
+      "name": "Homebrew Light"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#990000",
+        "#00A600",
+        "#999900",
+        "#0000B2",
+        "#B200B2"
+      ],
+      "name": "Homebrew Ocean"
+    },
+    {
+      "colors": [
+        "#16161C",
+        "#DA103F",
+        "#1EB980",
+        "#F6661E",
+        "#26BBD9",
+        "#EE64AE"
+      ],
+      "name": "Horizon Bright"
+    },
+    {
+      "colors": [
+        "#16161C",
+        "#E95678",
+        "#29D398",
+        "#FAB795",
+        "#26BBD9",
+        "#EE64AE"
+      ],
+      "name": "Horizon Dark"
+    },
+    {
+      "colors": [
+        "#575757",
+        "#FF1B00",
+        "#A5E055",
+        "#FBE74A",
+        "#496487",
+        "#FD5FF1"
+      ],
+      "name": "Hurtado"
+    },
+    {
+      "colors": [
+        "#282A2E",
+        "#A54242",
+        "#8C9440",
+        "#DE935F",
+        "#5F819D",
+        "#85678F"
+      ],
+      "name": "Hybrid"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF0000",
+        "#00FF00",
+        "#FFFF00",
+        "#00BFFF",
+        "#FFC0CB"
+      ],
+      "name": "Ibm 3270 (High Contrast)"
+    },
+    {
+      "colors": [
+        "#222222",
+        "#F01818",
+        "#24D830",
+        "#F0D824",
+        "#7890F0",
+        "#F078D8"
+      ],
+      "name": "Ibm3270"
+    },
+    {
+      "colors": [
+        "#1F1F1F",
+        "#FB002A",
+        "#339C24",
+        "#659B25",
+        "#149B45",
+        "#53B82C"
+      ],
+      "name": "Ic Green Ppl"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#C13900",
+        "#A4A900",
+        "#CAAF00",
+        "#BD6D00",
+        "#FC5E00"
+      ],
+      "name": "Ic Orange Ppl"
+    },
+    {
+      "colors": [
+        "#323232",
+        "#D25252",
+        "#7FE173",
+        "#FFC66D",
+        "#4099FF",
+        "#F680FF"
+      ],
+      "name": "Idle Toes"
+    },
+    {
+      "colors": [
+        "#4E4E4E",
+        "#FF6C60",
+        "#A8FF60",
+        "#FFFFB6",
+        "#69CBFE",
+        "#FF73FD"
+      ],
+      "name": "Ir Black"
+    },
+    {
+      "colors": [
+        "#2C1D16",
+        "#EF5734",
+        "#2BAF2B",
+        "#BEBF00",
+        "#246EB2",
+        "#D05EC1"
+      ],
+      "name": "Jackie Brown"
+    },
+    {
+      "colors": [
+        "#343935",
+        "#CF3F61",
+        "#7BB75B",
+        "#E9B32A",
+        "#4C9AD4",
+        "#A57FC4"
+      ],
+      "name": "Japanesque"
+    },
+    {
+      "colors": [
+        "#929292",
+        "#E27373",
+        "#94B979",
+        "#FFBA7B",
+        "#97BEDC",
+        "#E1C0FA"
+      ],
+      "name": "Jellybeans"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DD006F",
+        "#6FDD00",
+        "#DD6F00",
+        "#006FDD",
+        "#6F00DD"
+      ],
+      "name": "Jup"
+    },
+    {
+      "colors": [
+        "#090618",
+        "#C34043",
+        "#76946A",
+        "#C0A36E",
+        "#7E9CD8",
+        "#957FB8"
+      ],
+      "name": "Kanagawa"
+    },
+    {
+      "colors": [
+        "#4D4D4D",
+        "#C70031",
+        "#29CF13",
+        "#D8E30E",
+        "#3449D1",
+        "#8400FF"
+      ],
+      "name": "Kibble"
+    },
+    {
+      "colors": [
+        "#2E8744",
+        "#D84E4C",
+        "#95DA5A",
+        "#D6E264",
+        "#4B9ED7",
+        "#945FC5"
+      ],
+      "name": "Kokuban"
+    },
+    {
+      "colors": [
+        "#39243A",
+        "#EB64B9",
+        "#AFD686",
+        "#FEAE87",
+        "#40B4C4",
+        "#B381C5"
+      ],
+      "name": "Laserwave"
+    },
+    {
+      "colors": [
+        "#2B2B2B",
+        "#D45A60",
+        "#AFBA67",
+        "#E5D289",
+        "#A0BAD6",
+        "#C092D6"
+      ],
+      "name": "Later This Evening"
+    },
+    {
+      "colors": [
+        "#230046",
+        "#7D1625",
+        "#337E6F",
+        "#7F6F49",
+        "#4F4A7F",
+        "#5A3F7F"
+      ],
+      "name": "Lavandula"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF3030",
+        "#559A70",
+        "#CCAC00",
+        "#0099CC",
+        "#CC69C8"
+      ],
+      "name": "Liquid Carbon"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF3030",
+        "#559A70",
+        "#CCAC00",
+        "#0099CC",
+        "#CC69C8"
+      ],
+      "name": "Liquid Carbon Transparent"
+    },
+    {
+      "colors": [
+        "#36464E",
+        "#846560",
+        "#809984",
+        "#A79A79",
+        "#555673",
+        "#866C83"
+      ],
+      "name": "Lunaria Dark"
+    },
+    {
+      "colors": [
+        "#323F46",
+        "#83615B",
+        "#7F9781",
+        "#A69875",
+        "#53516F",
+        "#856880"
+      ],
+      "name": "Lunaria Eclipse"
+    },
+    {
+      "colors": [
+        "#3E3C3D",
+        "#783C1F",
+        "#497D46",
+        "#8F750B",
+        "#3F3566",
+        "#793F62"
+      ],
+      "name": "Lunaria Light"
+    },
+    {
+      "colors": [
+        "#232423",
+        "#BA2922",
+        "#7E807E",
+        "#4C4F4D",
+        "#16A085",
+        "#43746A"
+      ],
+      "name": "Maia"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CC0000",
+        "#00A600",
+        "#999900",
+        "#0000B2",
+        "#B200B2"
+      ],
+      "name": "Man Page"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#B5407B",
+        "#7BB540",
+        "#B57B40",
+        "#407BB5",
+        "#7B40B5"
+      ],
+      "name": "Mar"
+    },
+    {
+      "colors": [
+        "#073641",
+        "#EB606B",
+        "#C3E88D",
+        "#F7EB95",
+        "#80CBC3",
+        "#FF2490"
+      ],
+      "name": "Material"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#E52222",
+        "#A6E32D",
+        "#FC951E",
+        "#C48DFF",
+        "#FA2573"
+      ],
+      "name": "Mathias"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#B64C00",
+        "#7C8B16",
+        "#D3BD26",
+        "#616BB0",
+        "#8C5A90"
+      ],
+      "name": "Medallion"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF4242",
+        "#74AF68",
+        "#FFAD29",
+        "#338F86",
+        "#9414E6"
+      ],
+      "name": "Misterioso"
+    },
+    {
+      "colors": [
+        "#1B1D1E",
+        "#7325FA",
+        "#23E298",
+        "#60D4DF",
+        "#D08010",
+        "#FF0087"
+      ],
+      "name": "Molokai"
+    },
+    {
+      "colors": [
+        "#351B0E",
+        "#9B291C",
+        "#636232",
+        "#C36E28",
+        "#515C5D",
+        "#9B1D29"
+      ],
+      "name": "Mona Lisa"
+    },
+    {
+      "colors": [
+        "#402500",
+        "#FF9400",
+        "#FF9400",
+        "#FF9400",
+        "#FF9400",
+        "#FF9400"
+      ],
+      "name": "Mono Amber"
+    },
+    {
+      "colors": [
+        "#003340",
+        "#00CCFF",
+        "#00CCFF",
+        "#00CCFF",
+        "#00CCFF",
+        "#00CCFF"
+      ],
+      "name": "Mono Cyan"
+    },
+    {
+      "colors": [
+        "#034000",
+        "#0BFF00",
+        "#0BFF00",
+        "#0BFF00",
+        "#0BFF00",
+        "#0BFF00"
+      ],
+      "name": "Mono Green"
+    },
+    {
+      "colors": [
+        "#401200",
+        "#FF3600",
+        "#FF3600",
+        "#FF3600",
+        "#FF3600",
+        "#FF3600"
+      ],
+      "name": "Mono Red"
+    },
+    {
+      "colors": [
+        "#3B3B3B",
+        "#FAFAFA",
+        "#FAFAFA",
+        "#FAFAFA",
+        "#FAFAFA",
+        "#FAFAFA"
+      ],
+      "name": "Mono White"
+    },
+    {
+      "colors": [
+        "#403500",
+        "#FFD300",
+        "#FFD300",
+        "#FFD300",
+        "#FFD300",
+        "#FFD300"
+      ],
+      "name": "Mono Yellow"
+    },
+    {
+      "colors": [
+        "#75715E",
+        "#F92672",
+        "#A6E22E",
+        "#F4BF75",
+        "#66D9EF",
+        "#AE81FF"
+      ],
+      "name": "Monokai Dark"
+    },
+    {
+      "colors": [
+        "#363537",
+        "#FF6188",
+        "#A9DC76",
+        "#FFD866",
+        "#FC9867",
+        "#AB9DF2"
+      ],
+      "name": "Monokai Pro"
+    },
+    {
+      "colors": [
+        "#3E3838",
+        "#DF7484",
+        "#BBD87E",
+        "#EDCE73",
+        "#DC9373",
+        "#A9AAE9"
+      ],
+      "name": "Monokai Pro Ristretto"
+    },
+    {
+      "colors": [
+        "#1A1A1A",
+        "#F4005F",
+        "#98E024",
+        "#FA8419",
+        "#9D65FF",
+        "#F4005F"
+      ],
+      "name": "Monokai Soda"
+    },
+    {
+      "colors": [
+        "#323437",
+        "#FF5454",
+        "#8CC85F",
+        "#E3C78A",
+        "#80A0FF",
+        "#CF87E8"
+      ],
+      "name": "Moonfly"
+    },
+    {
+      "colors": [
+        "#040404",
+        "#0F49C4",
+        "#48B117",
+        "#E87324",
+        "#BC0116",
+        "#665B93"
+      ],
+      "name": "Morada"
+    },
+    {
+      "colors": [
+        "#383838",
+        "#A95551",
+        "#666666",
+        "#A98051",
+        "#657D3E",
+        "#767676"
+      ],
+      "name": "N0Tch2K"
+    },
+    {
+      "colors": [
+        "#20242D",
+        "#FF8E8E",
+        "#7EFDD0",
+        "#FCAD3F",
+        "#69B4F9",
+        "#DD92F6"
+      ],
+      "name": "Neon Night"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#800000",
+        "#61CE3C",
+        "#FBDE2D",
+        "#253B76",
+        "#FF0080"
+      ],
+      "name": "Neopolitan"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DD6F00",
+        "#00DD6F",
+        "#6FDD00",
+        "#6F00DD",
+        "#DD006F"
+      ],
+      "name": "Nep"
+    },
+    {
+      "colors": [
+        "#23252B",
+        "#B54036",
+        "#5AB977",
+        "#DEB566",
+        "#6A7C93",
+        "#A4799D"
+      ],
+      "name": "Neutron"
+    },
+    {
+      "colors": [
+        "#011627",
+        "#EF5350",
+        "#22DA6E",
+        "#ADDB67",
+        "#82AAFF",
+        "#C792EA"
+      ],
+      "name": "Night Owl"
+    },
+    {
+      "colors": [
+        "#1D3B53",
+        "#FC514E",
+        "#A1CD5E",
+        "#E3D18A",
+        "#82AAFF",
+        "#C792EA"
+      ],
+      "name": "Nightfly"
+    },
+    {
+      "colors": [
+        "#4C4C4C",
+        "#BB0000",
+        "#5FDE8F",
+        "#F3F167",
+        "#276BD8",
+        "#BB00BB"
+      ],
+      "name": "Nightlion V1"
+    },
+    {
+      "colors": [
+        "#4C4C4C",
+        "#BB0000",
+        "#04F623",
+        "#F3F167",
+        "#64D0F0",
+        "#CE6FDB"
+      ],
+      "name": "Nightlion V2"
+    },
+    {
+      "colors": [
+        "#373D48",
+        "#9B3E46",
+        "#095B32",
+        "#808020",
+        "#1D3E6F",
+        "#823065"
+      ],
+      "name": "Nighty"
+    },
+    {
+      "colors": [
+        "#3B4252",
+        "#BF616A",
+        "#A3BE8C",
+        "#EBCB8B",
+        "#81A1C1",
+        "#B48EAD"
+      ],
+      "name": "Nord"
+    },
+    {
+      "colors": [
+        "#003B4E",
+        "#E64569",
+        "#069F5F",
+        "#DAB752",
+        "#439ECF",
+        "#D961DC"
+      ],
+      "name": "Nord Light"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CC0000",
+        "#009600",
+        "#D06B00",
+        "#0000CC",
+        "#CC00CC"
+      ],
+      "name": "Novel"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#A60001",
+        "#00BB00",
+        "#FECD22",
+        "#3A9BDB",
+        "#BB00BB"
+      ],
+      "name": "Obsidian"
+    },
+    {
+      "colors": [
+        "#4F4F4F",
+        "#AF4B57",
+        "#AFD383",
+        "#E5C079",
+        "#7D90A4",
+        "#A4799D"
+      ],
+      "name": "Ocean Dark"
+    },
+    {
+      "colors": [
+        "#121C21",
+        "#E44754",
+        "#89BD82",
+        "#F7BD51",
+        "#5486C0",
+        "#B77EB8"
+      ],
+      "name": "Oceanic Next"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#AC2E31",
+        "#31AC61",
+        "#AC4300",
+        "#2D57AC",
+        "#B08528"
+      ],
+      "name": "Ollie"
+    },
+    {
+      "colors": [
+        "#191622",
+        "#E96379",
+        "#67E480",
+        "#E89E64",
+        "#78D1E1",
+        "#988BC7"
+      ],
+      "name": "Omni"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#E06C75",
+        "#98C379",
+        "#D19A66",
+        "#61AFEF",
+        "#C678DD"
+      ],
+      "name": "One Dark"
+    },
+    {
+      "colors": [
+        "#282C34",
+        "#E06C75",
+        "#98C379",
+        "#E5C07B",
+        "#61AFEF",
+        "#C678DD"
+      ],
+      "name": "One Half Black"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DA3E39",
+        "#41933E",
+        "#855504",
+        "#315EEE",
+        "#930092"
+      ],
+      "name": "One Light"
+    },
+    {
+      "colors": [
+        "#262626",
+        "#EE5396",
+        "#42BE65",
+        "#FFE97B",
+        "#33B1FF",
+        "#FF7EB6"
+      ],
+      "name": "Oxocarbon Dark"
+    },
+    {
+      "colors": [
+        "#292D3E",
+        "#F07178",
+        "#C3E88D",
+        "#FFCB6B",
+        "#82AAFF",
+        "#C792EA"
+      ],
+      "name": "Palenight"
+    },
+    {
+      "colors": [
+        "#0A0A0A",
+        "#AB8F74",
+        "#74AB8F",
+        "#8FAB74",
+        "#8F74AB",
+        "#AB748F"
+      ],
+      "name": "Pali"
+    },
+    {
+      "colors": [
+        "#1F1F20",
+        "#FB055A",
+        "#26FFD4",
+        "#FDAA5A",
+        "#5C9FFF",
+        "#FC59A6"
+      ],
+      "name": "Panda"
+    },
+    {
+      "colors": [
+        "#1C1C1C",
+        "#AF005F",
+        "#5FAF00",
+        "#D7AF5F",
+        "#5FAFD7",
+        "#808080"
+      ],
+      "name": "Papercolor Dark"
+    },
+    {
+      "colors": [
+        "#EEEEEE",
+        "#AF0000",
+        "#008700",
+        "#5F8700",
+        "#0087AF",
+        "#878787"
+      ],
+      "name": "Papercolor Light"
+    },
+    {
+      "colors": [
+        "#2F1E2E",
+        "#EF6155",
+        "#48B685",
+        "#FEC418",
+        "#06B6EF",
+        "#815BA4"
+      ],
+      "name": "Paraiso Dark"
+    },
+    {
+      "colors": [
+        "#2A2A2A",
+        "#FF0000",
+        "#79FF0F",
+        "#D3BF00",
+        "#396BD7",
+        "#B449BE"
+      ],
+      "name": "Paul Millr"
+    },
+    {
+      "colors": [
+        "#212121",
+        "#C30771",
+        "#10A778",
+        "#A89C14",
+        "#008EC4",
+        "#523C79"
+      ],
+      "name": "Pencil Dark"
+    },
+    {
+      "colors": [
+        "#212121",
+        "#C30771",
+        "#10A778",
+        "#A89C14",
+        "#008EC4",
+        "#523C79"
+      ],
+      "name": "Pencil Light"
+    },
+    {
+      "colors": [
+        "#353535",
+        "#E64569",
+        "#89D287",
+        "#DAB752",
+        "#439ECF",
+        "#D961DC"
+      ],
+      "name": "Peppermint"
+    },
+    {
+      "colors": [
+        "#2F2942",
+        "#FF857F",
+        "#48B685",
+        "#E6C000",
+        "#AE81FF",
+        "#EF6155"
+      ],
+      "name": "Pixiefloss"
+    },
+    {
+      "colors": [
+        "#2F2E2D",
+        "#A36666",
+        "#90A57D",
+        "#D7AF87",
+        "#7FA5BD",
+        "#C79EC4"
+      ],
+      "name": "Pnevma"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#7E0008",
+        "#098003",
+        "#C4A000",
+        "#010083",
+        "#D33682"
+      ],
+      "name": "Powershell"
+    },
+    {
+      "colors": [
+        "#F18260",
+        "#B51A20",
+        "#A6CC75",
+        "#FED33A",
+        "#81B2B1",
+        "#EB6C4E"
+      ],
+      "name": "Predawn"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#990000",
+        "#00A600",
+        "#999900",
+        "#2009DB",
+        "#B200B2"
+      ],
+      "name": "Pro"
+    },
+    {
+      "colors": [
+        "#0D1117",
+        "#E34C26",
+        "#238636",
+        "#ED9A51",
+        "#A5D6FF",
+        "#6EB0E8"
+      ],
+      "name": "Purple People Eater"
+    },
+    {
+      "colors": [
+        "#141414",
+        "#C16262",
+        "#49B685",
+        "#C5B76D",
+        "#4992B6",
+        "#815BBE"
+      ],
+      "name": "Quiet"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#D62E4E",
+        "#71BE6B",
+        "#BEB86B",
+        "#489BEE",
+        "#E979D7"
+      ],
+      "name": "Red Alert"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF3F00",
+        "#00BB00",
+        "#E7B000",
+        "#0072FF",
+        "#BB00BB"
+      ],
+      "name": "Red Sands"
+    },
+    {
+      "colors": [
+        "#151515",
+        "#BC5653",
+        "#909D63",
+        "#EBC17A",
+        "#6A8799",
+        "#B06698"
+      ],
+      "name": "Relaxed"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CDAF95",
+        "#A8FF60",
+        "#BFBB1F",
+        "#75A5B0",
+        "#FF73FD"
+      ],
+      "name": "Rippedcasts"
+    },
+    {
+      "colors": [
+        "#26233A",
+        "#EB6F92",
+        "#9CCFD8",
+        "#F6C177",
+        "#31748F",
+        "#C4A7E7"
+      ],
+      "name": "Rosé Pine"
+    },
+    {
+      "colors": [
+        "#F2E9E1",
+        "#B4637A",
+        "#56949F",
+        "#EA9D34",
+        "#286983",
+        "#907AA9"
+      ],
+      "name": "Rosé Pine Dawn"
+    },
+    {
+      "colors": [
+        "#393552",
+        "#EB6F92",
+        "#9CCFD8",
+        "#F6C177",
+        "#3E8FB0",
+        "#C4A7E7"
+      ],
+      "name": "Rosé Pine Moon"
+    },
+    {
+      "colors": [
+        "#241F2B",
+        "#91284C",
+        "#23801C",
+        "#B49D27",
+        "#6580B0",
+        "#674D96"
+      ],
+      "name": "Royal"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DD0007",
+        "#07DD00",
+        "#DDD600",
+        "#0007DD",
+        "#D600DD"
+      ],
+      "name": "Sat"
+    },
+    {
+      "colors": [
+        "#17384C",
+        "#D15123",
+        "#027C9B",
+        "#FCA02F",
+        "#1E4950",
+        "#68D4F1"
+      ],
+      "name": "Sea Shells"
+    },
+    {
+      "colors": [
+        "#757575",
+        "#825D4D",
+        "#728C62",
+        "#ADA16D",
+        "#4D7B82",
+        "#8A7267"
+      ],
+      "name": "Seafoam Pastel"
+    },
+    {
+      "colors": [
+        "#103c48",
+        "#fa5750",
+        "#75b938",
+        "#dbb32d",
+        "#4695f7",
+        "#f275be"
+      ],
+      "name": "Selenized Dark"
+    },
+    {
+      "colors": [
+        "#fbf3db",
+        "#d2212d",
+        "#489100",
+        "#ad8900",
+        "#0072d4",
+        "#ca4898"
+      ],
+      "name": "Selenized Light"
+    },
+    {
+      "colors": [
+        "#323232",
+        "#C22832",
+        "#8EC43D",
+        "#E0C64F",
+        "#43A5D5",
+        "#8B57B5"
+      ],
+      "name": "Seti"
+    },
+    {
+      "colors": [
+        "#012026",
+        "#B2302D",
+        "#00A941",
+        "#5E8BAA",
+        "#449A86",
+        "#00599D"
+      ],
+      "name": "Shaman"
+    },
+    {
+      "colors": [
+        "#2C2423",
+        "#AB2463",
+        "#6CA323",
+        "#AB6423",
+        "#2C64A2",
+        "#6C24A2"
+      ],
+      "name": "Shel"
+    },
+    {
+      "colors": [
+        "#222222",
+        "#E2A8BF",
+        "#81D778",
+        "#C4C9C0",
+        "#264B49",
+        "#A481D3"
+      ],
+      "name": "Slate"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#C75646",
+        "#8EB33B",
+        "#D0B03C",
+        "#72B3CC",
+        "#C8A0D1"
+      ],
+      "name": "Smyck"
+    },
+    {
+      "colors": [
+        "#282A36",
+        "#FF5C57",
+        "#5AF78E",
+        "#F3F99D",
+        "#57C7FF",
+        "#FF6AC1"
+      ],
+      "name": "Snazzy"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#A2686A",
+        "#9AA56A",
+        "#A3906A",
+        "#6B8FA3",
+        "#6A71A3"
+      ],
+      "name": "Soft Server"
+    },
+    {
+      "colors": [
+        "#25292A",
+        "#F24840",
+        "#629655",
+        "#B68800",
+        "#2075C7",
+        "#797FD4"
+      ],
+      "name": "Solarized Darcula"
+    },
+    {
+      "colors": [
+        "#073642",
+        "#DC322F",
+        "#859900",
+        "#CF9A6B",
+        "#268BD2",
+        "#D33682"
+      ],
+      "name": "Solarized Dark"
+    },
+    {
+      "colors": [
+        "#002831",
+        "#D11C24",
+        "#6CBE6C",
+        "#A57706",
+        "#2176C7",
+        "#C61C6F"
+      ],
+      "name": "Solarized Dark Higher Contrast"
+    },
+    {
+      "colors": [
+        "#073642",
+        "#DC322F",
+        "#859900",
+        "#B58900",
+        "#268BD2",
+        "#D33682"
+      ],
+      "name": "Solarized Light"
+    },
+    {
+      "colors": [
+        "#2C2E34",
+        "#FC5D7C",
+        "#9ED072",
+        "#E7C664",
+        "#F39660",
+        "#B39DF3"
+      ],
+      "name": "Sonokai"
+    },
+    {
+      "colors": [
+        "#6E5346",
+        "#E35B00",
+        "#5CAB96",
+        "#E3CD7B",
+        "#0F548B",
+        "#E35B00"
+      ],
+      "name": "Spacedust"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#B04B57",
+        "#87B379",
+        "#E5C179",
+        "#7D8FA4",
+        "#A47996"
+      ],
+      "name": "Spacegray"
+    },
+    {
+      "colors": [
+        "#15171C",
+        "#EC5F67",
+        "#81A764",
+        "#FEC254",
+        "#5486C0",
+        "#BF83C1"
+      ],
+      "name": "Spacegray Eighties"
+    },
+    {
+      "colors": [
+        "#15171C",
+        "#B24A56",
+        "#92B477",
+        "#C6735A",
+        "#7C8FA5",
+        "#A5789E"
+      ],
+      "name": "Spacegray Eighties Dull"
+    },
+    {
+      "colors": [
+        "#212322",
+        "#FF585D",
+        "#78D64B",
+        "#FBDD40",
+        "#4698CB",
+        "#D59ED7"
+      ],
+      "name": "Sparky"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF4D83",
+        "#1F8C3B",
+        "#1FC95B",
+        "#1DD3EE",
+        "#8959A8"
+      ],
+      "name": "Spring"
+    },
+    {
+      "colors": [
+        "#050505",
+        "#E9897C",
+        "#B6377D",
+        "#ECEBBE",
+        "#A9CDEB",
+        "#75507B"
+      ],
+      "name": "Square"
+    },
+    {
+      "colors": [
+        "#1C1B19",
+        "#EF2F27",
+        "#519F50",
+        "#FBB829",
+        "#2C78BF",
+        "#E02C6D"
+      ],
+      "name": "Srcery"
+    },
+    {
+      "colors": [
+        "#666666",
+        "#FF1E8E",
+        "#8EFF1E",
+        "#FFFB00",
+        "#1E8EFF",
+        "#E500E5"
+      ],
+      "name": "Summer Pop"
+    },
+    {
+      "colors": [
+        "#302B2A",
+        "#A7463D",
+        "#587744",
+        "#9D602A",
+        "#485B98",
+        "#864651"
+      ],
+      "name": "Sundried"
+    },
+    {
+      "colors": [
+        "#282C34",
+        "#ED254E",
+        "#71F79F",
+        "#F9DC5C",
+        "#7CB7FF",
+        "#C74DED"
+      ],
+      "name": "Sweet Eliverlara"
+    },
+    {
+      "colors": [
+        "#3F3F54",
+        "#F60055",
+        "#06C993",
+        "#9700BE",
+        "#F69154",
+        "#EC89CB"
+      ],
+      "name": "Sweet Terminal"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#DC322F",
+        "#56DB3A",
+        "#FF8400",
+        "#0084D4",
+        "#B729D9"
+      ],
+      "name": "Symphonic"
+    },
+    {
+      "colors": [
+        "#011627",
+        "#FE4450",
+        "#72F1B8",
+        "#FEDE5D",
+        "#03EDF9",
+        "#FF7EDB"
+      ],
+      "name": "Synthwave"
+    },
+    {
+      "colors": [
+        "#241B30",
+        "#9A0048",
+        "#00986C",
+        "#ADAD3E",
+        "#6E29AD",
+        "#B300AD"
+      ],
+      "name": "Synthwave Alpha"
+    },
+    {
+      "colors": [
+        "#1C1C1C",
+        "#D68686",
+        "#AED686",
+        "#D7AF87",
+        "#86AED6",
+        "#D6AED6"
+      ],
+      "name": "Teerb"
+    },
+    {
+      "colors": [
+        "#1D1D1D",
+        "#C5152F",
+        "#C9D05C",
+        "#FFC24B",
+        "#B3DEEF",
+        "#D3B987"
+      ],
+      "name": "Tender"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#990000",
+        "#00a600",
+        "#999900",
+        "#0000b2",
+        "#b200b2"
+      ],
+      "name": "Terminal Basic"
+    },
+    {
+      "colors": [
+        "#282A2E",
+        "#A54242",
+        "#A1B56C",
+        "#DE935F",
+        "#225555",
+        "#85678F"
+      ],
+      "name": "Terminix Dark"
+    },
+    {
+      "colors": [
+        "#1B1D1E",
+        "#F92672",
+        "#4DF840",
+        "#F4FD22",
+        "#2757D6",
+        "#8C54FE"
+      ],
+      "name": "Thayer Bright"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#8D534E",
+        "#4E8D53",
+        "#888D4E",
+        "#534E8D",
+        "#8D4E88"
+      ],
+      "name": "Tin"
+    },
+    {
+      "colors": [
+        "#414868",
+        "#F7768E",
+        "#9ECE6A",
+        "#E0AF68",
+        "#7AA2F7",
+        "#BB9AF7"
+      ],
+      "name": "Tokyo Night"
+    },
+    {
+      "colors": [
+        "#0F0F14",
+        "#8C4351",
+        "#485E30",
+        "#8F5E15",
+        "#34548A",
+        "#5A4A78"
+      ],
+      "name": "Tokyo Night Light"
+    },
+    {
+      "colors": [
+        "#414868",
+        "#F7768E",
+        "#9ECE6A",
+        "#E0AF68",
+        "#7AA2F7",
+        "#BB9AF7"
+      ],
+      "name": "Tokyo Night Storm"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#C82828",
+        "#718C00",
+        "#EAB700",
+        "#4171AE",
+        "#8959A8"
+      ],
+      "name": "Tomorrow"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CC6666",
+        "#B5BD68",
+        "#F0C674",
+        "#81A2BE",
+        "#B293BB"
+      ],
+      "name": "Tomorrow Night"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF9DA3",
+        "#D1F1A9",
+        "#FFEEAD",
+        "#BBDAFF",
+        "#EBBBFF"
+      ],
+      "name": "Tomorrow Night Blue"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#D54E53",
+        "#B9CA49",
+        "#E7C547",
+        "#79A6DA",
+        "#C397D8"
+      ],
+      "name": "Tomorrow Night Bright"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#F27779",
+        "#99CC99",
+        "#FFCC66",
+        "#6699CC",
+        "#CC99CC"
+      ],
+      "name": "Tomorrow Night Eighties"
+    },
+    {
+      "colors": [
+        "#2C3F58",
+        "#BE2D26",
+        "#1A9172",
+        "#DB8E27",
+        "#325D96",
+        "#8A5EDC"
+      ],
+      "name": "Toy Chest"
+    },
+    {
+      "colors": [
+        "#321300",
+        "#B2270E",
+        "#44A900",
+        "#AA820C",
+        "#58859A",
+        "#97363D"
+      ],
+      "name": "Treehouse"
+    },
+    {
+      "colors": [
+        "#141414",
+        "#C06D44",
+        "#AFB97A",
+        "#C2A86C",
+        "#44474A",
+        "#B4BE7C"
+      ],
+      "name": "Twilight"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#C21B6F",
+        "#6FC21B",
+        "#C26F1B",
+        "#1B6FC2",
+        "#6F1BC2"
+      ],
+      "name": "Ura"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#B0425B",
+        "#37A415",
+        "#AD5C42",
+        "#564D9B",
+        "#6C3CA1"
+      ],
+      "name": "Urple"
+    },
+    {
+      "colors": [
+        "#303030",
+        "#A87139",
+        "#39A871",
+        "#71A839",
+        "#7139A8",
+        "#A83971"
+      ],
+      "name": "Vag"
+    },
+    {
+      "colors": [
+        "#25234F",
+        "#705050",
+        "#60B48A",
+        "#DFAF8F",
+        "#5555FF",
+        "#F08CC3"
+      ],
+      "name": "Vaughn"
+    },
+    {
+      "colors": [
+        "#878787",
+        "#FF6600",
+        "#CCFF04",
+        "#FFCC00",
+        "#44B4CC",
+        "#9933CC"
+      ],
+      "name": "Vibrant Ink"
+    },
+    {
+      "colors": [
+        "#6A787A",
+        "#E9653B",
+        "#39E9A8",
+        "#E5B684",
+        "#44AAE6",
+        "#E17599"
+      ],
+      "name": "Vs Code Dark+"
+    },
+    {
+      "colors": [
+        "#020202",
+        "#CD3232",
+        "#00BC00",
+        "#A5A900",
+        "#0752A8",
+        "#BC05BC"
+      ],
+      "name": "Vs Code Light+"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#E24346",
+        "#39B13A",
+        "#DAE145",
+        "#4261C5",
+        "#F920FB"
+      ],
+      "name": "Warm Neon"
+    },
+    {
+      "colors": [
+        "#183c44",
+        "#da4949",
+        "#bcca15",
+        "#ffb02e",
+        "#35a6e6",
+        "#d343a2"
+      ],
+      "name": "Website"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#CC5555",
+        "#55CC55",
+        "#CDCD55",
+        "#5555CC",
+        "#CC55CC"
+      ],
+      "name": "Wez"
+    },
+    {
+      "colors": [
+        "#000507",
+        "#D94085",
+        "#2AB250",
+        "#FFD16F",
+        "#883CDC",
+        "#ECECEC"
+      ],
+      "name": "Wild Cherry"
+    },
+    {
+      "colors": [
+        "#000000",
+        "#FF615A",
+        "#B1E969",
+        "#EBD99C",
+        "#5DA9F6",
+        "#E86AFF"
+      ],
+      "name": "Wombat"
+    },
+    {
+      "colors": [
+        "#333333",
+        "#8C4665",
+        "#287373",
+        "#7C7C99",
+        "#395573",
+        "#5E468C"
+      ],
+      "name": "Wryan"
+    },
+    {
+      "colors": [
+        "#2E3436",
+        "#FC6386",
+        "#424043",
+        "#FCE94F",
+        "#FB976B",
+        "#75507B"
+      ],
+      "name": "Wzoreck"
+    },
+    {
+      "colors": [
+        "#4D4D4D",
+        "#705050",
+        "#60B48A",
+        "#F0DFAF",
+        "#506070",
+        "#DC8CC3"
+      ],
+      "name": "Zenburn"
+    }
+  ]
