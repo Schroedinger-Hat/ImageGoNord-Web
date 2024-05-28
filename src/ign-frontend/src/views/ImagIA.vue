@@ -63,28 +63,6 @@ export default {
   }
 }
 
-/* .palette-grid { */
-/*   max-height: 380px; */
-/*   overflow-y: auto; */
-
-/*   .palette-post { */
-/*     .palette-title { */
-/*       padding-top: 0; */
-/*       height: 65px; */
-/*       align-content: space-around; */
-/*     } */
-/*   } */
-/* } */
-
-/* @media (min-width: 56.25em) { */
-/*   .palette-grid { */
-/*     .palette-post { */
-/*       width: 21%; */
-/*       max-height: 80px; */
-/*     } */
-/*   } */
-/* } */
-
 .demo-section {
   min-height: 500px;
   background: $nord5;
