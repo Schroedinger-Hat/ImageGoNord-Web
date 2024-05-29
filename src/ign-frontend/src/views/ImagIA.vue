@@ -4,9 +4,6 @@
         h1="Image Go AI 🤖"
         h2="Use the power of the PaletteNet to recolor your images"
       />
-    <center>
-      <a class="github-button" href="https://github.com/Schrodinger-Hat/ImageGoNord" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star Schrodinger-Hat/ImageGoNord on GitHub">Star</a>
-    </center>
     <div class="canvas-container">
       <svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">
         <path transform="translate(0, -20)" d="M0,10 c80,-22 240,0 350,18 c90,17 260,7.5
@@ -21,10 +18,9 @@
       </center>
       <div class="palette-grid container">
         <div @click="selectedPalette = palette.name" :class="{'palette-post': true, 'current-palette': (selectedPalette === palette.name)}" v-for="palette in availablePalettes" :key="palette.name">
-          <div :style="`width: 100%; min-height: 80px; background-size: cover; background: linear-gradient(to right, ${palette.colors[0]} 16.65%, ${palette.colors[1]} 16.65% 33.3%, ${palette.colors[2]} 33.3% 49.95%, ${palette.colors[3]} 49.95% 66.55%, ${palette.colors[4]} 66.55% 83.2%, ${palette.colors[5]} 83.2%
-          );`">
-            <span class="palette-title">{{ palette.name }}</span>
-          </div>
+          <div class="palette-img" :style="`background: linear-gradient(to right, ${palette.colors[0]} 16.65%, ${palette.colors[1]} 16.65% 33.3%, ${palette.colors[2]} 33.3% 49.95%, ${palette.colors[3]} 49.95% 66.55%, ${palette.colors[4]} 66.55% 83.2%, ${palette.colors[5]} 83.2%
+          );`"/>
+          <span class="palette-title">{{ palette.name }}</span>
         </div>
       </div>
       <Demo :isAi="true" :selectedPalette="`${(selectedPalette !== '') ? selectedPalette : []}`" />
@@ -60,28 +56,6 @@ export default {
     }
     path:nth-of-type(2) {
       fill: $nord5;
-    }
-  }
-}
-
-.palette-grid {
-  max-height: 380px;
-  overflow-y: auto;
-
-  .palette-post {
-    .palette-title {
-      padding-top: 0;
-      height: 65px;
-      align-content: space-around;
-    }
-  }
-}
-
-@media (min-width: 56.25em) {
-  .palette-grid {
-    .palette-post {
-      width: 21%;
-      max-height: 80px;
     }
   }
 }
