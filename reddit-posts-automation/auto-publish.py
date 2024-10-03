@@ -95,7 +95,7 @@ if len(wallpapers_to_process) > 0:
       reddit_sub = imagegonord_subreddit.submit_image(sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR_IDS['NORD'])
 
       print('Commenting')
-      reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schrodinger-hat.it/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
+      reddit_sub.reply('The ImageGoNord website is available [here](https://ign.schroedinger-hat.org/), try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
       published_post = published_post + 1
 
       if (published_post % REPOST_FREQUENCY == 0):

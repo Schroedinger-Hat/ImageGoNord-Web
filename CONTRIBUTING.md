@@ -144,18 +144,18 @@ To entirely understand your enhancement or bug report, developers will need to v
 
 Thanks for the inspirations and attributions to GitHub's [Open Source Guides](https://opensource.guide) and various contribution guides of large open source projects like [Atom][ref-atom-contributing], [React][ref-react-contributing] and [Ruby on Rails][ref-rubyonrails-contributing].
 
-[branch-develop]: https://github.com/schrodinger-hat/ImageGoNord/tree/develop
-[changelog]: https://github.com/schrodinger-hat/ImageGoNord/blob/develop/CHANGELOG.md
-[code-of-conduct]: https://github.com/schrodinger-hat/ImageGoNord/blob/develop/CODE_OF_CONDUCT.md
+[branch-develop]: https://github.com/schroedinger-hat/imagegonord-web/tree/develop
+[changelog]: https://github.com/schroedinger-hat/imagegonord-web/blob/develop/CHANGELOG.md
+[code-of-conduct]: https://github.com/schroedinger-hat/imagegonord-web/blob/develop/CODE_OF_CONDUCT.md
 [email]: mailto:scrordinger.hat.show@gmail.com
 [gh-help-attach-files]: https://help.github.com/articles/file-attachments-on-issues-and-pull-requests
 [gh-help-issue-keywords]: https://help.github.com/articles/closing-issues-using-keywords
 [gh-help-markdown-code-blocks]: https://help.github.com/articles/basic-writing-and-formatting-syntax
-[gh-issues]: https://github.com/schrodinger-hat/ImageGoNord/issues
-[gh-issues-label-question]: https://github.com/schrodinger-hat/ImageGoNord/labels/question
-[gh-pr]: https://github.com/schrodinger-hat/ImageGoNord/pulls
+[gh-issues]: https://github.com/schroedinger-hat/imagegonord-web/issues
+[gh-issues-label-question]: https://github.com/schroedinger-hat/imagegonord-web/labels/question
+[gh-pr]: https://github.com/schroedinger-hat/imagegonord-web/pulls
 [gh-osguide-contribute]: https://opensource.guide/how-to-contribute
-[gh-readme-port-projects]: https://github.com/schrodinger-hat/ImageGoNord#port-projects
+[gh-readme-port-projects]: https://github.com/schroedinger-hat/imagegonord-web#port-projects
 [git-docs-branching-workflows]: https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows
 [gitflow]: http://nvie.com/posts/a-successful-git-branching-model
 [ref-atom-contributing]: https://github.com/atom/atom/blob/master/CONTRIBUTING.md
@@ -164,6 +164,6 @@ Thanks for the inspirations and attributions to GitHub's [Open Source Guides](ht
 [semver]: http://semver.org
 [stackoverflow-mcve]: https://stackoverflow.com/help/mcve
 [sscce]: http://sscce.org
-[template-issue]: https://github.com/schrodinger-hat/ImageGoNord/blob/develop/.github/ISSUE_TEMPLATE.md
-[template-pr]: https://github.com/schrodinger-hat/ImageGoNord/blob/develop/.github/PULL_REQUEST_TEMPLATE.md
-[version-latest]: https://github.com/schrodinger-hat/ImageGoNord/releases/latest
+[template-issue]: https://github.com/schroedinger-hat/imagegonord-web/blob/develop/.github/ISSUE_TEMPLATE.md
+[template-pr]: https://github.com/schroedinger-hat/imagegonord-web/blob/develop/.github/PULL_REQUEST_TEMPLATE.md
+[version-latest]: https://github.com/schroedinger-hat/imagegonord-web/releases/latest

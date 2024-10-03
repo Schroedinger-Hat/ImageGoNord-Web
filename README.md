@@ -1,4 +1,4 @@
-# ImageGoNord - RGB image to Nordtheme palette
+# ImageGoNord Website - RGB image to Nordtheme palette
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -7,12 +7,12 @@ Image Go Nord is a tool that can convert your rgb images to not only [Nordtheme]
 **IGN is a tool that can convert your rgb images to any palette!**
 
 This repository is:
-- an API hosted on Heroku that is using the [ImageGoNord Python package](https://github.com/Schrodinger-Hat/ImageGoNord-pip) written in Flask;
+- an API hosted on Heroku that is using the [ImageGoNord Python package](https://github.com/schroedinger-hat/ImageGoNord-pip) written in Flask;
 - a demo website made in VueJS hosted on Netlify which can convert your image or video into any palette!
 
 **Are you looking for the python package?**
 
-The official python package's repository is [ImageGoNord-pip](https://github.com/Schrodinger-Hat/ImageGoNord-pip). You are welcome :)
+The official python package's repository is [ImageGoNord-pip](https://github.com/schroedinger-hat/ImageGoNord-pip). You are welcome :)
 
 ### Inspiration
 
@@ -21,11 +21,11 @@ We are in love with Nordtheme and Linux Rice, that is why we created this reposi
 Our goal is to make a shortcut to convert image or video into any theme.
 <br>An example could be an awesome wallpaper converted into the Nordtheme palette.
 
-<img src="https://raw.githubusercontent.com/Schrodinger-Hat/ImageGoNord/master/images/ign-demo-image.gif">
+<img src="https://raw.githubusercontent.com/schroedinger-hat/ImageGoNord-web/master/images/ign-demo-image.gif">
 
 <br>Or an example of an image converted into the Gruvbox palette
 
-<img src="https://raw.githubusercontent.com/Schrodinger-Hat/ImageGoNord/master/images/ign-demo-gruvbox.gif">
+<img src="https://raw.githubusercontent.com/schroedinger-hat/ImageGoNord-web/master/images/ign-demo-gruvbox.gif">
 
 <br>
 
@@ -49,7 +49,7 @@ This will bring our website in your local.
 
 ### How to add a new palette on the website?
 
-It's very easy and you can refer to this [PR](https://github.com/Schrodinger-Hat/ImageGoNord/pull/150) as a sort of documentation.
+It's very easy and you can refer to this [PR](https://github.com/schroedinger-hat/ImageGoNord-web/pull/150) as a sort of documentation.
 
 **What I need to do?**
 You need to create a JSON file in `src/ign-frontend/src/assets/palettes/[themeName].json` with the following format:
@@ -96,16 +96,16 @@ Verify that everything is working great and open a PR :)
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://www.linkedin.com/in/%F0%9F%90%A7gabriele-puliti-b62915a9/"><img src="https://avatars.githubusercontent.com/u/12409541?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GabrielePuliti</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=Wabri" title="Code">💻</a> <a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=Wabri" title="Documentation">📖</a> <a href="#design-Wabri" title="Design">🎨</a> <a href="#ideas-Wabri" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-Wabri" title="Maintenance">🚧</a> <a href="#projectManagement-Wabri" title="Project Management">📆</a></td>
-      <td align="center"><a href="https://www.mikilombardi.com"><img src="https://avatars.githubusercontent.com/u/6616203?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Miki Lombardi</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=TheJoin95" title="Code">💻</a> <a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=TheJoin95" title="Documentation">📖</a> <a href="#design-TheJoin95" title="Design">🎨</a> <a href="#ideas-TheJoin95" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-TheJoin95" title="Maintenance">🚧</a> <a href="#projectManagement-TheJoin95" title="Project Management">📆</a></td>
-      <td align="center"><a href="https://github.com/BugliL"><img src="https://avatars.githubusercontent.com/u/3107276?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BugliL</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=BugliL" title="Code">💻</a> <a href="#design-BugliL" title="Design">🎨</a> <a href="#ideas-BugliL" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-BugliL" title="Maintenance">🚧</a> <a href="#projectManagement-BugliL" title="Project Management">📆</a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/%F0%9F%90%A7gabriele-puliti-b62915a9/"><img src="https://avatars.githubusercontent.com/u/12409541?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GabrielePuliti</b></sub></a><br /><a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=Wabri" title="Code">💻</a> <a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=Wabri" title="Documentation">📖</a> <a href="#design-Wabri" title="Design">🎨</a> <a href="#ideas-Wabri" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-Wabri" title="Maintenance">🚧</a> <a href="#projectManagement-Wabri" title="Project Management">📆</a></td>
+      <td align="center"><a href="https://www.mikilombardi.com"><img src="https://avatars.githubusercontent.com/u/6616203?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Miki Lombardi</b></sub></a><br /><a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=TheJoin95" title="Code">💻</a> <a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=TheJoin95" title="Documentation">📖</a> <a href="#design-TheJoin95" title="Design">🎨</a> <a href="#ideas-TheJoin95" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-TheJoin95" title="Maintenance">🚧</a> <a href="#projectManagement-TheJoin95" title="Project Management">📆</a></td>
+      <td align="center"><a href="https://github.com/BugliL"><img src="https://avatars.githubusercontent.com/u/3107276?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BugliL</b></sub></a><br /><a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=BugliL" title="Code">💻</a> <a href="#design-BugliL" title="Design">🎨</a> <a href="#ideas-BugliL" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-BugliL" title="Maintenance">🚧</a> <a href="#projectManagement-BugliL" title="Project Management">📆</a></td>
       <td align="center"><a href="http://abod1960.cf"><img src="https://avatars.githubusercontent.com/u/79435005?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Abdullah Omar</b></sub></a><br /><a href="#design-Abod1960" title="Design">🎨</a></td>
-      <td align="center"><a href="https://github.com/jlc893"><img src="https://avatars.githubusercontent.com/u/77926457?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jason</b></sub></a><br /><a href="#design-jlc893" title="Design">🎨</a> <a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=jlc893" title="Documentation">📖</a> <a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=jlc893" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/senali-d"><img src="https://avatars.githubusercontent.com/u/52546856?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Senali</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=senali-d" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/jlc893"><img src="https://avatars.githubusercontent.com/u/77926457?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jason</b></sub></a><br /><a href="#design-jlc893" title="Design">🎨</a> <a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=jlc893" title="Documentation">📖</a> <a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=jlc893" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/senali-d"><img src="https://avatars.githubusercontent.com/u/52546856?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Senali</b></sub></a><br /><a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=senali-d" title="Documentation">📖</a></td>
       <td align="center"><a href="https://juancldcmt.github.io"><img src="https://avatars.githubusercontent.com/u/72336775?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JuanCC</b></sub></a><br /><a href="#design-JuanCldCmt" title="Design">🎨</a></td>
     </tr>
     <tr>
-      <td align="center"><a href="http://www.linkedin.com/in/veronica-papini-5a546b179"><img src="https://avatars.githubusercontent.com/u/86972949?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Veronica Papini</b></sub></a><br /><a href="https://github.com/Schrodinger-Hat/ImageGoNord/commits?author=VeroPap" title="Documentation">📖</a></td>
+      <td align="center"><a href="http://www.linkedin.com/in/veronica-papini-5a546b179"><img src="https://avatars.githubusercontent.com/u/86972949?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Veronica Papini</b></sub></a><br /><a href="https://github.com/schroedinger-hat/ImageGoNord-web/commits?author=VeroPap" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
@@ -124,4 +124,4 @@ Verify that everything is working great and open a PR :)
 
 ### License
 
-[MIT license](https://github.com/Schrodinger-Hat/ImageGoNord/blob/master/LICENSE)
+[MIT license](https://github.com/schroedinger-hat/ImageGoNord-web/blob/master/LICENSE)

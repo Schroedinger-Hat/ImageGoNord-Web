@@ -26,7 +26,7 @@
         <div class="guide python markdown-body">
           <h1>Documentation Python Package</h1>
           <p>The documentation is under development (as the package) and it is
-            <a href="https://ign.schrodinger-hat.it/documentation/python">available also on the website</a>.
+            <a href="https://ign.schroedinger-hat.org/documentation/python">available also on the website</a>.
           You can find some usage and some example under the example folder.</p>
           <h1 id="class-methods">Class &amp; Methods</h1>
           <h2 id="nordpalettefile-">NordPaletteFile:</h2>
