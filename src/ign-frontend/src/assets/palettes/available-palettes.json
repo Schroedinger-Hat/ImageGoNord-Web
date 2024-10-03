@@ -113,5 +113,11 @@
         "name": "Everforest",
         "img": "palettes/img/everforest.webp",
         "file": "palettes/everforest.json"
+    },
+    {
+        "name": "Rose Pine Moon",
+        "img": "palettes/img/rose-pine-moon.png",
+        "file": "palettes/rose-pine-moon.json"
     }
 ]
+
