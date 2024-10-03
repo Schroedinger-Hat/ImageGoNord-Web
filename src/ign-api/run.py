@@ -26,7 +26,7 @@ app.register_blueprint(convert_async_api)
 @app.route(API_VERSION + "/status", methods=["GET"])
 @cross_origin(origin='*')
 def get_api_status():
-  return jsonify({'ok': True, 'count': conn.get('conversion_count')})
+  return jsonify({'ok': True, 'count': str(conn.get('conversion_count'))})
 
 @app.route(API_VERSION + "/quantize", methods=["POST"])
 @cross_origin(origin='*')

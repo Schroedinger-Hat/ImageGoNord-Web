@@ -117,7 +117,7 @@ export default Vue.component('Demo', {
   },
   data() {
     return {
-      apiUrl: 'https://ign-api.schrodinger-hat.it/v1',
+      apiUrl: 'https://ign-api.schroedinger-hat.org/v1',
       img: null,
       imgData: null,
       selectedColor: [],

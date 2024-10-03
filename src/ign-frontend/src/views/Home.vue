@@ -111,7 +111,7 @@ export default {
   mounted() {
     const self = this;
     setInterval(() => {
-      fetch('https://ign-api.schrodinger-hat.it/v1/status')
+      fetch('https://ign-api.schroedinger-hat.org/v1/status')
         .then((r) => { self.apiStatus = 'success'; r.json().then((j) => { self.apiCount = j.count; }); })
         .catch(() => { self.apiStatus = 'failed'; });
     }, 8000);
