@@ -1,5 +1,5 @@
 name: 'Tweet from ImageGoNord Subreddit'
-description: 'Tweet the latest wallpaper from ImageGoNord Subreddit to Schrodinger_Hat Twitter profile'
+description: 'Tweet the latest wallpaper from ImageGoNord Subreddit to Schroedinger_Hat Twitter profile'
 runs:
   using: 'docker'
   image: 'Dockerfile'

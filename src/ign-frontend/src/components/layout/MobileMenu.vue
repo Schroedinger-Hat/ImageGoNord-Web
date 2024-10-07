@@ -9,7 +9,7 @@
         <router-link to="/color-schemes">ImageGoWild</router-link>
         <router-link to="/wallpaper">Wallpaper</router-link>
         <router-link to="/about">About</router-link>
-        <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">GitHub</a>
+        <a href="https://github.com/Schroedinger-Hat/ImageGoNord-web" target="_blank">GitHub</a>
       </div>
     </nav>
   </div>

@@ -6,9 +6,16 @@
       <div class="container contributing-container-text">
         <div class="inner-text">
           <h4>Contributing</h4>
-          <p><b>ImageGoNord</b> is open source and <a class="external-link-color" href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">hosted on GitHub</a>.</p>
-          <a class="github-button" href="https://github.com/Schrodinger-Hat/ImageGoNord" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star Schrodinger-Hat/ImageGoNord on GitHub">Star</a>
-          <p>If you find a bug or have an idea for a new feature, please <a class="external-link-color" target="_blank" href="https://github.com/Schrodinger-Hat/ImageGoNord/issues">open an issue on GitHub</a>.</p>
+          <p><b>ImageGoNord</b> is open source and <a class="external-link-color"
+            href="https://github.com/Schroedinger-Hat/ImageGoNord-web" target="_blank">hosted on GitHub</a>.</p>
+          <a class="github-button" href="https://github.com/Schroedinger-Hat/ImageGoNord-web"
+            data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
+                                                                                data-show-count="true"
+                                                                                aria-label="Star
+                                                                                Schroedinger-Hat/ImageGoNord-web on GitHub">Star</a>
+          <p>If you find a bug or have an idea for a new feature, please <a
+            class="external-link-color" target="_blank"
+            href="https://github.com/Schroedinger-Hat/ImageGoNord-web/issues">open an issue on GitHub</a>.</p>
           <p class="social">
             <a target="_blank" href="https://opencollective.com/schrodinger-hat">
               <i class="fas fa-donate external-link-color"></i>

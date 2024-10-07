@@ -18,7 +18,7 @@
           <a target="_blank" href="https://opencollective.com/schrodinger-hat">
             <i class="fas fa-donate mobile-menu-icon"></i>
           </a>
-          <a href="https://github.com/Schrodinger-Hat/ImageGoNord" target="_blank">
+          <a href="https://github.com/Schroedinger-Hat/ImageGoNord-web" target="_blank">
             <i class="mobile-menu-icon fab fa-github"></i>
           </a>
           <a @click="toggleMobileMenu" href="#">

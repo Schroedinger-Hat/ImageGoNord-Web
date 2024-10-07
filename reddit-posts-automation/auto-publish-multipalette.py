@@ -107,7 +107,7 @@ if len(wallpapers_to_process) > 0:
         reddit_sub = imagegonord_subreddit.submit_image(IGN_TITLE_PREFIX + sub['title'] + IGN_TITLE_SUFFIX, image_path=img_path, flair_id=FLAIR[palette_key]['id'])
 
         print('Commenting')
-        reddit_sub.reply('The ImageGoWild website is available [here](https://ign.schrodinger-hat.it/color-schemes) as part of ImageGoNord project, try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
+        reddit_sub.reply('The ImageGoWild website is available [here](https://ign.schroedinger-hat.org/color-schemes) as part of ImageGoNord project, try it and share the result in [r/ImageGoNord](https://www.reddit.com/r/ImageGoNord/)!\nOriginal image made by ['+sub['author']+'](https://www.reddit.com/user/'+sub['author']+') available [here](' + sub['url'] + ').')
       except Exception as e:
         print(e)
 

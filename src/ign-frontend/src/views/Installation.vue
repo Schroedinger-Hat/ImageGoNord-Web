@@ -36,15 +36,18 @@
       <section class="installation-guides">
         <div class="guide linux">
           <h3>Install on Linux</h3>
-          <p>Documentation available in the <a class="external-link-color" href="https://github.com/Schrodinger-Hat/ImageGoNord-pip" target="_blank">Github Repository</a></p>
+          <p>Documentation available in the <a class="external-link-color"
+            href="https://github.com/Schroedinger-Hat/ImageGoNord-pip" target="_blank">Github Repository</a></p>
         </div>
         <div class="guide windows">
           <h3>Install on Windows</h3>
-          <p>Documentation available in the <a class="external-link-color" href="https://github.com/Schrodinger-Hat/ImageGoNord-pip" target="_blank">Github Repository</a></p>
+          <p>Documentation available in the <a class="external-link-color"
+            href="https://github.com/Schroedinger-Hat/ImageGoNord-pip" target="_blank">Github Repository</a></p>
         </div>
         <div class="guide macos">
           <h3>Install on macOS</h3>
-          <p>Documentation available in the <a class="external-link-color" href="https://github.com/Schrodinger-Hat/ImageGoNord-pip" target="_blank">Github Repository</a></p>
+          <p>Documentation available in the <a class="external-link-color"
+            href="https://github.com/Schroedinger-Hat/ImageGoNord-pip" target="_blank">Github Repository</a></p>
         </div>
       </section>
     </div>
