@@ -1,7 +1,7 @@
 Pillow==10.3.0
 flask==1.1.2
 flask_cors==3.0.8
-image-go-nord==1.1.0
+image-go-nord==1.2.0
 gunicorn==20.0.4
 rq==1.8.0
 pytest==6.0.2
