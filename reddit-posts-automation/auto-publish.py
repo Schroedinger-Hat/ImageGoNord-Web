@@ -6,7 +6,7 @@ import hashlib
 import base64
 import requests
 
-REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schrodinger_hat')
+REDDIT_USERNAME = os.environ.get('REDDIT_USERNAME', 'schroedinger_hat')
 REDDIT_PASSWORD = os.environ.get('REDDIT_PASSWORD', '')
 REDDIT_APP_ID = os.environ.get('REDDIT_APP_ID', '')
 REDDIT_APP_SECRET = os.environ.get('REDDIT_APP_SECRET', '')
