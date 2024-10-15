@@ -76,11 +76,11 @@
 </template>
 
 <script>
-import NyanCat from "@/components/NyanCat.vue";
-import SeparatorSingleLine from "@/components/separator/SingleLine.vue";
+import NyanCat from '@/components/NyanCat.vue';
+import SeparatorSingleLine from '@/components/separator/SingleLine.vue';
 
 export default {
-  name: "Contributing",
+  name: 'Contributing',
   props: {},
   components: {
     NyanCat,
