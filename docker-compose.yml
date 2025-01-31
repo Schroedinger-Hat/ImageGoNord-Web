@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    build: ./src/ign-api
+    container_name: api
+    environment:
+      - REDISTOGO_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+networks:
+  default:
+    driver: bridge
