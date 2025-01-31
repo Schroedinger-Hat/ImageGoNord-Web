@@ -14,6 +14,15 @@ This repository is:
 
 The official python package's repository is [ImageGoNord-pip](https://github.com/schroedinger-hat/ImageGoNord-pip). You are welcome :)
 
+## Recap
+
+- [Inspiration](#inspiration)
+- [Core Technical Concepts](#core-technical-concepts)
+- [Getting Started](#getting-started)
+- [Running `ign-api` locally with Docker](#running-ign-api-locally-with-docker)
+- [How to add a new palette on the website?](#how-to-add-a-new-palette-on-the-website)
+- [Contributing](#contributing)
+
 ### Inspiration
 
 We are in love with Nordtheme and Linux Rice, that is why we created this repository.
