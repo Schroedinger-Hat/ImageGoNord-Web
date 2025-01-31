@@ -7,7 +7,7 @@ Image Go Nord is a tool that can convert your rgb images to not only [Nordtheme]
 **IGN is a tool that can convert your rgb images to any palette!**
 
 This repository is:
-- an API hosted on Heroku that is using the [ImageGoNord Python package](https://github.com/schroedinger-hat/ImageGoNord-pip) written in Flask;
+- an API hosted on K8s that is using the [ImageGoNord Python package](https://github.com/schroedinger-hat/ImageGoNord-pip) written in Flask;
 - a demo website made in VueJS hosted on Netlify which can convert your image or video into any palette!
 
 **Are you looking for the python package?**
@@ -35,6 +35,12 @@ We checked the commnunity and we did not find anything similar or any project th
 
 We are using the PIL because it is the most simple library and it is very useful when you need to manipulate some images.
 
+Redis is our Pub/Sub store and queue management.
+
+With Gunicorn we're executing our Flask API which is posting in a queue some convert jobs from the frontend.
+
+Then we have 3 workers that are running in background in our Docker container where are processing via ImageGoNord Python package the images.
+
 Our goal is also to make this project open source and maintainable by the community. We would love to.
 
 *We believe in the open source community.*
@@ -46,6 +52,63 @@ Clone the repository then go to the `src/ign-frontend` folder
 ```npm install && npm run serve```
 
 This will bring our website in your local.
+By default we're using the same endpoint you'll find on the demo website.
+
+To develop your API locally refer to the following.
+
+### Running `ign-api` locally with Docker
+
+#### 1. **Navigate to the Project Root**
+
+  Ensure you are in the root directory of the project:
+
+  ```sh
+  cd ImageGoNord-web
+  ```
+
+#### 2. **Build the Docker Image**
+
+  Build the Docker image for `ign-api`:
+
+  ```sh
+  docker-compose build
+  ```
+
+#### 3. **Start the Docker Containers**
+
+  Start the Docker containers using Docker Compose:
+
+  ```sh
+  docker-compose up
+  ```
+
+  The API should now be running at `http://localhost:8000`.
+
+#### **Stopping the Docker Containers**
+
+To stop the Docker containers, run:
+
+```sh
+docker-compose down
+```
+
+#### **Rebuilding the Docker Image**
+
+If you make changes to the Dockerfile or dependencies, you may need to rebuild the Docker image:
+
+```sh
+docker-compose build
+```
+
+#### **Accessing Logs**
+
+To view the logs of the running containers, use:
+
+```sh
+docker-compose logs
+```
+
+--------
 
 ### How to add a new palette on the website?
 
