@@ -2,7 +2,7 @@ from ImageGoNord import GoNord
 from flask import Flask
 from flask import jsonify, abort
 from flask import request, send_file
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 from rq import Queue
 from rq.job import Job
@@ -16,8 +16,7 @@ API_VERSION = '/v1'
 API_VERSION_URL = '/' + API_VERSION
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app, resources={r"/v1/*": {"origins": "https://ign.schroedinger-hat.org"}})
 app.config['UPLOAD_FOLDER'] = '/tmp'
 app.config['MAX_CONTENT_LENGTH'] = 128 * 1000 * 1000 # 128MB
 
