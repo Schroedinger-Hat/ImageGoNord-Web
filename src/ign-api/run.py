@@ -2,7 +2,7 @@ from ImageGoNord import GoNord
 from flask import Flask
 from flask import jsonify, abort
 from flask import request, send_file
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 from rq import Queue
 from rq.job import Job
